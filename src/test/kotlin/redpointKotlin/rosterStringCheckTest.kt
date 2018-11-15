@@ -35,13 +35,15 @@ class ApplyTest : StringSpec({
                 listOf("RinSta", "JohLen", "GeoHar")
     }
 
-    "nonBlankString should error for null, empty or only spaces input" {
+    "nonBlankString should error only for null, empty or only spaces input" {
         nonBlankString(null) shouldBe
                 Pair("the roster string was null, empty or only spaces", null)
         nonBlankString("") shouldBe
                 Pair("the roster string was null, empty or only spaces", null)
         nonBlankString(" ") shouldBe
                 Pair("the roster string was null, empty or only spaces", null)
+        nonBlankString("This should pass") shouldBe
+                Pair(null, "This should pass")
     }
 
 })
