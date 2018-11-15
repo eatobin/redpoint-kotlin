@@ -3,25 +3,28 @@ package redpointKotlin
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
 import redpointKotlin.RosterStringCheck.applyOrError
+import redpointKotlin.RosterStringCheck.lines
+import redpointKotlin.RosterStringCheck.scrub
 
 class ApplyTest : StringSpec({
+
+    val bs = "The Beatles, 2014\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen\n"
+    val ss = "The Beatles,2014\nRinSta,Ringo Starr,JohLen,GeoHar\nJohLen,John Lennon,PauMcc,RinSta\nGeoHar,George Harrison,RinSta,PauMcc\nPauMcc,Paul McCartney,GeoHar,JohLen"
+    val bl = listOf("The Beatles,2014", "RinSta,Ringo Starr,JohLen,GeoHar", "JohLen,John Lennon,PauMcc,RinSta", "GeoHar,George Harrison,RinSta,PauMcc", "PauMcc,Paul McCartney,GeoHar,JohLen")
+
     "applyOrError should return one" {
-        applyOrError(Pair(1, 12)) shouldBe "one"
+        applyOrError(Pair(1, "two")) shouldBe "not-null"
     }
 
     "applyOrError should return two" {
-        applyOrError(Pair(11, 12)) shouldBe "two"
+        applyOrError(Pair(11, null)) shouldBe "null"
     }
 
-    // "getMaxBooks should return the Borrower maxBooks" {
-    //     getMaxBooks(br1) shouldBe 1
-    // }
+    "scrub should remove \", \" and \\n" {
+        scrub(bs) shouldBe ss
+    }
 
-    // "setMaxBooks should set the Borrower maxBooks" {
-    //     setMaxBooks(11, br1) shouldBe Borrower("Borrower1", 11)
-    // }
-
-    // "the Borrower string should print" {
-    //     borrowerToString(br1) shouldBe "Borrower1 (1 books)"
-    // }
+    "lines should make a List of Strings" {
+        lines(ss) shouldBe bl
+    }
 })
