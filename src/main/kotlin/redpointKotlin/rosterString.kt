@@ -9,7 +9,7 @@ typealias ResultPair = Pair<ErrorString, Scrubbed>
 
 object RosterStringCheck {
 
-    fun applyOrError(f: (Scrubbed) -> ResultPair, resultPair: ResultPair): ResultPair {
+    fun applyOrError(f: (String) -> ResultPair, resultPair: ResultPair): ResultPair {
         return if (resultPair.first == null) {
             f(resultPair.second)
         } else Pair(resultPair.first, null)
@@ -35,21 +35,43 @@ object RosterStringCheck {
     fun removeName(player: List<String>): List<String> = listOf(player.head).plus((player.tail).tail)
 
     // Ensure string is not nil, empty or only spaces. Returns a scrubbed string
-    fun nonBlankString(rawString: RawString): Pair<ErrorString, Scrubbed> {
+    fun nonBlankString(rawString: RawString): ResultPair {
         return if (rawString == null ||
                 rawString
                         .trim()
                         .isEmpty()) {
-            Pair("the roster string was null, empty or only spaces", null)
+            ResultPair("the roster string was null, empty or only spaces", null)
         } else {
-            Pair(null, scrub(rawString))
+            ResultPair(null, scrub(rawString))
         }
     }
 
-    // Ensure that raw-string is scrubbed and fully valid
-    fun scrubbedRosterString(rawString: RawString): ResultPair {
-        var result = nonBlankString(rawString)
-        return result
+//    // A string of newlines >= 4?
+//    fun validLengthString(eScrubbed: ResultPair): ResultPair {
+//        if (eScrubbed.first == null) {
+//            if (eScrubbed.second.filter(_ == '\n').length < 4) {
+//                return ResultPair("roster string is not long enough", null)
+//            } else {
+//                Right(r)
+//            }
+//            case Left(l) =>
+//            Left(l)
+//        }
+
+
+    // A string of newlines >= 4?
+    fun validLengthString(scrubbed: String) {
+        if (scrubbed.filter { it == '\n' }.length >= 4) {
+            ResultPair(null, scrubbed)
+        } else ResultPair("roster string is not long enough", null)
     }
+
+
+//    // Ensure that raw-string is scrubbed and fully valid
+//    fun scrubbedRosterString(rawString: RawString): ResultPair {
+//        var result = nonBlankString(rawString)
+//        result = applyOrError(validLengthString, result)
+//        return result
+//    }
 
 }
