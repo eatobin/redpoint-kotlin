@@ -5,10 +5,15 @@ typealias GoodInt = Int
 typealias RawString = String?
 typealias Scrubbed = String?
 typealias ErrorString = String?
+typealias ResultPair = Pair<ErrorString, Scrubbed>
 
 object RosterStringCheck {
 
-    fun applyOrError(resultPair: Pair<GoodInt, String?>): String = if (resultPair.second == null) "null" else "not-null"
+    fun applyOrError(f: (Scrubbed) -> ResultPair, resultPair: ResultPair): ResultPair {
+        return if (resultPair.first == null) {
+            f(resultPair.second)
+        } else Pair(resultPair.first, null)
+    }
 
     // Remove the spaces between CSVs and any final \n
     fun scrub(rawString: String): String {
@@ -39,6 +44,12 @@ object RosterStringCheck {
         } else {
             Pair(null, scrub(rawString))
         }
+    }
+
+    // Ensure that raw-string is scrubbed and fully valid
+    fun scrubbedRosterString(rawString: RawString): ResultPair {
+        var result = nonBlankString(rawString)
+        return result
     }
 
 }
