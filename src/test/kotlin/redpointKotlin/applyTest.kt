@@ -2,6 +2,7 @@ package redpointKotlin
 
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
+import redpointKotlin.RosterStringCheck.applyOrError
 
 class ApplyTest : StringSpec({
     "applyOrError should return one" {
