@@ -4,6 +4,8 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
 import redpointKotlin.RosterStringCheck.applyOrError
 import redpointKotlin.RosterStringCheck.lines
+import redpointKotlin.RosterStringCheck.nonBlankString
+import redpointKotlin.RosterStringCheck.removeName
 import redpointKotlin.RosterStringCheck.scrub
 
 class ApplyTest : StringSpec({
@@ -27,4 +29,19 @@ class ApplyTest : StringSpec({
     "lines should make a List of Strings" {
         lines(ss) shouldBe bl
     }
+
+    "removeName should drop player name - only symbols" {
+        removeName(listOf("RinSta", "Ringo Starr", "JohLen", "GeoHar")) shouldBe
+                listOf("RinSta", "JohLen", "GeoHar")
+    }
+
+    "nonBlankString should error for null, empty or only spaces input" {
+        nonBlankString(null) shouldBe
+                Pair("the roster string was null, empty or only spaces", null)
+        nonBlankString("") shouldBe
+                Pair("the roster string was null, empty or only spaces", null)
+        nonBlankString(" ") shouldBe
+                Pair("the roster string was null, empty or only spaces", null)
+    }
+
 })
