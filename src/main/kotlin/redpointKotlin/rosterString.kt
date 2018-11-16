@@ -76,6 +76,15 @@ object RosterStringCheck {
         } else ResultPair("the year value is missing", null)
     }
 
+    // Return the raw-info-string if the year text all digits
+    fun yearTextAllDigits(scrubbed: Scrubbed): ResultPair {
+        val year = lines(scrubbed).head.split(",").last()
+        return if (year.toIntOrNull() != null) {
+            ResultPair(null, scrubbed)
+        } else ResultPair("the year value is not all digits", null)
+    }
+
+
     // Ensure that raw-string is scrubbed and fully valid
     fun scrubbedRosterString(rawString: RawString): ResultPair {
         var result = nonBlankString(rawString)
@@ -83,6 +92,7 @@ object RosterStringCheck {
         result = applyOrError(this::rosterInfoLinePresent, result)
         result = applyOrError(this::namePresent, result)
         result = applyOrError(this::yearPresent, result)
+        result = applyOrError(this::yearTextAllDigits, result)
         return result
     }
 

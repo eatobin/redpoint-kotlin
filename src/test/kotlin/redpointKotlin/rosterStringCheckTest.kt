@@ -11,6 +11,7 @@ import redpointKotlin.RosterStringCheck.scrub
 import redpointKotlin.RosterStringCheck.scrubbedRosterString
 import redpointKotlin.RosterStringCheck.validLengthString
 import redpointKotlin.RosterStringCheck.yearPresent
+import redpointKotlin.RosterStringCheck.yearTextAllDigits
 
 class RosterStringCheckTest : StringSpec({
 
@@ -24,7 +25,7 @@ class RosterStringCheckTest : StringSpec({
     val noInfo = "\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen"
     val noName = ",2014\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen"
     val noYear = "The Beatles\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen"
-//    scrubbedRosterString("The Beatles, 2014P\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen")
+    val yearLetter = "The Beatles, 2014P\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen"
 //    scrubbedRosterString("The Beatles, 2096\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen")
 //    scrubbedRosterString("The Beatles, 1896\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen")
 //    scrubbedRosterString("The Beatles, 2014\nRinStaX, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen")
@@ -79,7 +80,11 @@ class RosterStringCheckTest : StringSpec({
                 ResultPair("the year value is missing", null)
     }
 
-
+    "yearTextAllDigits should error if digits in year" {
+        yearTextAllDigits(ss) shouldBe valid
+        yearTextAllDigits(yearLetter) shouldBe
+                ResultPair("the year value is not all digits", null)
+    }
 
 
 
@@ -95,6 +100,8 @@ class RosterStringCheckTest : StringSpec({
                 ResultPair("the name value is missing", null)
         scrubbedRosterString(noYear) shouldBe
                 ResultPair("the year value is missing", null)
+        scrubbedRosterString(yearLetter) shouldBe
+                ResultPair("the year value is not all digits", null)
     }
 
 })
