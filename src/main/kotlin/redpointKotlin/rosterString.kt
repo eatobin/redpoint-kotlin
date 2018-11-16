@@ -1,18 +1,18 @@
 package redpointKotlin
 
-typealias GoodInt = Int
-
 typealias RawString = String?
-typealias Scrubbed = String?
+typealias Scrubbed = String
+typealias ScrubbedOrNull = String?
 typealias ErrorString = String?
-typealias ResultPair = Pair<ErrorString, Scrubbed>
+typealias ResultPair = Pair<ErrorString, ScrubbedOrNull>
 
 object RosterStringCheck {
 
-    fun applyOrError(f: (String) -> ResultPair, resultPair: ResultPair): ResultPair {
-        return if (resultPair.first == null) {
-            f(resultPair.second)
-        } else Pair(resultPair.first, null)
+    private fun applyOrError(f: (scrubbed: Scrubbed) -> ResultPair, resultPair: ResultPair): ResultPair {
+        val (l, r) = resultPair
+        return if (l == null && r != null) {
+            f(r)
+        } else Pair(l, null)
     }
 
     // Remove the spaces between CSVs and any final \n
@@ -25,10 +25,10 @@ object RosterStringCheck {
     // Split string into lines
     fun lines(scrubbed: String): List<String> = scrubbed.split('\n')
 
-    val <T> List<T>.head: T
+    private val <T> List<T>.head: T
         get() = first()
 
-    val <T> List<T>.tail: List<T>
+    private val <T> List<T>.tail: List<T>
         get() = drop(1)
 
     // Remove name from player Array
@@ -46,32 +46,18 @@ object RosterStringCheck {
         }
     }
 
-//    // A string of newlines >= 4?
-//    fun validLengthString(eScrubbed: ResultPair): ResultPair {
-//        if (eScrubbed.first == null) {
-//            if (eScrubbed.second.filter(_ == '\n').length < 4) {
-//                return ResultPair("roster string is not long enough", null)
-//            } else {
-//                Right(r)
-//            }
-//            case Left(l) =>
-//            Left(l)
-//        }
-
-
     // A string of newlines >= 4?
-    fun validLengthString(scrubbed: String) {
-        if (scrubbed.filter { it == '\n' }.length >= 4) {
+    private fun validLengthString(scrubbed: Scrubbed): ResultPair {
+        return if (scrubbed.filter { it == '\n' }.length >= 4) {
             ResultPair(null, scrubbed)
         } else ResultPair("roster string is not long enough", null)
     }
 
-
-//    // Ensure that raw-string is scrubbed and fully valid
-//    fun scrubbedRosterString(rawString: RawString): ResultPair {
-//        var result = nonBlankString(rawString)
-//        result = applyOrError(validLengthString, result)
-//        return result
-//    }
+    // Ensure that raw-string is scrubbed and fully valid
+    fun scrubbedRosterString(rawString: RawString): ResultPair {
+        var result = nonBlankString(rawString)
+        result = applyOrError(this::validLengthString, result)
+        return result
+    }
 
 }
