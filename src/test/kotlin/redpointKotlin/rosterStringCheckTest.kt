@@ -3,6 +3,7 @@ package redpointKotlin
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
 import redpointKotlin.RosterStringCheck.lines
+import redpointKotlin.RosterStringCheck.namePresent
 import redpointKotlin.RosterStringCheck.nonBlankString
 import redpointKotlin.RosterStringCheck.removeName
 import redpointKotlin.RosterStringCheck.rosterInfoLinePresent
@@ -20,7 +21,7 @@ class RosterStringCheckTest : StringSpec({
 
     val tooShort = "The Beatles, 2014\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc"
     val noInfo = "\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen"
-//    scrubbedRosterString(",2014\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen")
+    val noName = ",2014\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen"
 //    scrubbedRosterString("The Beatles\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen")
 //    scrubbedRosterString("The Beatles, 2014P\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen")
 //    scrubbedRosterString("The Beatles, 2096\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen")
@@ -65,7 +66,11 @@ class RosterStringCheckTest : StringSpec({
                 ResultPair("the roster info line is blank", null)
     }
 
-
+    "namePresent should error if no roster name" {
+        namePresent(ss) shouldBe valid
+        namePresent(noName) shouldBe
+                ResultPair("the name value is missing", null)
+    }
 
 
 
@@ -81,6 +86,8 @@ class RosterStringCheckTest : StringSpec({
                 ResultPair("roster string is not long enough", null)
         scrubbedRosterString(noInfo) shouldBe
                 ResultPair("the roster info line is blank", null)
+        scrubbedRosterString(noName) shouldBe
+                ResultPair("the name value is missing", null)
     }
 
 })

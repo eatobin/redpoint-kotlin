@@ -60,12 +60,20 @@ object RosterStringCheck {
         } else ResultPair("the roster info line is blank", null)
     }
 
+    // Return the raw-string if a name value is present
+    fun namePresent(scrubbed: Scrubbed): ResultPair {
+        val infoStringList = lines(scrubbed).head.split(",")
+        return if (nonBlankString(infoStringList.head).first == null) {
+            ResultPair(null, scrubbed)
+        } else ResultPair("the name value is missing", null)
+    }
 
     // Ensure that raw-string is scrubbed and fully valid
     fun scrubbedRosterString(rawString: RawString): ResultPair {
         var result = nonBlankString(rawString)
         result = applyOrError(this::validLengthString, result)
         result = applyOrError(this::rosterInfoLinePresent, result)
+        result = applyOrError(this::namePresent, result)
         return result
     }
 
