@@ -53,6 +53,13 @@ object RosterStringCheck {
         } else ResultPair("roster string is not long enough", null)
     }
 
+    // test
+    fun rosterInfoLinePresent(scrubbed: Scrubbed): ResultPair {
+        return if (nonBlankString(lines(scrubbed).head).first == null) {
+            ResultPair(null, scrubbed)
+        } else ResultPair("the roster info line is blank", null)
+    }
+
 
     // Ensure that raw-string is scrubbed and fully valid
     fun scrubbedRosterString(rawString: RawString): ResultPair {

@@ -5,6 +5,7 @@ import io.kotlintest.specs.StringSpec
 import redpointKotlin.RosterStringCheck.lines
 import redpointKotlin.RosterStringCheck.nonBlankString
 import redpointKotlin.RosterStringCheck.removeName
+import redpointKotlin.RosterStringCheck.rosterInfoLinePresent
 import redpointKotlin.RosterStringCheck.scrub
 import redpointKotlin.RosterStringCheck.scrubbedRosterString
 import redpointKotlin.RosterStringCheck.validLengthString
@@ -18,7 +19,7 @@ class RosterStringCheckTest : StringSpec({
 
 
     val tooShort = "The Beatles, 2014\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc"
-//    scrubbedRosterString("\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen")
+    val noInfo = "\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen"
 //    scrubbedRosterString(",2014\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen")
 //    scrubbedRosterString("The Beatles\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen")
 //    scrubbedRosterString("The Beatles, 2014P\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen")
@@ -57,6 +58,20 @@ class RosterStringCheckTest : StringSpec({
         validLengthString(tooShort) shouldBe
                 ResultPair("roster string is not long enough", null)
     }
+
+    "rosterInfoLinePresent should error if no info line" {
+        rosterInfoLinePresent(ss) shouldBe valid
+        rosterInfoLinePresent(noInfo) shouldBe
+                ResultPair("the roster info line is blank", null)
+    }
+
+
+
+
+
+
+
+
 
     "raw-string should be scrubbed and fully valid" {
         scrubbedRosterString(ss) shouldBe valid
