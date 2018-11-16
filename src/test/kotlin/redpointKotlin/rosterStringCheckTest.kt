@@ -7,6 +7,7 @@ import redpointKotlin.RosterStringCheck.nonBlankString
 import redpointKotlin.RosterStringCheck.removeName
 import redpointKotlin.RosterStringCheck.scrub
 import redpointKotlin.RosterStringCheck.scrubbedRosterString
+import redpointKotlin.RosterStringCheck.validLengthString
 
 class RosterStringCheckTest : StringSpec({
 
@@ -49,6 +50,12 @@ class RosterStringCheckTest : StringSpec({
                 ResultPair("the roster string was null, empty or only spaces", null)
         nonBlankString("This should pass") shouldBe
                 ResultPair(null, "This should pass")
+    }
+
+    "validLengthString should error for less than 4 \\n" {
+        validLengthString(ss) shouldBe valid
+        validLengthString(tooShort) shouldBe
+                ResultPair("roster string is not long enough", null)
     }
 
     "raw-string should be scrubbed and fully valid" {

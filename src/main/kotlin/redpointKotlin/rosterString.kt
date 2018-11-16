@@ -47,11 +47,12 @@ object RosterStringCheck {
     }
 
     // A string of newlines >= 4?
-    private fun validLengthString(scrubbed: Scrubbed): ResultPair {
+    fun validLengthString(scrubbed: Scrubbed): ResultPair {
         return if (scrubbed.filter { it == '\n' }.length >= 4) {
             ResultPair(null, scrubbed)
         } else ResultPair("roster string is not long enough", null)
     }
+
 
     // Ensure that raw-string is scrubbed and fully valid
     fun scrubbedRosterString(rawString: RawString): ResultPair {
