@@ -79,6 +79,8 @@ class RosterStringCheckTest : StringSpec({
                 ResultPair("the roster string was null, empty or only spaces", null)
         scrubbedRosterString(tooShort) shouldBe
                 ResultPair("roster string is not long enough", null)
+        scrubbedRosterString(noInfo) shouldBe
+                ResultPair("the roster info line is blank", null)
     }
 
 })

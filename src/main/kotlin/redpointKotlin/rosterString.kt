@@ -65,6 +65,7 @@ object RosterStringCheck {
     fun scrubbedRosterString(rawString: RawString): ResultPair {
         var result = nonBlankString(rawString)
         result = applyOrError(this::validLengthString, result)
+        result = applyOrError(this::rosterInfoLinePresent, result)
         return result
     }
 
