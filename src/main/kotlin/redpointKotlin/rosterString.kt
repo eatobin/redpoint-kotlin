@@ -68,12 +68,21 @@ object RosterStringCheck {
         } else ResultPair("the name value is missing", null)
     }
 
+    // Return the info-string if a year value is present
+    fun yearPresent(scrubbed: Scrubbed): ResultPair {
+        val infoStringList = lines(scrubbed).head.split(",")
+        return if (infoStringList.count() == 2) {
+            ResultPair(null, scrubbed)
+        } else ResultPair("the year value is missing", null)
+    }
+
     // Ensure that raw-string is scrubbed and fully valid
     fun scrubbedRosterString(rawString: RawString): ResultPair {
         var result = nonBlankString(rawString)
         result = applyOrError(this::validLengthString, result)
         result = applyOrError(this::rosterInfoLinePresent, result)
         result = applyOrError(this::namePresent, result)
+        result = applyOrError(this::yearPresent, result)
         return result
     }
 
