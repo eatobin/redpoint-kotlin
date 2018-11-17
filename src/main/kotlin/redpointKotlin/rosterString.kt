@@ -82,6 +82,13 @@ fun yearTextAllDigits(scrubbed: Scrubbed): ResultPair {
     } else ResultPair("the year value is not all digits", null)
 }
 
+// Return the info-string if 1956 <= year <= 2056
+fun yearInRange(scrubbed: Scrubbed): ResultPair {
+    val year = lines(scrubbed).head.split(",").last().toIntOrNull()
+    return if (year != null && 1956 <= year && year <= 2056) {
+        ResultPair(null, scrubbed)
+    } else ResultPair("not 1956 <= year <= 2056", null)
+}
 
 // Ensure that raw-string is scrubbed and fully valid
 fun scrubbedRosterString(rawString: RawString): ResultPair {
@@ -91,5 +98,6 @@ fun scrubbedRosterString(rawString: RawString): ResultPair {
     result = applyOrError(::namePresent, result)
     result = applyOrError(::yearPresent, result)
     result = applyOrError(::yearTextAllDigits, result)
+    result = applyOrError(::yearInRange, result)
     return result
 }

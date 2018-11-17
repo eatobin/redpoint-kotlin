@@ -16,8 +16,8 @@ class RosterStringCheckTest : StringSpec({
     val noName = ",2014\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen"
     val noYear = "The Beatles\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen"
     val yearLetter = "The Beatles, 2014P\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen"
-//    scrubbedRosterString("The Beatles, 2096\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen")
-//    scrubbedRosterString("The Beatles, 1896\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen")
+    val yearBig = "The Beatles, 2096\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen"
+    val yearSmall = "The Beatles, 1896\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen"
 //    scrubbedRosterString("The Beatles, 2014\nRinStaX, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen")
 //    scrubbedRosterString("The Beatles, 2014\nRinSta, Ringo Starr, JohLen\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen")
 
@@ -76,6 +76,13 @@ class RosterStringCheckTest : StringSpec({
                 ResultPair("the year value is not all digits", null)
     }
 
+    "yearInRange should error if year > 2056 or year ,1956" {
+        yearInRange(ss) shouldBe valid
+        yearInRange(yearBig) shouldBe
+                ResultPair("not 1956 <= year <= 2056", null)
+        yearInRange(yearSmall) shouldBe
+                ResultPair("not 1956 <= year <= 2056", null)
+    }
 
 
     "raw-string should be scrubbed and fully valid" {
@@ -92,6 +99,10 @@ class RosterStringCheckTest : StringSpec({
                 ResultPair("the year value is missing", null)
         scrubbedRosterString(yearLetter) shouldBe
                 ResultPair("the year value is not all digits", null)
+        scrubbedRosterString(yearBig) shouldBe
+                ResultPair("not 1956 <= year <= 2056", null)
+        scrubbedRosterString(yearSmall) shouldBe
+                ResultPair("not 1956 <= year <= 2056", null)
     }
 
 })
