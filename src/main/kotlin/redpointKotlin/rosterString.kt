@@ -8,7 +8,7 @@ typealias ResultPair = Pair<ErrorString, ScrubbedOrNull>
 
 object RosterStringCheck {
 
-    private fun applyOrError(f: (scrubbed: Scrubbed) -> ResultPair, resultPair: ResultPair): ResultPair {
+    private fun applyOrError(f: (Scrubbed) -> ResultPair, resultPair: ResultPair): ResultPair {
         val (l, r) = resultPair
         return if (l == null && r != null) {
             f(r)
