@@ -2,16 +2,6 @@ package redpointKotlin
 
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
-import redpointKotlin.RosterStringCheck.lines
-import redpointKotlin.RosterStringCheck.namePresent
-import redpointKotlin.RosterStringCheck.nonBlankString
-import redpointKotlin.RosterStringCheck.removeName
-import redpointKotlin.RosterStringCheck.rosterInfoLinePresent
-import redpointKotlin.RosterStringCheck.scrub
-import redpointKotlin.RosterStringCheck.scrubbedRosterString
-import redpointKotlin.RosterStringCheck.validLengthString
-import redpointKotlin.RosterStringCheck.yearPresent
-import redpointKotlin.RosterStringCheck.yearTextAllDigits
 
 class RosterStringCheckTest : StringSpec({
 
