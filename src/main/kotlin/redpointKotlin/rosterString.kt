@@ -14,11 +14,11 @@ private fun applyOrError(f: (Scrubbed) -> ResultPair, resultPair: ResultPair): R
 }
 
 // Remove the spaces between CSVs and any final \n
-fun scrub(rawString: String): String {
-    return rawString
-            .trimEnd()
-            .replace(", ", ",")
-}
+fun scrub(rawString: String): String =
+        rawString
+                .trimEnd()
+                .replace(", ", ",")
+
 
 // Split string into lines
 fun lines(scrubbed: String): List<String> = scrubbed.split('\n')
