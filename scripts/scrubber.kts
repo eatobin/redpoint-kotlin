@@ -1,4 +1,4 @@
-typealias RawString = String
+typealias NonEmptyRawString = String
 typealias RawStringOrNull = String?
 typealias Scrubbed = String
 typealias ScrubbedOrNull = String?
@@ -13,8 +13,8 @@ fun applyOrError(f: (Scrubbed) -> ResultPair, resultPair: ResultPair): ResultPai
 }
 
 // Remove the spaces between CSVs and any final \n
-fun scrub(rawString: RawString): String =
-        rawString
+fun scrub(nonEmptyRawString: NonEmptyRawString): String =
+        nonEmptyRawString
                 .trimEnd()
                 .replace(", ", ",")
 
