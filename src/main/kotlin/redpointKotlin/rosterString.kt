@@ -5,13 +5,14 @@ typealias RawStringOrNull = String?
 typealias Scrubbed = String
 typealias ScrubbedOrNull = String?
 typealias ErrorString = String?
-typealias ResultPair = Pair<ErrorString, ScrubbedOrNull>
 
-fun applyOrError(f: (Scrubbed) -> ResultPair, resultPair: ResultPair): ResultPair {
-    val (l, r) = resultPair
+data class EatResult(val error: ErrorString, val result: ScrubbedOrNull)
+
+fun applyOrError(f: (Scrubbed) -> EatResult, eatResult: EatResult): EatResult {
+    val (l, r) = eatResult
     return if (l == null && r != null) {
         f(r)
-    } else Pair(l, null)
+    } else EatResult(l, null)
 }
 
 // Remove the spaces between CSVs and any final \n
@@ -34,64 +35,61 @@ private val <T> List<T>.tail: List<T>
 fun removeName(player: List<String>): List<String> = listOf(player.head).plus((player.tail).tail)
 
 // Ensure string is not nil, empty or only spaces. Returns a scrubbed string
-fun nonBlankString(rawStringOrNull: RawStringOrNull): ResultPair =
-        if (rawStringOrNull == null ||
-                rawStringOrNull
-                        .trim()
-                        .isEmpty())
-            ResultPair("the roster string was null, empty or only spaces", null)
-        else
-            ResultPair(null, scrub(rawStringOrNull))
+fun nonBlankString(rawStringOrNull: RawStringOrNull): EatResult {
+    return if (rawStringOrNull == null ||
+            rawStringOrNull
+                    .trim()
+                    .isEmpty()) {
+        EatResult("the roster string was null, empty or only spaces", null)
+    } else {
+        EatResult(null, scrub(rawStringOrNull))
+    }
+}
 
 // A string of newlines >= 4?
-fun validLengthString(scrubbed: Scrubbed): ResultPair =
-        if (scrubbed.filter { it == '\n' }.length >= 4)
-            ResultPair(null, scrubbed)
-        else
-            ResultPair("roster string is not long enough", null)
-
+fun validLengthString(scrubbed: Scrubbed): EatResult {
+    return if (scrubbed.filter { it == '\n' }.length >= 4) {
+        EatResult(null, scrubbed)
+    } else EatResult("roster string is not long enough", null)
+}
 
 // test
-fun rosterInfoLinePresent(scrubbed: Scrubbed): ResultPair =
-        if (nonBlankString(lines(scrubbed).head).first == null)
-            ResultPair(null, scrubbed)
-        else
-            ResultPair("the roster info line is blank", null)
+fun rosterInfoLinePresent(scrubbed: Scrubbed): EatResult {
+    return if (nonBlankString(lines(scrubbed).head).error == null) {
+        EatResult(null, scrubbed)
+    } else EatResult("the roster info line is blank", null)
+}
 
 // Return the raw-string if a name value is present
-fun namePresent(scrubbed: Scrubbed): ResultPair {
+fun namePresent(scrubbed: Scrubbed): EatResult {
     val infoStringList = lines(scrubbed).head.split(",")
-    return if (nonBlankString(infoStringList.head).first == null) {
-        ResultPair(null, scrubbed)
-    } else
-        ResultPair("the name value is missing", null)
+    return if (nonBlankString(infoStringList.head).error == null) {
+        EatResult(null, scrubbed)
+    } else EatResult("the name value is missing", null)
 }
 
 // Return the info-string if a year value is present
-fun yearPresent(scrubbed: Scrubbed): ResultPair {
+fun yearPresent(scrubbed: Scrubbed): EatResult {
     val infoStringList = lines(scrubbed).head.split(",")
     return if (infoStringList.count() == 2) {
-        ResultPair(null, scrubbed)
-    } else
-        ResultPair("the year value is missing", null)
+        EatResult(null, scrubbed)
+    } else EatResult("the year value is missing", null)
 }
 
 // Return the raw-info-string if the year text all digits
-fun yearTextAllDigits(scrubbed: Scrubbed): ResultPair {
+fun yearTextAllDigits(scrubbed: Scrubbed): EatResult {
     val year = lines(scrubbed).head.split(",").last()
     return if (year.toIntOrNull() != null) {
-        ResultPair(null, scrubbed)
-    } else
-        ResultPair("the year value is not all digits", null)
+        EatResult(null, scrubbed)
+    } else EatResult("the year value is not all digits", null)
 }
 
 // Return the info-string if 1956 <= year <= 2056
-fun yearInRange(scrubbed: Scrubbed): ResultPair {
+fun yearInRange(scrubbed: Scrubbed): EatResult {
     val year = lines(scrubbed).head.split(",").last().toIntOrNull()
     return if (year != null && 1956 <= year && year <= 2056) {
-        ResultPair(null, scrubbed)
-    } else
-        ResultPair("not 1956 <= year <= 2056", null)
+        EatResult(null, scrubbed)
+    } else EatResult("not 1956 <= year <= 2056", null)
 }
 
 // Given a valid scrubbed-string, return an array of player strings
@@ -115,17 +113,16 @@ fun allListsAllSix(playersLists: List<List<String>>): Boolean {
 }
 
 // test
-fun playersValid(scrubbed: Scrubbed): ResultPair {
+fun playersValid(scrubbed: Scrubbed): EatResult {
     val pl = makePlayerList(scrubbed)
     val ps = makeOnlySymbols(pl)
     return if (!allListsAllSix(ps)) {
-        ResultPair(null, scrubbed)
-    } else
-        ResultPair("the players sub-string is invalid", null)
+        EatResult(null, scrubbed)
+    } else EatResult("the players sub-string is invalid", null)
 }
 
 // Ensure that raw-string is scrubbed and fully valid
-fun scrubbedRosterString(rawStringOrNull: RawStringOrNull): ResultPair {
+fun scrubbedRosterString(rawStringOrNull: RawStringOrNull): EatResult {
     var result = nonBlankString(rawStringOrNull)
     result = applyOrError(::validLengthString, result)
     result = applyOrError(::rosterInfoLinePresent, result)
