@@ -23,10 +23,10 @@ fun scrub(nonEmptyRawString: NonEmptyRawString): String =
 // Split string into lines
 fun lines(scrubbed: String): List<String> = scrubbed.split('\n')
 
-private val List.head
+private val <T> List<T>.head: T
     get() = first()
 
-private val List.tail
+private val <T> List<T>.tail: List<T>
     get() = drop(1)
 
 // Remove name from player Array
