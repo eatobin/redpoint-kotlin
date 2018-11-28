@@ -4,9 +4,9 @@ typealias NonEmptyRawString = String
 typealias RawStringOrNull = String?
 typealias Scrubbed = String
 typealias ScrubbedOrNull = String?
-typealias ErrorString = String?
+typealias ErrorStringOrNull = String?
 
-data class EatResult(val error: ErrorString, val result: ScrubbedOrNull)
+data class EatResult(val errorOrNull: ErrorStringOrNull, val resultOrNull: ScrubbedOrNull)
 
 fun applyOrError(f: (Scrubbed) -> EatResult, eatResult: EatResult): EatResult {
     val (l, r) = eatResult
@@ -20,7 +20,6 @@ fun scrub(nonEmptyRawString: NonEmptyRawString): String =
         nonEmptyRawString
                 .trimEnd()
                 .replace(", ", ",")
-
 
 // Split string into lines
 fun lines(scrubbed: String): List<String> = scrubbed.split('\n')
@@ -47,15 +46,29 @@ fun nonBlankString(rawStringOrNull: RawStringOrNull): EatResult {
 }
 
 // A string of newlines >= 4?
-fun validLengthString(scrubbed: Scrubbed): EatResult {
-    return if (scrubbed.filter { it == '\n' }.length >= 4) {
-        EatResult(null, scrubbed)
-    } else EatResult("roster string is not long enough", null)
+//fun validLengthString(scrubbed: Scrubbed): EatResult {
+//    return if (scrubbed.filter { it == '\n' }.length >= 4) {
+//        EatResult(null, scrubbed)
+//    } else EatResult("roster string is not long enough", null)
+//}
+
+// A string of newlines >= 4?
+fun validLengthString2(eatResult: EatResult): EatResult {
+    val (l, r) = eatResult
+    return when {
+        r != null ->
+            if (r.filter { it == '\n' }.length >= 4) {
+                eatResult
+            } else EatResult("roster string is not long enough", null)
+        l != null ->
+            eatResult
+        else -> throw IllegalArgumentException("didn't get a valid EatResult")
+    }
 }
 
 // test
 fun rosterInfoLinePresent(scrubbed: Scrubbed): EatResult {
-    return if (nonBlankString(lines(scrubbed).head).error == null) {
+    return if (nonBlankString(lines(scrubbed).head).errorOrNull == null) {
         EatResult(null, scrubbed)
     } else EatResult("the roster info line is blank", null)
 }
@@ -63,7 +76,7 @@ fun rosterInfoLinePresent(scrubbed: Scrubbed): EatResult {
 // Return the raw-string if a name value is present
 fun namePresent(scrubbed: Scrubbed): EatResult {
     val infoStringList = lines(scrubbed).head.split(",")
-    return if (nonBlankString(infoStringList.head).error == null) {
+    return if (nonBlankString(infoStringList.head).errorOrNull == null) {
         EatResult(null, scrubbed)
     } else EatResult("the name value is missing", null)
 }
@@ -124,12 +137,12 @@ fun playersValid(scrubbed: Scrubbed): EatResult {
 // Ensure that raw-string is scrubbed and fully valid
 fun scrubbedRosterString(rawStringOrNull: RawStringOrNull): EatResult {
     var result = nonBlankString(rawStringOrNull)
-    result = applyOrError(::validLengthString, result)
-    result = applyOrError(::rosterInfoLinePresent, result)
-    result = applyOrError(::namePresent, result)
-    result = applyOrError(::yearPresent, result)
-    result = applyOrError(::yearTextAllDigits, result)
-    result = applyOrError(::yearInRange, result)
-    result = applyOrError(::playersValid, result)
+//    result = applyOrError(::validLengthString, result)
+//    result = applyOrError(::rosterInfoLinePresent, result)
+//    result = applyOrError(::namePresent, result)
+//    result = applyOrError(::yearPresent, result)
+//    result = applyOrError(::yearTextAllDigits, result)
+//    result = applyOrError(::yearInRange, result)
+//    result = applyOrError(::playersValid, result)
     return result
 }
