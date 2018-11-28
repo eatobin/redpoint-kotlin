@@ -1,6 +1,7 @@
 package redpointKotlin
 
 import io.kotlintest.shouldBe
+import io.kotlintest.shouldThrow
 import io.kotlintest.specs.StringSpec
 
 class RosterStringCheckTest : StringSpec({
@@ -11,10 +12,11 @@ class RosterStringCheckTest : StringSpec({
     val bl = listOf("The Beatles,2014", "RinSta,Ringo Starr,JohLen,GeoHar", "JohLen,John Lennon,PauMcc,RinSta", "GeoHar,George Harrison,RinSta,PauMcc", "PauMcc,Paul McCartney,GeoHar,JohLen")
     val validEAT = EatResult(null, "The Beatles,2014\nRinSta,Ringo Starr,JohLen,GeoHar\nJohLen,John Lennon,PauMcc,RinSta\nGeoHar,George Harrison,RinSta,PauMcc\nPauMcc,Paul McCartney,GeoHar,JohLen")
     val valid = "The Beatles,2014\nRinSta,Ringo Starr,JohLen,GeoHar\nJohLen,John Lennon,PauMcc,RinSta\nGeoHar,George Harrison,RinSta,PauMcc\nPauMcc,Paul McCartney,GeoHar,JohLen"
+    val badArgs = EatResult("one", "two")
 
 
     val tooShort = EatResult(null, "The Beatles, 2014\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc")
-    val noInfo = "\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen"
+    val noInfo = EatResult(null, "\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen")
     val noName = ",2014\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen"
     val noYear = "The Beatles\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen"
     val yearLetter = "The Beatles, 2014P\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen"
@@ -52,14 +54,22 @@ class RosterStringCheckTest : StringSpec({
         validLengthString(ssEAT) shouldBe validEAT
         validLengthString(tooShort) shouldBe
                 EatResult("roster string is not long enough", null)
+        val exception = shouldThrow<IllegalArgumentException> {
+            validLengthString(badArgs)
+        }
+        exception.message shouldBe "didn't get a valid EatResult"
     }
 
-//    "rosterInfoLinePresent should errorOrNull if no info line" {
-//        rosterInfoLinePresent(ss) shouldBe valid
-//        rosterInfoLinePresent(noInfo) shouldBe
-//                EatResult("the roster info line is blank", null)
-//    }
-//
+    "rosterInfoLinePresent should errorOrNull if no info line" {
+        rosterInfoLinePresent(ssEAT) shouldBe validEAT
+        rosterInfoLinePresent(noInfo) shouldBe
+                EatResult("the roster info line is blank", null)
+        val exception = shouldThrow<IllegalArgumentException> {
+            rosterInfoLinePresent(badArgs)
+        }
+        exception.message shouldBe "didn't get a valid EatResult"
+    }
+
 //    "namePresent should errorOrNull if no roster name" {
 //        namePresent(ss) shouldBe valid
 //        namePresent(noName) shouldBe
