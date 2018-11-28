@@ -48,14 +48,8 @@ class RosterStringCheckTest : StringSpec({
                 EatResult(null, "This should pass")
     }
 
-//    "validLengthString should errorOrNull for less than 4 \\n" {
-//        validLengthString(ss) shouldBe valid
-//        validLengthString(tooShort) shouldBe
-//                EatResult("roster string is not long enough", null)
-//    }
-
-    "validLengthString2 should errorOrNull for less than 4 \\n" {
-        validLengthString2(ssEAT) shouldBe validEAT
+    "validLengthString should errorOrNull for less than 4 \\n" {
+        validLengthString(ssEAT) shouldBe validEAT
 //        validLengthString(tooShort) shouldBe
 //                EatResult("roster string is not long enough", null)
     }

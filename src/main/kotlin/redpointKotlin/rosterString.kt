@@ -46,14 +46,7 @@ fun nonBlankString(rawStringOrNull: RawStringOrNull): EatResult {
 }
 
 // A string of newlines >= 4?
-//fun validLengthString(scrubbed: Scrubbed): EatResult {
-//    return if (scrubbed.filter { it == '\n' }.length >= 4) {
-//        EatResult(null, scrubbed)
-//    } else EatResult("roster string is not long enough", null)
-//}
-
-// A string of newlines >= 4?
-fun validLengthString2(eatResult: EatResult): EatResult {
+fun validLengthString(eatResult: EatResult): EatResult {
     val (l, r) = eatResult
     return when {
         r != null ->
