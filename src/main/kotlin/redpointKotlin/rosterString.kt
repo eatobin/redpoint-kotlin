@@ -60,12 +60,6 @@ fun validLengthString(eatResult: EatResult): EatResult {
 }
 
 // test
-//fun rosterInfoLinePresent(scrubbed: Scrubbed): EatResult {
-//    return if (nonBlankString(lines(scrubbed).head).errorOrNull == null) {
-//        EatResult(null, scrubbed)
-//    } else EatResult("the roster info line is blank", null)
-//}
-
 fun rosterInfoLinePresent(eatResult: EatResult): EatResult {
     val (l, r) = eatResult
     return when {
@@ -80,11 +74,21 @@ fun rosterInfoLinePresent(eatResult: EatResult): EatResult {
 }
 
 // Return the raw-string if a name value is present
-fun namePresent(scrubbed: Scrubbed): EatResult {
-    val infoStringList = lines(scrubbed).head.split(",")
-    return if (nonBlankString(infoStringList.head).errorOrNull == null) {
-        EatResult(null, scrubbed)
-    } else EatResult("the name value is missing", null)
+fun namePresent(eatResult: EatResult): EatResult {
+    val (l, r) = eatResult
+    return when {
+        r != null && l == null ->
+            if (nonBlankString(lines(r)
+                            .head
+                            .split(",")
+                            .head)
+                            .errorOrNull == null) {
+                eatResult
+            } else EatResult("the name value is missing", null)
+        l != null && r == null ->
+            eatResult
+        else -> throw IllegalArgumentException("didn't get a valid EatResult")
+    }
 }
 
 // Return the info-string if a year value is present

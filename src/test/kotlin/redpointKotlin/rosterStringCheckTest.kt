@@ -7,17 +7,14 @@ import io.kotlintest.specs.StringSpec
 class RosterStringCheckTest : StringSpec({
 
     val bs = "The Beatles, 2014\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen\n"
-    val ss = "The Beatles,2014\nRinSta,Ringo Starr,JohLen,GeoHar\nJohLen,John Lennon,PauMcc,RinSta\nGeoHar,George Harrison,RinSta,PauMcc\nPauMcc,Paul McCartney,GeoHar,JohLen"
-    val ssEAT = EatResult(null, "The Beatles,2014\nRinSta,Ringo Starr,JohLen,GeoHar\nJohLen,John Lennon,PauMcc,RinSta\nGeoHar,George Harrison,RinSta,PauMcc\nPauMcc,Paul McCartney,GeoHar,JohLen")
+    val ss = EatResult(null, "The Beatles,2014\nRinSta,Ringo Starr,JohLen,GeoHar\nJohLen,John Lennon,PauMcc,RinSta\nGeoHar,George Harrison,RinSta,PauMcc\nPauMcc,Paul McCartney,GeoHar,JohLen")
     val bl = listOf("The Beatles,2014", "RinSta,Ringo Starr,JohLen,GeoHar", "JohLen,John Lennon,PauMcc,RinSta", "GeoHar,George Harrison,RinSta,PauMcc", "PauMcc,Paul McCartney,GeoHar,JohLen")
-    val validEAT = EatResult(null, "The Beatles,2014\nRinSta,Ringo Starr,JohLen,GeoHar\nJohLen,John Lennon,PauMcc,RinSta\nGeoHar,George Harrison,RinSta,PauMcc\nPauMcc,Paul McCartney,GeoHar,JohLen")
-    val valid = "The Beatles,2014\nRinSta,Ringo Starr,JohLen,GeoHar\nJohLen,John Lennon,PauMcc,RinSta\nGeoHar,George Harrison,RinSta,PauMcc\nPauMcc,Paul McCartney,GeoHar,JohLen"
+    val valid = EatResult(null, "The Beatles,2014\nRinSta,Ringo Starr,JohLen,GeoHar\nJohLen,John Lennon,PauMcc,RinSta\nGeoHar,George Harrison,RinSta,PauMcc\nPauMcc,Paul McCartney,GeoHar,JohLen")
     val badArgs = EatResult("one", "two")
-
 
     val tooShort = EatResult(null, "The Beatles, 2014\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc")
     val noInfo = EatResult(null, "\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen")
-    val noName = ",2014\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen"
+    val noName = EatResult(null, ",2014\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen")
     val noYear = "The Beatles\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen"
     val yearLetter = "The Beatles, 2014P\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen"
     val yearBig = "The Beatles, 2096\nRinSta, Ringo Starr, JohLen, GeoHar\nJohLen, John Lennon, PauMcc, RinSta\nGeoHar, George Harrison, RinSta, PauMcc\nPauMcc, Paul McCartney, GeoHar, JohLen"
@@ -27,11 +24,11 @@ class RosterStringCheckTest : StringSpec({
 
 
     "scrub should remove \", \" and \\n" {
-        scrub(bs) shouldBe ss
+        scrub(bs) shouldBe ss.resultOrNull
     }
 
     "lines should make a List of Strings" {
-        lines(ss) shouldBe bl
+        lines(ss.resultOrNull!!) shouldBe bl
     }
 
     "removeName should drop player name - only symbols" {
@@ -51,7 +48,7 @@ class RosterStringCheckTest : StringSpec({
     }
 
     "validLengthString should errorOrNull for less than 4 \\n" {
-        validLengthString(ssEAT) shouldBe validEAT
+        validLengthString(ss) shouldBe valid
         validLengthString(tooShort) shouldBe
                 EatResult("roster string is not long enough", null)
         val exception = shouldThrow<IllegalArgumentException> {
@@ -61,7 +58,7 @@ class RosterStringCheckTest : StringSpec({
     }
 
     "rosterInfoLinePresent should errorOrNull if no info line" {
-        rosterInfoLinePresent(ssEAT) shouldBe validEAT
+        rosterInfoLinePresent(ss) shouldBe valid
         rosterInfoLinePresent(noInfo) shouldBe
                 EatResult("the roster info line is blank", null)
         val exception = shouldThrow<IllegalArgumentException> {
@@ -70,11 +67,15 @@ class RosterStringCheckTest : StringSpec({
         exception.message shouldBe "didn't get a valid EatResult"
     }
 
-//    "namePresent should errorOrNull if no roster name" {
-//        namePresent(ss) shouldBe valid
-//        namePresent(noName) shouldBe
-//                EatResult("the name value is missing", null)
-//    }
+    "namePresent should errorOrNull if no roster name" {
+        namePresent(ss) shouldBe valid
+        namePresent(noName) shouldBe
+                EatResult("the name value is missing", null)
+        val exception = shouldThrow<IllegalArgumentException> {
+            rosterInfoLinePresent(badArgs)
+        }
+        exception.message shouldBe "didn't get a valid EatResult"
+    }
 //
 //    "yearPresent should errorOrNull if no roster year" {
 //        yearPresent(ss) shouldBe valid
@@ -98,7 +99,7 @@ class RosterStringCheckTest : StringSpec({
 //
 //
     "raw-string should be scrubbed and fully valid" {
-        scrubbedRosterString(ss) shouldBe validEAT
+        scrubbedRosterString(ss.resultOrNull) shouldBe valid
 //        scrubbedRosterString(null) shouldBe
 //                EatResult("the roster string was null, empty or only spaces", null)
 //        scrubbedRosterString(tooShort) shouldBe
