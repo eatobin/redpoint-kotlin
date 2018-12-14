@@ -2,7 +2,7 @@ group 'com.eatobin'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.3.10'
+    ext.kotlin_version = '1.3.11'
 
     repositories {
         mavenCentral()
@@ -21,7 +21,7 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: '1.3.10'
+    compile group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: '1.3.11'
     testCompile 'io.kotlintest:kotlintest-runner-junit5:3.1.10'
     testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 }
