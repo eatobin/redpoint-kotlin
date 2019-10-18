@@ -1,0 +1,42 @@
+{
+  "roster-name": "The Beatles",
+  "roster-year": 2014,
+  "players": {
+    "RinSta": {
+      "name": "Ringo Starr",
+      "gift-hist": [
+        {
+          "givee": "JohLen",
+          "giver": "GeoHar"
+        }
+      ]
+    }
+  },
+  "JohLen": {
+    "name": "John Lennon",
+    "gift-hist": [
+      {
+        "givee": "PauMcc",
+        "giver": "RinSta"
+      }
+    ]
+  },
+  "GeoHar": {
+    "name": "George Harrison",
+    "gift-hist": [
+      {
+        "givee": "RinSta",
+        "giver": "PauMcc"
+      }
+    ]
+  },
+  "PauMcc": {
+    "name": "Paul McCartney",
+    "gift-hist": [
+      {
+        "givee": "GeoHar",
+        "giver": "JohLen"
+      }
+    ]
+  }
+}
