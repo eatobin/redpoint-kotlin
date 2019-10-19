@@ -59,7 +59,7 @@ tasks {
     }
 }
 
-//application {
-//    // Define the main class for the application
-//    mainClassName = "total_beginner.App"
-//}
+application {
+    // Define the main class for the application
+    mainClassName = "redpointKotlin.App"
+}
