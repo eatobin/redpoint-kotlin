@@ -26,4 +26,8 @@ class RosterTest : StringSpec({
         roster.players.shouldBe(players)
     }
 
+    "getPlayer should return a player from a roster" {
+        Roster.getPlayer(roster, "GeoHar").shouldBe(geoHar)
+    }
+
 })
