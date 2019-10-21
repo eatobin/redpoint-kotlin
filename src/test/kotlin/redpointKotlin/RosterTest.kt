@@ -22,4 +22,8 @@ class RosterTest : StringSpec({
         roster.rosterYear.shouldBe(2014)
     }
 
+    "players should return players" {
+        roster.players.shouldBe(players)
+    }
+
 })
