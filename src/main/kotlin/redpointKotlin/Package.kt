@@ -1,11 +1,9 @@
 package redpointKotlin
 
-typealias Entity = Map<String, String>
+typealias Givee = String
+typealias Giver = String
+typealias GiftHistory = List<GiftPair>
+typealias PlayerName = String
+typealias Players = Map<String, Player>
 typealias RosterName = String
-
-//typealias Title = String
-//typealias Author = String
-//
-//typealias Borrowers = List<Borrower>
-//typealias Books = List<Book>
-//typealias jsonString = String
+typealias RosterYear = Int

@@ -3,8 +3,8 @@
   "roster-year": 2014,
   "players": {
     "RinSta": {
-      "name": "Ringo Starr",
-      "gift-hist": [
+      "player-name": "Ringo Starr",
+      "gift-history": [
         {
           "givee": "JohLen",
           "giver": "GeoHar"
@@ -13,8 +13,8 @@
     }
   },
   "JohLen": {
-    "name": "John Lennon",
-    "gift-hist": [
+    "player-name": "John Lennon",
+    "gift-history": [
       {
         "givee": "PauMcc",
         "giver": "RinSta"
@@ -22,8 +22,8 @@
     ]
   },
   "GeoHar": {
-    "name": "George Harrison",
-    "gift-hist": [
+    "player-name": "George Harrison",
+    "gift-history": [
       {
         "givee": "RinSta",
         "giver": "PauMcc"
@@ -31,8 +31,8 @@
     ]
   },
   "PauMcc": {
-    "name": "Paul McCartney",
-    "gift-hist": [
+    "player-name": "Paul McCartney",
+    "gift-history": [
       {
         "givee": "GeoHar",
         "giver": "JohLen"
