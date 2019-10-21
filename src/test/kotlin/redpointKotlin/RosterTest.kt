@@ -34,4 +34,8 @@ class RosterTest : StringSpec({
         pauMcc.giftHistory.shouldBe(listOf(GiftPair("GeoHar", "JohLen")))
     }
 
+    "giftPair should return a giftPair from a giftHistory" {
+        listOf(GiftPair("GeoHar", "JohLen")).elementAt(0).shouldBe(GiftPair("GeoHar", "JohLen"))
+    }
+
 })
