@@ -8,4 +8,4 @@ typealias Players = Map<String, Player>
 typealias RosterName = String
 typealias RosterYear = Int
 typealias PlayerKey = String
-
+typealias GiftYear = Int

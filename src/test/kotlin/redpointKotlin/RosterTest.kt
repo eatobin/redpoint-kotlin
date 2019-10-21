@@ -38,4 +38,8 @@ class RosterTest : StringSpec({
         listOf(GiftPair("GeoHar", "JohLen")).elementAt(0).shouldBe(GiftPair("GeoHar", "JohLen"))
     }
 
+    "getGiftPairInRoster should return a giftPair from a roster given a playerKey" {
+        Roster.getGiftPairInRoster(roster, "JohLen", 0).shouldBe(GiftPair("PauMcc", "RinSta"))
+    }
+
 })
