@@ -45,4 +45,9 @@ class RosterTest : StringSpec({
         Roster.getGiftPairInRoster(roster, "JohLenX", 0).shouldBeNull()
     }
 
+    "givee should return givee from giftPair" {
+        // FIXME
+//        Roster.getGiftPairInRoster(roster, "JohLen", 0).givee.shouldBe("PauMccX")
+    }
+
 })
