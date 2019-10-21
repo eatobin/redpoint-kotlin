@@ -1,5 +1,6 @@
 package redpointKotlin
 
+import io.kotlintest.matchers.types.shouldBeNull
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
 
@@ -28,6 +29,7 @@ class RosterTest : StringSpec({
 
     "getPlayer should return a player from a roster" {
         Roster.getPlayer(roster, "GeoHar").shouldBe(geoHar)
+        Roster.getPlayer(roster, "GeoHarX").shouldBeNull()
     }
 
     "giftHistory should return a giftHistory from a player" {
@@ -40,6 +42,7 @@ class RosterTest : StringSpec({
 
     "getGiftPairInRoster should return a giftPair from a roster given a playerKey" {
         Roster.getGiftPairInRoster(roster, "JohLen", 0).shouldBe(GiftPair("PauMcc", "RinSta"))
+        Roster.getGiftPairInRoster(roster, "JohLenX", 0).shouldBeNull()
     }
 
 })
