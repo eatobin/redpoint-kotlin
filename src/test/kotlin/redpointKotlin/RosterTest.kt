@@ -30,4 +30,8 @@ class RosterTest : StringSpec({
         Roster.getPlayer(roster, "GeoHar").shouldBe(geoHar)
     }
 
+    "giftHistory should return a giftHistory from a player" {
+        pauMcc.giftHistory.shouldBe(listOf(GiftPair("GeoHar", "JohLen")))
+    }
+
 })
