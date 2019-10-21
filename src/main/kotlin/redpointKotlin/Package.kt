@@ -1,8 +1,8 @@
 package redpointKotlin
 
-//typealias Name = String
-//typealias MaxBooks = Int
-//
+typealias Entity = Map<String, String>
+typealias RosterName = String
+
 //typealias Title = String
 //typealias Author = String
 //
