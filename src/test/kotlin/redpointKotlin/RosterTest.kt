@@ -42,7 +42,7 @@ class RosterTest : StringSpec({
 
     "getGiftPairInRoster should return a giftPair from a roster given a playerKey" {
         Roster.getGiftPairInRoster(roster, "JohLen", 0).shouldBe(GiftPair("PauMcc", "RinSta"))
-        Roster.getGiftPairInRoster(roster, "JohLenX", 0).shouldBeNull()
+        Roster.getGiftPairInRoster(roster, "JohLenX", 0)shouldBe(GiftPair("null", "null"))
     }
 
     "givee should return givee from giftPair" {
