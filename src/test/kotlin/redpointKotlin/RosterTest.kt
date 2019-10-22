@@ -4,10 +4,10 @@ import io.kotlintest.matchers.types.shouldBeNull
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
 
-private val rinSta: Player = Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar")))
-private val johLen: Player = Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta")))
-private val geoHar: Player = Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc")))
-private val pauMcc: Player = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen")))
+private val rinSta: Player = Player("Ringo Starr", mutableListOf(GiftPair("JohLen", "GeoHar")))
+private val johLen: Player = Player("John Lennon", mutableListOf(GiftPair("PauMcc", "RinSta")))
+private val geoHar: Player = Player("George Harrison", mutableListOf(GiftPair("RinSta", "PauMcc")))
+private val pauMcc: Player = Player("Paul McCartney", mutableListOf(GiftPair("GeoHar", "JohLen")))
 
 private val players: Players = mapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
 
@@ -28,8 +28,8 @@ class RosterTest : StringSpec({
     }
 
     "getPlayer should return a player from a roster" {
-        Roster.getPlayer(roster, "GeoHar").shouldBe(geoHar)
-        Roster.getPlayer(roster, "GeoHarX").shouldBeNull()
+        Roster.getPlayerInRoster(roster, "GeoHar").shouldBe(geoHar)
+        Roster.getPlayerInRoster(roster, "GeoHarX").shouldBeNull()
     }
 
     "giftHistory should return a giftHistory from a player" {
@@ -42,7 +42,7 @@ class RosterTest : StringSpec({
 
     "getGiftPairInRoster should return a giftPair from a roster given a playerKey" {
         Roster.getGiftPairInRoster(roster, "JohLen", 0).shouldBe(GiftPair("PauMcc", "RinSta"))
-        Roster.getGiftPairInRoster(roster, "JohLenX", 0)shouldBe(GiftPair("null", "null"))
+        Roster.getGiftPairInRoster(roster, "JohLenX", 0) shouldBe (GiftPair("null", "null"))
     }
 
     "givee should return givee from giftPair" {
