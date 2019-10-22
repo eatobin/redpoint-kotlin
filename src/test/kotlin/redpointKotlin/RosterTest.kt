@@ -46,8 +46,7 @@ class RosterTest : StringSpec({
     }
 
     "givee should return givee from giftPair" {
-        // FIXME
-//        Roster.getGiftPairInRoster(roster, "JohLen", 0).givee.shouldBe("PauMccX")
+        Player.addYearInPlayer(johLen, "NewKey").shouldBe(Player(playerName=John Lennon, giftHistory=[GiftPair(givee=PauMcc, giver=RinSta), GiftPair(givee=NewKey, giver=NewKey)]))
     }
 
 })

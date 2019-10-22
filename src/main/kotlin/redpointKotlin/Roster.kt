@@ -11,6 +11,7 @@ data class GiftPair(val givee: Givee, val giver: Giver) {
         fun getGiverInGiftPair(giftPair: GiftPair): Giver = giftPair.giver
 
     }
+
 }
 
 data class Player(val playerName: PlayerName, val giftHistory: GiftHistory) {
@@ -29,6 +30,7 @@ data class Player(val playerName: PlayerName, val giftHistory: GiftHistory) {
         }
 
     }
+
 }
 
 data class Roster(val rosterName: RosterName, val rosterYear: RosterYear, val players: Players) {
@@ -36,7 +38,6 @@ data class Roster(val rosterName: RosterName, val rosterYear: RosterYear, val pl
     companion object {
 
         fun getPlayerInRoster(roster: Roster, playerKey: PlayerKey): Player? = roster.players[playerKey]
-
 
         fun getGiftPairInGiftHistory(giftHistory: GiftHistory, giftYear: GiftYear): GiftPair = giftHistory[giftYear]
 
@@ -47,7 +48,6 @@ data class Roster(val rosterName: RosterName, val rosterYear: RosterYear, val pl
                 getGiftPairInGiftHistory(gh, giftYear)
             } else GiftPair("null", "null")
         }
-
 
         fun getGiveeInRoster(roster: Roster, playerKey: PlayerKey, giftYear: GiftYear): Givee {
             val mPlayer = getPlayerInRoster(roster, playerKey)
@@ -63,6 +63,12 @@ data class Roster(val rosterName: RosterName, val rosterYear: RosterYear, val pl
             } else "null"
         }
 
+        fun addYearInPlayers(players: Players): Players {
+            for ((k, v) in players) {
+                Player.addYearInPlayer(v, k)
+            }
+            return players
+        }
 
     }
 
