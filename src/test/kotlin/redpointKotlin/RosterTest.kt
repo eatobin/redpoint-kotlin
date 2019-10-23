@@ -59,6 +59,16 @@ class RosterTest : StringSpec({
         Roster.getGiftPairInRoster(roster, "JohLenX", 0) shouldBe (GiftPair("null", "null"))
     }
 
+    "getGiveeInRoster should return a givee from a roster given a playerKey and giftYear" {
+        Roster.getGiveeInRoster(roster, "JohLen", 0).shouldBe("PauMcc")
+        Roster.getGiveeInRoster(roster, "JohLenX", 0).shouldBe("null")
+    }
+
+    "getGiverInRoster should return a giver from a roster given a playerKey and giftYear" {
+        Roster.getGiverInRoster(roster, "JohLen", 0).shouldBe("RinSta")
+        Roster.getGiverInRoster(roster, "JohLenX", 0).shouldBe("null")
+    }
+
     "giftPair should return a giftPair from a giftHistory" {
         pauMcc.giftHistory.elementAt(0).shouldBe(GiftPair("GeoHar", "JohLen"))
     }
