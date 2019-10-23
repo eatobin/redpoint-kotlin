@@ -22,6 +22,9 @@ private val geoHarExt: Player =
 private val pauMccExt: Player =
     Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen"), GiftPair("PauMcc", "PauMcc")))
 
+private val playersExt: Players =
+    mapOf("RinSta" to rinStaExt, "JohLen" to johLenExt, "GeoHar" to geoHarExt, "PauMcc" to pauMccExt)
+
 class RosterTest : StringSpec({
 
     "rosterName should return \"The Beatles\"" {
@@ -67,7 +70,7 @@ class RosterTest : StringSpec({
 
     "addYearInPlayers should add a basic giftPair to each player i players" {
         Roster.addYearInPlayers(players)
-            .shouldBe("emptyMap()")
+            .shouldBe(playersExt)
     }
 
 })
