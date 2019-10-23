@@ -9,12 +9,17 @@ data class Player(val playerName: PlayerName, val giftHistory: GiftHistory) {
         fun getGiftPairInGiftHistory(giftHistory: GiftHistory, giftYear: GiftYear): GiftPair =
             giftHistory[giftYear]
 
-        private fun setGiftHistoryInPlayer(player: Player, giftHistory: GiftHistory): Player =
+        fun setGiftPairInGiftHistory(giftHistory: GiftHistory, giftYear: GiftYear, giftPair: GiftPair): GiftHistory {
+            giftHistory[giftYear] = giftPair
+            return giftHistory
+        }
+
+        fun setGiftHistoryInPlayer(player: Player, giftHistory: GiftHistory): Player =
             player.copy(giftHistory = giftHistory)
 
         fun addYearInPlayer(player: Player, playerKey: PlayerKey): Player {
-            val ngh = player.giftHistory.plusElement(GiftPair(playerKey, playerKey))
-            return setGiftHistoryInPlayer(player, ngh)
+            player.giftHistory.add(GiftPair(playerKey, playerKey))
+            return setGiftHistoryInPlayer(player, player.giftHistory)
         }
 
     }
@@ -60,6 +65,21 @@ data class Roster(val rosterName: RosterName, val rosterYear: RosterYear, val pl
             }
             return nPlayers
         }
+
+//        fun setGiftPairInRoster(roster: Roster, playerKey: PlayerKey, giftYear: GiftYear, giftPair: GiftPair): Roster {
+//            val mPlayer = getPlayerInRoster(roster, playerKey)
+//            return if (mPlayer != null) {
+//                val gh = mPlayer.giftHistory
+//                val ngh =
+//
+//            } else roster
+//        }
+
+//        fun setGiveeInRoster(roster: Roster, playerKey: PlayerKey, giftYear: GiftYear, givee: Givee): Roster {
+//            val giver = getGiverInRoster(roster, playerKey, giftYear)
+//            val giftPair: GiftPair = GiftPair(givee, giver)
+//            return setGift
+//        }
 
     }
 
