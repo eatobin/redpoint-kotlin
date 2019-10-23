@@ -47,10 +47,9 @@ class RosterTest : StringSpec({
         Roster.getGiftPairInRoster(roster, "JohLenX", 0) shouldBe (GiftPair("null", "null"))
     }
 
-
-//    "giftPair should return a giftPair from a giftHistory" {
-//        listOf(GiftPair("GeoHar", "JohLen")).elementAt(0).shouldBe(GiftPair("GeoHar", "JohLen"))
-//    }
+    "giftPair should return a giftPair from a giftHistory" {
+        pauMcc.giftHistory.elementAt(0).shouldBe(GiftPair("GeoHar", "JohLen"))
+    }
 
 
 //    "givee should return givee from giftPair" {
