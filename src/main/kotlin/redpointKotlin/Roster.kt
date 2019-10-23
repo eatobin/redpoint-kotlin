@@ -6,20 +6,17 @@ data class Player(val playerName: PlayerName, val giftHistory: GiftHistory) {
 
     companion object {
 
+        fun <E> Iterable<E>.updated(index: Int, elem: E) = mapIndexed { i, existing ->  if (i == index) elem else existing }
+
         fun getGiftPairInGiftHistory(giftHistory: GiftHistory, giftYear: GiftYear): GiftPair =
             giftHistory[giftYear]
 
-        fun setGiftPairInGiftHistory(giftHistory: GiftHistory, giftYear: GiftYear, giftPair: GiftPair): GiftHistory {
-            giftHistory[giftYear] = giftPair
-            return giftHistory
-        }
-
-        fun setGiftHistoryInPlayer(player: Player, giftHistory: GiftHistory): Player =
+        private fun setGiftHistoryInPlayer(player: Player, giftHistory: GiftHistory): Player =
             player.copy(giftHistory = giftHistory)
 
         fun addYearInPlayer(player: Player, playerKey: PlayerKey): Player {
-            player.giftHistory.add(GiftPair(playerKey, playerKey))
-            return setGiftHistoryInPlayer(player, player.giftHistory)
+            val ngh = player.giftHistory.plusElement(GiftPair(playerKey, playerKey))
+            return setGiftHistoryInPlayer(player, ngh)
         }
 
     }
@@ -66,7 +63,7 @@ data class Roster(val rosterName: RosterName, val rosterYear: RosterYear, val pl
             return nPlayers
         }
 
-//        fun setGiftPairInRoster(roster: Roster, playerKey: PlayerKey, giftYear: GiftYear, giftPair: GiftPair): Roster {
+        //        fun setGiftPairInRoster(roster: Roster, playerKey: PlayerKey, giftYear: GiftYear, giftPair: GiftPair): Roster {
 //            val mPlayer = getPlayerInRoster(roster, playerKey)
 //            return if (mPlayer != null) {
 //                val gh = mPlayer.giftHistory
@@ -80,6 +77,7 @@ data class Roster(val rosterName: RosterName, val rosterYear: RosterYear, val pl
 //            val giftPair: GiftPair = GiftPair(givee, giver)
 //            return setGift
 //        }
+
 
     }
 
