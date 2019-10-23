@@ -73,7 +73,9 @@ data class Roster(val rosterName: RosterName, val rosterYear: RosterYear, val pl
 //                val gh = mPlayer.giftHistory
 //                val ngh = Player.setGiftPairInGiftHistory(gh, giftYear, giftPair)
 //                val nPlayer = Player.setGiftHistoryInPlayer(mPlayer, ngh)
-//                return
+//                val mutPlayers = roster.players.toMutableMap()
+//                mutPlayers.put(playerKey, nPlayer)
+//
 //            } else roster
 //        }
 
