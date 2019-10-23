@@ -24,7 +24,7 @@ data class Roster(val rosterName: RosterName, val rosterYear: RosterYear, val pl
 
         fun getPlayerInRoster(roster: Roster, playerKey: PlayerKey): Player? = roster.players[playerKey]
 
-        fun getGiftPairInGiftHistory(giftHistory: GiftHistory, giftYear: GiftYear): GiftPair = giftHistory[giftYear]
+        private fun getGiftPairInGiftHistory(giftHistory: GiftHistory, giftYear: GiftYear): GiftPair = giftHistory[giftYear]
 
         fun getGiftPairInRoster(roster: Roster, playerKey: PlayerKey, giftYear: GiftYear): GiftPair {
             val mPlayer = getPlayerInRoster(roster, playerKey)

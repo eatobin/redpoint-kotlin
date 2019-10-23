@@ -51,9 +51,9 @@ class RosterTest : StringSpec({
         pauMcc.giftHistory.elementAt(0).shouldBe(GiftPair("GeoHar", "JohLen"))
     }
 
-
-//    "givee should return givee from giftPair" {
-//        Player.addYearInPlayer(johLen, "NewKey").shouldBe(Player(playerName=John Lennon, giftHistory=[GiftPair(givee=PauMcc, giver=RinSta), GiftPair(givee=NewKey, giver=NewKey)]))
-//    }
+    "addYearInPlayer should add a basic giftPair to player" {
+        Player.addYearInPlayer(johLen, "NewKey")
+            .shouldBe(Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta"), GiftPair("NewKey", "NewKey"))))
+    }
 
 })
