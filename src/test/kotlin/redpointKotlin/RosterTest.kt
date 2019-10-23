@@ -83,8 +83,8 @@ class RosterTest : StringSpec({
         val johLen: Player = Player("John Lennon", mutableListOf(GiftPair("PauMcc", "RinSta")))
         val geoHar: Player = Player("George Harrison", mutableListOf(GiftPair("RinSta", "PauMcc")))
         val pauMcc: Player = Player("Paul McCartney", mutableListOf(GiftPair("GeoHar", "JohLen")))
-
         val players: Players = mapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
+
         Roster.addYearInPlayers(players)
             .shouldBe(playersExt)
     }
