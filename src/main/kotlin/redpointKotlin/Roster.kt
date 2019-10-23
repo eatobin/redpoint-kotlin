@@ -1,7 +1,5 @@
 package redpointKotlin
 
-//import redpointKotlin.Player.Companion.getGiftHistoryInPlayer
-
 data class GiftPair(val givee: Givee, val giver: Giver)
 
 data class Player(val playerName: PlayerName, val giftHistory: GiftHistory) {
@@ -31,8 +29,7 @@ data class Roster(val rosterName: RosterName, val rosterYear: RosterYear, val pl
         fun getGiftPairInRoster(roster: Roster, playerKey: PlayerKey, giftYear: GiftYear): GiftPair {
             val mPlayer = getPlayerInRoster(roster, playerKey)
             return if (mPlayer != null) {
-                val gh = mPlayer.giftHistory
-                getGiftPairInGiftHistory(gh, giftYear)
+                getGiftPairInGiftHistory(mPlayer.giftHistory, giftYear)
             } else GiftPair("null", "null")
         }
 

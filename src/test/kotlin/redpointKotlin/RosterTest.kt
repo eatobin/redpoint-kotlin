@@ -27,23 +27,30 @@ class RosterTest : StringSpec({
         roster.players.shouldBe(players)
     }
 
-    "getPlayer should return a player from a roster" {
-        Roster.getPlayerInRoster(roster, "GeoHar").shouldBe(geoHar)
-        Roster.getPlayerInRoster(roster, "GeoHarX").shouldBeNull()
+    "playerName should return a name from a player" {
+        pauMcc.playerName.shouldBe("Paul McCartney")
     }
+
 
     "giftHistory should return a giftHistory from a player" {
         pauMcc.giftHistory.shouldBe(listOf(GiftPair("GeoHar", "JohLen")))
     }
 
-    "giftPair should return a giftPair from a giftHistory" {
-        listOf(GiftPair("GeoHar", "JohLen")).elementAt(0).shouldBe(GiftPair("GeoHar", "JohLen"))
+
+    "getPlayerInRoster should return a player from a roster" {
+        Roster.getPlayerInRoster(roster, "GeoHar").shouldBe(geoHar)
+        Roster.getPlayerInRoster(roster, "GeoHarX").shouldBeNull()
     }
 
-    "getGiftPairInRoster should return a giftPair from a roster given a playerKey" {
-        Roster.getGiftPairInRoster(roster, "JohLen", 0).shouldBe(GiftPair("PauMcc", "RinSta"))
-        Roster.getGiftPairInRoster(roster, "JohLenX", 0) shouldBe (GiftPair("null", "null"))
-    }
+
+//    "giftPair should return a giftPair from a giftHistory" {
+//        listOf(GiftPair("GeoHar", "JohLen")).elementAt(0).shouldBe(GiftPair("GeoHar", "JohLen"))
+//    }
+//
+//    "getGiftPairInRoster should return a giftPair from a roster given a playerKey" {
+//        Roster.getGiftPairInRoster(roster, "JohLen", 0).shouldBe(GiftPair("PauMcc", "RinSta"))
+//        Roster.getGiftPairInRoster(roster, "JohLenX", 0) shouldBe (GiftPair("null", "null"))
+//    }
 
 //    "givee should return givee from giftPair" {
 //        Player.addYearInPlayer(johLen, "NewKey").shouldBe(Player(playerName=John Lennon, giftHistory=[GiftPair(givee=PauMcc, giver=RinSta), GiftPair(givee=NewKey, giver=NewKey)]))
