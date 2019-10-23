@@ -27,6 +27,11 @@ data class Roster(val rosterName: RosterName, val rosterYear: RosterYear, val pl
 
         fun getPlayerInRoster(roster: Roster, playerKey: PlayerKey): Player? = roster.players[playerKey]
 
+        fun getPlayerNameInRoster(roster: Roster, playerKey: PlayerKey): PlayerName {
+            val mPlayer = getPlayerInRoster(roster, playerKey)
+            return mPlayer?.playerName ?: "null"
+        }
+
         fun getGiftPairInRoster(roster: Roster, playerKey: PlayerKey, giftYear: GiftYear): GiftPair {
             val mPlayer = getPlayerInRoster(roster, playerKey)
             return if (mPlayer != null) {

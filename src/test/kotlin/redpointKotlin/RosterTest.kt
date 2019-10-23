@@ -83,4 +83,9 @@ class RosterTest : StringSpec({
             .shouldBe(playersExt)
     }
 
+    "getPlayerNameInRoster should return a player name from a roster given a playerKey" {
+        Roster.getPlayerNameInRoster(roster, "JohLen").shouldBe("John Lennon")
+        Roster.getPlayerNameInRoster(roster, "JohLenX").shouldBe("null")
+    }
+
 })
