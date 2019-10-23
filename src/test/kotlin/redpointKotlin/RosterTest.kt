@@ -4,10 +4,10 @@ import io.kotlintest.matchers.types.shouldBeNull
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
 
-private val rinSta: Player = Player("Ringo Starr", mutableListOf(GiftPair("JohLen", "GeoHar")))
-private val johLen: Player = Player("John Lennon", mutableListOf(GiftPair("PauMcc", "RinSta")))
-private val geoHar: Player = Player("George Harrison", mutableListOf(GiftPair("RinSta", "PauMcc")))
-private val pauMcc: Player = Player("Paul McCartney", mutableListOf(GiftPair("GeoHar", "JohLen")))
+private val rinSta: Player = Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar")))
+private val johLen: Player = Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta")))
+private val geoHar: Player = Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc")))
+private val pauMcc: Player = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen")))
 
 private val players: Players = mapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
 
@@ -45,8 +45,8 @@ class RosterTest : StringSpec({
         Roster.getGiftPairInRoster(roster, "JohLenX", 0) shouldBe (GiftPair("null", "null"))
     }
 
-    "givee should return givee from giftPair" {
-        Player.addYearInPlayer(johLen, "NewKey").shouldBe(Player(playerName=John Lennon, giftHistory=[GiftPair(givee=PauMcc, giver=RinSta), GiftPair(givee=NewKey, giver=NewKey)]))
-    }
+//    "givee should return givee from giftPair" {
+//        Player.addYearInPlayer(johLen, "NewKey").shouldBe(Player(playerName=John Lennon, giftHistory=[GiftPair(givee=PauMcc, giver=RinSta), GiftPair(givee=NewKey, giver=NewKey)]))
+//    }
 
 })

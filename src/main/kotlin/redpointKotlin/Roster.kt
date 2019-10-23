@@ -1,32 +1,19 @@
 package redpointKotlin
 
-import redpointKotlin.Player.Companion.getGiftHistoryInPlayer
+//import redpointKotlin.Player.Companion.getGiftHistoryInPlayer
 
-data class GiftPair(val givee: Givee, val giver: Giver) {
-
-    companion object {
-
-        fun getGiveeInGiftPair(giftPair: GiftPair): Givee = giftPair.givee
-
-        fun getGiverInGiftPair(giftPair: GiftPair): Giver = giftPair.giver
-
-    }
-
-}
+data class GiftPair(val givee: Givee, val giver: Giver)
 
 data class Player(val playerName: PlayerName, val giftHistory: GiftHistory) {
 
     companion object {
 
-        fun getGiftHistoryInPlayer(player: Player): GiftHistory = player.giftHistory
-
         fun setGiftHistoryInPlayer(player: Player, giftHistory: GiftHistory): Player =
             player.copy(giftHistory = giftHistory)
 
         fun addYearInPlayer(player: Player, playerKey: PlayerKey): Player {
-            val gh = getGiftHistoryInPlayer(player)
-            gh.add(GiftPair(playerKey, playerKey))
-            return setGiftHistoryInPlayer(player, gh)
+            val ngh = player.giftHistory.plusElement(GiftPair(playerKey, playerKey))
+            return setGiftHistoryInPlayer(player, ngh)
         }
 
     }
@@ -44,7 +31,7 @@ data class Roster(val rosterName: RosterName, val rosterYear: RosterYear, val pl
         fun getGiftPairInRoster(roster: Roster, playerKey: PlayerKey, giftYear: GiftYear): GiftPair {
             val mPlayer = getPlayerInRoster(roster, playerKey)
             return if (mPlayer != null) {
-                val gh = getGiftHistoryInPlayer(mPlayer)
+                val gh = mPlayer.giftHistory
                 getGiftPairInGiftHistory(gh, giftYear)
             } else GiftPair("null", "null")
         }
