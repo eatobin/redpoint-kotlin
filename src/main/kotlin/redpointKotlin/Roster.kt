@@ -6,7 +6,7 @@ data class Player(val playerName: PlayerName, val giftHistory: GiftHistory) {
 
     companion object {
 
-        fun setGiftHistoryInPlayer(player: Player, giftHistory: GiftHistory): Player =
+        private fun setGiftHistoryInPlayer(player: Player, giftHistory: GiftHistory): Player =
             player.copy(giftHistory = giftHistory)
 
         fun addYearInPlayer(player: Player, playerKey: PlayerKey): Player {
@@ -24,7 +24,8 @@ data class Roster(val rosterName: RosterName, val rosterYear: RosterYear, val pl
 
         fun getPlayerInRoster(roster: Roster, playerKey: PlayerKey): Player? = roster.players[playerKey]
 
-        private fun getGiftPairInGiftHistory(giftHistory: GiftHistory, giftYear: GiftYear): GiftPair = giftHistory[giftYear]
+        private fun getGiftPairInGiftHistory(giftHistory: GiftHistory, giftYear: GiftYear): GiftPair =
+            giftHistory[giftYear]
 
         fun getGiftPairInRoster(roster: Roster, playerKey: PlayerKey, giftYear: GiftYear): GiftPair {
             val mPlayer = getPlayerInRoster(roster, playerKey)
@@ -48,10 +49,11 @@ data class Roster(val rosterName: RosterName, val rosterYear: RosterYear, val pl
         }
 
         fun addYearInPlayers(players: Players): Players {
+            var nPlayers: Players = emptyMap()
             for ((k, v) in players) {
-                Player.addYearInPlayer(v, k)
+                nPlayers = nPlayers.plus(mapOf(k to Player.addYearInPlayer(v, k)))
             }
-            return players
+            return nPlayers
         }
 
     }

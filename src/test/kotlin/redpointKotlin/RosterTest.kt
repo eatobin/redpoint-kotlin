@@ -13,6 +13,15 @@ private val players: Players = mapOf("RinSta" to rinSta, "JohLen" to johLen, "Ge
 
 private val roster: Roster = Roster("The Beatles", 2014, players)
 
+private val rinStaExt: Player =
+    Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar"), GiftPair("RinSta", "RinSta")))
+private val johLenExt: Player =
+    Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta"), GiftPair("JohLen", "JohLen")))
+private val geoHarExt: Player =
+    Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc"), GiftPair("GeoHar", "GeoHar")))
+private val pauMccExt: Player =
+    Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen"), GiftPair("PauMcc", "PauMcc")))
+
 class RosterTest : StringSpec({
 
     "rosterName should return \"The Beatles\"" {
@@ -54,6 +63,11 @@ class RosterTest : StringSpec({
     "addYearInPlayer should add a basic giftPair to player" {
         Player.addYearInPlayer(johLen, "NewKey")
             .shouldBe(Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta"), GiftPair("NewKey", "NewKey"))))
+    }
+
+    "addYearInPlayers should add a basic giftPair to each player i players" {
+        Roster.addYearInPlayers(players)
+            .shouldBe("emptyMap()")
     }
 
 })
