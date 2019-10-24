@@ -9,7 +9,8 @@ private val johLen: Player = Player("John Lennon", mutableListOf(GiftPair("PauMc
 private val geoHar: Player = Player("George Harrison", mutableListOf(GiftPair("RinSta", "PauMcc")))
 private val pauMcc: Player = Player("Paul McCartney", mutableListOf(GiftPair("GeoHar", "JohLen")))
 
-private val players: Players = mapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
+private val players: Players =
+    mutableMapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
 
 private val roster: Roster = Roster("The Beatles", 2014, players)
 
@@ -23,7 +24,7 @@ private val pauMccExt: Player =
     Player("Paul McCartney", mutableListOf(GiftPair("GeoHar", "JohLen"), GiftPair("PauMcc", "PauMcc")))
 
 private val playersExt: Players =
-    mapOf("RinSta" to rinStaExt, "JohLen" to johLenExt, "GeoHar" to geoHarExt, "PauMcc" to pauMccExt)
+    mutableMapOf("RinSta" to rinStaExt, "JohLen" to johLenExt, "GeoHar" to geoHarExt, "PauMcc" to pauMccExt)
 
 class RosterTest : StringSpec({
 
@@ -79,12 +80,13 @@ class RosterTest : StringSpec({
     }
 
     "addYearInPlayers should add a basic giftPair to each player i players" {
-        val rinSta: Player = Player("Ringo Starr", mutableListOf(GiftPair("JohLen", "GeoHar")))
-        val johLen: Player = Player("John Lennon", mutableListOf(GiftPair("PauMcc", "RinSta")))
-        val geoHar: Player = Player("George Harrison", mutableListOf(GiftPair("RinSta", "PauMcc")))
-        val pauMcc: Player = Player("Paul McCartney", mutableListOf(GiftPair("GeoHar", "JohLen")))
+        val rinSta = Player("Ringo Starr", mutableListOf(GiftPair("JohLen", "GeoHar")))
+        val johLen = Player("John Lennon", mutableListOf(GiftPair("PauMcc", "RinSta")))
+        val geoHar = Player("George Harrison", mutableListOf(GiftPair("RinSta", "PauMcc")))
+        val pauMcc = Player("Paul McCartney", mutableListOf(GiftPair("GeoHar", "JohLen")))
 
-        val players: Players = mapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
+        val players: Players =
+            mutableMapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
         Roster.addYearInPlayers(players)
             .shouldBe(playersExt)
     }

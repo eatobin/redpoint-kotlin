@@ -59,9 +59,9 @@ data class Roster(val rosterName: RosterName, val rosterYear: RosterYear, val pl
         }
 
         fun addYearInPlayers(players: Players): Players {
-            var nPlayers: Players = emptyMap()
+            val nPlayers: Players = mutableMapOf()
             for ((k, v) in players) {
-                nPlayers = nPlayers.plus(mapOf(k to Player.addYearInPlayer(v, k)))
+                nPlayers[k] = Player.addYearInPlayer(v, k)
             }
             return nPlayers
         }
