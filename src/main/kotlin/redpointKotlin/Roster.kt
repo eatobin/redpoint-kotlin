@@ -1,8 +1,8 @@
 package redpointKotlin
 
-data class Roster(val rosterName: RosterName, val rosterYear: RosterYear, val players: Players) {
-
-    companion object {
+//data class Roster(val rosterName: RosterName, val rosterYear: RosterYear, val players: Players) {
+//
+//    companion object {
 
 //        fun getPlayerInRoster(roster: Roster, playerKey: PlayerKey): Player? = roster.players[playerKey]
 //
@@ -55,6 +55,6 @@ data class Roster(val rosterName: RosterName, val rosterYear: RosterYear, val pl
 //            return setGift
 //        }
 
-    }
+//    }
 
-}
+//}

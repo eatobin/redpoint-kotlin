@@ -1,17 +1,17 @@
 package redpointKotlin
 
-typealias Givee = String
-typealias Giver = String
-typealias Giv = String
-typealias EeEr = String
+typealias GiveeT = String
+typealias GiverT = String
+typealias GivT = String
+typealias EeErT = String
 
-typealias GiftHistory = MutableList<GiftPair>
-typealias PlayerKey = String
-typealias GiftYear = Int
+typealias GiftHistoryT = MutableList<GiftPair>
+typealias PlayerKeyT = String
+//typealias GiftYearT = Int
+//
+//typealias PlayerNameT = String
 
-typealias PlayerName = String
+//typealias PlayersT = MutableMap<PlayerKeyT, Player>
 
-typealias Players = MutableMap<PlayerKey, Player>
-
-typealias RosterName = String
-typealias RosterYear = Int
+//typealias RosterNameT = String
+//typealias RosterYearT = Int
