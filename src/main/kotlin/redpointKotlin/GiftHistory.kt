@@ -8,4 +8,9 @@ object GiftHistory {
 
     fun getGiftPair(giftHistory: GiftHistoryT, giftYear: GiftYearT): GiftPair =
         giftHistory[giftYear]
+
+    fun setGiftPair(giftHistory: GiftHistoryT, giftYear: GiftYearT, giftPair: GiftPair): GiftHistoryT {
+        giftHistory[giftYear] = giftPair
+        return giftHistory
+    }
 }
