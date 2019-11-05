@@ -4,12 +4,16 @@ import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
 import redpointKotlin.GiftHistory.addYear
 
+val giftHistory: GiftHistoryT = mutableListOf(GiftPair("JohLen", "GeoHar"))
+
 class GiftHistoryTest : StringSpec({
     "A GiftHistory should add a new year" {
-        val giftHistory: GiftHistoryT = mutableListOf(GiftPair("JohLen", "GeoHar"))
-        val giftHistory2: GiftHistoryT = mutableListOf(GiftPair("JohLen", "GeoHar"), GiftPair("NewBee", "NewBee"))
-        addYear(giftHistory, "NewBee")
-        giftHistory.shouldBe(giftHistory2)
+        addYear(giftHistory, "NewBee").shouldBe(
+            mutableListOf(
+                GiftPair("JohLen", "GeoHar"),
+                GiftPair("NewBee", "NewBee")
+            )
+        )
     }
 
 //    "A GiftPair should return its giver" {

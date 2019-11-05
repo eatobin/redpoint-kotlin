@@ -7,8 +7,8 @@ typealias EeErT = String
 
 typealias GiftHistoryT = MutableList<GiftPair>
 typealias PlayerKeyT = String
-//typealias GiftYearT = Int
-//
+typealias GiftYearT = Int
+
 //typealias PlayerNameT = String
 
 //typealias PlayersT = MutableMap<PlayerKeyT, Player>
