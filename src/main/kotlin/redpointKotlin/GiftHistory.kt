@@ -1,16 +1,14 @@
 package redpointKotlin
 
 object GiftHistory {
-    fun addYear(giftHistory: GiftHistoryT, playerKey: PlayerKeyT): GiftHistoryT {
+    fun addYear(giftHistory: GiftHistoryT, playerKey: PlayerKeyT) {
         giftHistory.add(GiftPair(playerKey, playerKey))
-        return giftHistory
     }
 
     fun getGiftPair(giftHistory: GiftHistoryT, giftYear: GiftYearT): GiftPair =
         giftHistory[giftYear]
 
-    fun setGiftPair(giftHistory: GiftHistoryT, giftYear: GiftYearT, giftPair: GiftPair): GiftHistoryT {
+    fun setGiftPair(giftHistory: GiftHistoryT, giftYear: GiftYearT, giftPair: GiftPair) {
         giftHistory[giftYear] = giftPair
-        return giftHistory
     }
 }
