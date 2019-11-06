@@ -1,25 +1,15 @@
 package redpointKotlin
 
-//data class Player(val playerName: PlayerName, val giftHistory: GiftHistory) {
-//
-//    companion object {
-//
-//        fun getGiftPairInGiftHistory(giftHistory: GiftHistory, giftYear: GiftYear): GiftPair =
-//            giftHistory[giftYear]
-//
-//        fun setGiftPairInGiftHistory(giftHistory: GiftHistory, giftYear: GiftYear, giftPair: GiftPair): GiftHistory {
-//            giftHistory[giftYear] = giftPair
-//            return giftHistory
-//        }
-//
-//        fun setGiftHistoryInPlayer(player: Player, giftHistory: GiftHistory): Player =
-//            player.copy(giftHistory = giftHistory)
-//
-//        fun addYearInPlayer(player: Player, playerKey: PlayerKey): Player {
-//            player.giftHistory.add(GiftPair(playerKey, playerKey))
-//            return setGiftHistoryInPlayer(player, player.giftHistory)
-//        }
-//
-//    }
-//
-//}
+data class Player(val playerName: PlayerNameT, val giftHistory: GiftHistoryT) {
+
+    companion object {
+        fun addYearPlayer(player: Player, playerKey: PlayerKeyT): Player {
+            val gh = player.giftHistory
+            val ngh = GiftHistory.addYear(gh, playerKey)
+            return setGiftHistory(player, ngh)
+        }
+
+        fun setGiftHistory(player: Player, giftHistory: GiftHistoryT): Player =
+            player.copy(giftHistory = giftHistory)
+    }
+}
