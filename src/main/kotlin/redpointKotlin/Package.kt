@@ -5,9 +5,11 @@ typealias GiverT = String
 typealias GivT = String
 typealias EeErT = String
 
-typealias GiftHistoryT = MutableList<GiftPair>
+typealias GiftHistoryT = List<GiftPair>
 typealias PlayerKeyT = String
 typealias GiftYearT = Int
+
+fun <E> Iterable<E>.updated(index: Int, elem: E) = mapIndexed { i, existing -> if (i == index) elem else existing }
 
 //typealias PlayerNameT = String
 
