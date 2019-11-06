@@ -9,6 +9,8 @@ import redpointKotlin.GiftHistory.setGiftPair
 class GiftHistoryTest : StringSpec({
     "A GiftHistory should add a new year" {
         val giftHistory: GiftHistoryT = mutableListOf(GiftPair("JohLen", "GeoHar"))
+        val giftHisrory2
+        \\ TODO
         addYear(giftHistory, "NewBee").shouldBe(
             mutableListOf(
                 GiftPair("JohLen", "GeoHar"),
@@ -24,6 +26,8 @@ class GiftHistoryTest : StringSpec({
 
     "A GiftHistory should return an updated giftHistory" {
         val giftHistory: GiftHistoryT = mutableListOf(GiftPair("JohLen", "GeoHar"))
+        val giftHisrory2
+        \\ TODO
         setGiftPair(giftHistory, 0, GiftPair("me", "you")).shouldBe(mutableListOf(GiftPair("me", "you")))
     }
 })
