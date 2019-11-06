@@ -11,11 +11,9 @@ class PlayerTest : StringSpec({
         player.playerName.shouldBe("Ringo Starr")
     }
 
-//    "A GiftHistory should return a giftPair" {
-//        getGiftPair(giftHistory, 0).shouldBe(GiftPair("JohLen", "GeoHar"))
-//    }
-//
-//    "A GiftHistory should update a giftHistory" {
-//        setGiftPair(giftHistory, 0, GiftPair("me", "you")).shouldBe(listOf(GiftPair("me", "you")))
-//    }
+    "A Player should return its gifthistory" {
+        player.giftHistory.shouldBe(listOf(GiftPair("JohLen", "GeoHar")))
+    }
+
+
 })
