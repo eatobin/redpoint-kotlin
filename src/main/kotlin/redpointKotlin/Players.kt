@@ -1,8 +1,14 @@
 package redpointKotlin
 
 object Players {
-    // FIXME
-    fun addYearPlayers(players: PlayersT): PlayersT =
-        for ((playerKey, player) < -players) yield
-    playerKey -> Player.addYearPlayer(player, playerKey)
+    fun getPlayer(players: PlayersT, playerKey: PlayerKeyT): Player =
+        players[playerKey] ?: Player("null", listOf(GiftPair("null", "null")))
+
+    fun addYearPlayers(players: PlayersT): PlayersT {
+        val newPlayers = mutableMapOf<PlayerKeyT, Player>()
+        for ((playerKey, player) in players) {
+            newPlayers[playerKey] = Player.addYearPlayer(player, playerKey)
+        }
+        return newPlayers
+    }
 }
