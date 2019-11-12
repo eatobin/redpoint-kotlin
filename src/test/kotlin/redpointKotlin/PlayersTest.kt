@@ -6,6 +6,7 @@ import redpointKotlin.Players.addYearPlayers
 import redpointKotlin.Players.getGivEeErPlayers
 import redpointKotlin.Players.getPlayer
 import redpointKotlin.Players.getPlayerNamePlayers
+import redpointKotlin.Players.setGivEeErPlayers
 import redpointKotlin.Players.setPlayer
 
 val rinSta: Player = Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar")))
@@ -58,5 +59,24 @@ class PlayersTest : StringSpec({
     "Players should return a givEeEr" {
         getGivEeErPlayers(players, "GeoHar", 0, "ee").shouldBe("RinSta")
         getGivEeErPlayers(players, "GeoHar", 0, "er").shouldBe("PauMcc")
+    }
+
+    "Players should set a givEeEr" {
+        val rinSta = Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar")))
+        val johLen = Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta")))
+        val geoHar = Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc")))
+        val pauMcc = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen")))
+        val players: PlayersT =
+            mutableMapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
+
+        val geoHarGivee = Player("George Harrison", listOf(GiftPair("you", "PauMcc")))
+        val geoHarGiver = Player("George Harrison", listOf(GiftPair("you", "you")))
+        val playersGivee: PlayersT =
+            mutableMapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHarGivee, "PauMcc" to pauMcc)
+        val playersGiver: PlayersT =
+            mutableMapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHarGiver, "PauMcc" to pauMcc)
+
+        setGivEeErPlayers(players, "GeoHar", 0, "you", "ee").shouldBe(playersGivee)
+        setGivEeErPlayers(players, "GeoHar", 0, "you", "er").shouldBe(playersGiver)
     }
 })
