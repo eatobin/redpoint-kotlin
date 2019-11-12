@@ -5,6 +5,7 @@ import io.kotlintest.specs.StringSpec
 import redpointKotlin.Players.addYearPlayers
 import redpointKotlin.Players.getGivEeErPlayers
 import redpointKotlin.Players.getPlayer
+import redpointKotlin.Players.getPlayerNamePlayers
 import redpointKotlin.Players.setPlayer
 
 val rinSta: Player = Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar")))
@@ -48,6 +49,10 @@ class PlayersTest : StringSpec({
             mutableMapOf("RinSta" to rinStaExt, "JohLen" to johLenExt, "GeoHar" to geoHarExt, "PauMcc" to pauMccExt)
 
         addYearPlayers(players).shouldBe(playersExt)
+    }
+
+    "Players should return a player's name" {
+        getPlayerNamePlayers(players, "GeoHar").shouldBe("George Harrison")
     }
 
     "Players should return a givEeEr" {
