@@ -2,6 +2,7 @@ package redpointKotlin
 
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
+import redpointKotlin.Players.addYearPlayers
 import redpointKotlin.Players.getPlayer
 import redpointKotlin.Players.setPlayer
 
@@ -24,5 +25,27 @@ class PlayersTest : StringSpec({
 
     "Players should return an updated players" {
         setPlayer(players, "RinSta", Player("New Bee", listOf(GiftPair("NewBee", "NewBee")))).shouldBe(newBeePlayers)
+    }
+
+    "Players should return an extended year players" {
+        val rinSta = Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar")))
+        val johLen = Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta")))
+        val geoHar = Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc")))
+        val pauMcc = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen")))
+        val players: PlayersT =
+            mutableMapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
+
+        val rinStaExt =
+            Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar"), GiftPair("RinSta", "RinSta")))
+        val johLenExt =
+            Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta"), GiftPair("JohLen", "JohLen")))
+        val geoHarExt =
+            Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc"), GiftPair("GeoHar", "GeoHar")))
+        val pauMccExt =
+            Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen"), GiftPair("PauMcc", "PauMcc")))
+        val playersExt: PlayersT =
+            mutableMapOf("RinSta" to rinStaExt, "JohLen" to johLenExt, "GeoHar" to geoHarExt, "PauMcc" to pauMccExt)
+
+        addYearPlayers(players).shouldBe(playersExt)
     }
 })
