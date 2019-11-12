@@ -4,11 +4,10 @@ object Players {
     fun getPlayer(players: PlayersT, playerKey: PlayerKeyT): Player =
         players.getOrDefault(playerKey, Player("null", listOf(GiftPair("null", "null"))))
 
-    // TODO
-//    fun setPlayer(players: PlayersT, playerKey: PlayerKeyT, player: Player): Players {
-//        players.asSequence().iterator().forEach { k, existing -> if (k == playerKey) player else existing }
-//        return players
-//    }
+    fun setPlayer(players: PlayersT, playerKey: PlayerKeyT, player: Player): PlayersT {
+        players[playerKey] = player
+        return players
+    }
 
     fun addYearPlayers(players: PlayersT): PlayersT {
         val newPlayers = mutableMapOf<PlayerKeyT, Player>()
