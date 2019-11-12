@@ -9,11 +9,12 @@ val johLen: Player = Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta")))
 val geoHar: Player = Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc")))
 val pauMcc: Player = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen")))
 val players: PlayersT =
-    mutableMapOf<PlayerKeyT, Player>("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
+    mutableMapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
 
 class PlayersTest : StringSpec({
     "Players should return a player" {
         getPlayer(players, "GeoHar").shouldBe(Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc"))))
+        getPlayer(players, "GeoHarX").shouldBe(Player("null", listOf(GiftPair("null", "null"))))
     }
 
 //    "A Player should return its giftHistory" {
