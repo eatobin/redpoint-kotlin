@@ -13,7 +13,7 @@ fun <E> Iterable<E>.updated(index: Int, elem: E) = mapIndexed { i, existing -> i
 
 typealias PlayerNameT = String
 
-typealias PlayersT = Map<PlayerKeyT, Player>
+typealias PlayersT = MutableMap<PlayerKeyT, Player>
 
 //typealias RosterNameT = String
 //typealias RosterYearT = Int
