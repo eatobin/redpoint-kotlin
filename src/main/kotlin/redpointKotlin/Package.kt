@@ -15,5 +15,5 @@ typealias PlayerNameT = String
 
 typealias PlayersT = MutableMap<PlayerKeyT, Player>
 
-//typealias RosterNameT = String
-//typealias RosterYearT = Int
+typealias RosterNameT = String
+typealias RosterYearT = Int
