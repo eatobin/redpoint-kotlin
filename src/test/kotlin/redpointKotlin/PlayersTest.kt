@@ -3,6 +3,7 @@ package redpointKotlin
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
 import redpointKotlin.Players.addYearPlayers
+import redpointKotlin.Players.getGivEeErPlayers
 import redpointKotlin.Players.getPlayer
 import redpointKotlin.Players.setPlayer
 
@@ -47,5 +48,10 @@ class PlayersTest : StringSpec({
             mutableMapOf("RinSta" to rinStaExt, "JohLen" to johLenExt, "GeoHar" to geoHarExt, "PauMcc" to pauMccExt)
 
         addYearPlayers(players).shouldBe(playersExt)
+    }
+
+    "Players should return a givEeEr" {
+        getGivEeErPlayers(players, "GeoHar", 0, "ee").shouldBe("RinSta")
+        getGivEeErPlayers(players, "GeoHar", 0, "er").shouldBe("PauMcc")
     }
 })
