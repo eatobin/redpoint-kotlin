@@ -1,7 +1,7 @@
-data class GiftPair(val givee: Givee, val giver: Giver) {
+data class GiftPair(val givee: String, val giver: String) {
 
-    // companion object {
-    //     fun setGivEeEr(giftPair: GiftPair, giv: GivT, eEeR: EeErT): GiftPair =
-    //         if (eEeR == "ee") giftPair.copy(givee = giv) else giftPair.copy(giver = giv)
-    // }
+    companion object {
+        fun setGivee(givee: String, giftPair: GiftPair): GiftPair = giftPair.copy(givee = givee)
+        fun setGiver(giver: String, giftPair: GiftPair): GiftPair = giftPair.copy(giver = giver)
+    }
 }

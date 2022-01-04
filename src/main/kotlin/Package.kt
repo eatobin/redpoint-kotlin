@@ -1,9 +1,9 @@
-typealias Givee = String
-typealias Giver = String
-
+//typealias Givee = String
+//typealias Giver = String
+//
 // typealias GiftHistory = List<GiftPair>
-// typealias PlayerKeyT = String
-// typealias GiftYearT = Int
+// typealias PlayerKey = String
+// typealias GiftYear = Int
 
 // fun <E> Iterable<E>.updated(index: Int, elem: E) = mapIndexed { i, existing -> if (i == index) elem else existing }
 

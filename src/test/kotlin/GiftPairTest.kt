@@ -1,20 +1,18 @@
-// import io.kotlintest.shouldBe
-// import io.kotlintest.specs.StringSpec
-// import redpointKotlin.GiftPair.Companion.setGivEeEr
+import GiftPair.Companion.setGivee
+import GiftPair.Companion.setGiver
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
-// private val giftPair: GiftPair = GiftPair("JohLen", "GeoHar")
+private val giftPair: GiftPair = GiftPair("JohLen", "GeoHar")
 
-// class GiftPairTest : StringSpec({
-//     "A GiftPair should return its givee" {
-//         giftPair.givee.shouldBe("JohLen")
-//     }
+class GiftPairTest {
+    @Test
+    fun testSetGivee() {
+        assertEquals(GiftPair("JohLenX", "GeoHar"), setGivee("JohLenX", giftPair))
+    }
 
-//     "A GiftPair should return its giver" {
-//         giftPair.giver.shouldBe("GeoHar")
-//     }
-
-//     "A GiftPair should return an updated givEeEr" {
-//         setGivEeEr(giftPair, "NewBee", "ee").shouldBe(GiftPair("NewBee", "GeoHar"))
-//         setGivEeEr(giftPair, "NewBee", "er").shouldBe(GiftPair("JohLen", "NewBee"))
-//     }
-// })
+    @Test
+    fun testSetGiver() {
+        assertEquals(GiftPair("JohLen", "GeoHarX"), setGiver("GeoHarX", giftPair))
+    }
+}

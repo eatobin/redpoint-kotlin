@@ -1,12 +1,19 @@
-// import io.kotlintest.shouldBe
-// import io.kotlintest.specs.StringSpec
-// import redpointKotlin.GiftHistory.addYear
-// import redpointKotlin.GiftHistory.getGiftPair
-// import redpointKotlin.GiftHistory.setGiftPair
+import GiftHistory.addYear
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
-// val giftHistory: GiftHistoryT = listOf(GiftPair("JohLen", "GeoHar"))
+val giftHistory: List<GiftPair> = listOf(GiftPair("JohLen", "GeoHar"))
 
-// class GiftHistoryTest : StringSpec({
+class GiftHistoryTest {
+    @Test
+    fun testAddYear() {
+        assertEquals(
+            listOf(
+                GiftPair("JohLen", "GeoHar"), GiftPair("NewBee", "NewBee")
+            ), addYear(giftHistory, "NewBee")
+        )
+    }
+}
 //     "A GiftHistory should add a new year" {
 //         addYear(giftHistory, "NewBee").shouldBe(
 //             listOf(
