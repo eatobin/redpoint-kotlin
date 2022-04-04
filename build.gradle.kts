@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.6.10"
+    kotlin("jvm") version "1.6.20"
     application
 }
 
@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.beust:klaxon:5.5")
+    implementation("com.beust:klaxon:5.6")
     testImplementation(kotlin("test"))
 }
 
