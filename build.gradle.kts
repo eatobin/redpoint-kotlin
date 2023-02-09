@@ -11,7 +11,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.beust:klaxon:5.6")
+    implementation("com.google.code.gson:gson:2.10.1")
     testImplementation(kotlin("test"))
 }
 
