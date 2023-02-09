@@ -4,7 +4,7 @@ import GiftPair.Companion.giftPairUpdateGiver
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-private const val JS: JsonString = "{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}"
+private const val JSON_STRING: JsonString = "{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}"
 private val giftPair: GiftPair = GiftPair("GeoHar", "JohLen")
 
 class GiftPairTest {
@@ -20,6 +20,6 @@ class GiftPairTest {
 
     @Test
     fun testGiftPairJsonStringToGiftPair() {
-        assertEquals(giftPair, giftPairJsonStringToGiftPair(JS))
+        assertEquals(giftPair, giftPairJsonStringToGiftPair(JSON_STRING))
     }
 }
