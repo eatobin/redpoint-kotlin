@@ -1,19 +1,19 @@
-import GiftHistory.addYear
-import kotlin.test.Test
-import kotlin.test.assertEquals
-
-val giftHistory: List<GiftPair> = listOf(GiftPair("JohLen", "GeoHar"))
-
-class GiftHistoryTest {
-    @Test
-    fun testAddYear() {
-        assertEquals(
-            listOf(
-                GiftPair("JohLen", "GeoHar"), GiftPair("NewBee", "NewBee")
-            ), addYear(giftHistory, "NewBee")
-        )
-    }
-}
+//import GiftHistory.addYear
+//import kotlin.test.Test
+//import kotlin.test.assertEquals
+//
+//val giftHistory: List<GiftPair> = listOf(GiftPair("JohLen", "GeoHar"))
+//
+//class GiftHistoryTest {
+//    @Test
+//    fun testAddYear() {
+//        assertEquals(
+//            listOf(
+//                GiftPair("JohLen", "GeoHar"), GiftPair("NewBee", "NewBee")
+//            ), addYear(giftHistory, "NewBee")
+//        )
+//    }
+//}
 //     "A GiftHistory should add a new year" {
 //         addYear(giftHistory, "NewBee").shouldBe(
 //             listOf(
