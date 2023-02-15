@@ -1,3 +1,4 @@
+import GiftPair.Companion.giftPairJsonStringToGiftPair
 import GiftPair.Companion.giftPairUpdateGivee
 import GiftPair.Companion.giftPairUpdateGiver
 import kotlin.test.Test
@@ -8,6 +9,11 @@ private val giftPair: GiftPair = GiftPair("GeoHar", "JohLen")
 
 class GiftPairTest {
     @Test
+    fun testGiftPairJsonStringToGiftPair() {
+        assertEquals(giftPair, giftPairJsonStringToGiftPair(JSON_STRING))
+    }
+
+    @Test
     fun testGiftPairUpdateGivee() {
         assertEquals(GiftPair("NewBee", "JohLen"), giftPairUpdateGivee("NewBee", giftPair))
     }
@@ -16,9 +22,4 @@ class GiftPairTest {
     fun testGiftPairUpdateGiver() {
         assertEquals(GiftPair("GeoHar", "NewBee"), giftPairUpdateGiver("NewBee", giftPair))
     }
-
-//    @Test
-//    fun testGiftPairJsonStringToGiftPair() {
-//        assertEquals(giftPair, giftPairJsonStringToGiftPair(JSON_STRING))
-//    }
 }
