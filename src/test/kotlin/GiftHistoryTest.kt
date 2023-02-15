@@ -1,6 +1,7 @@
-import GiftHistory.giftHistoryJsonStringToGiftHistory
 import GiftHistory.giftHistoryAddYear
-import org.junit.jupiter.api.Test
+import GiftHistory.giftHistoryJsonStringToGiftHistory
+import GiftHistory.giftHistoryUpdateGiftHistory
+import kotlin.test.Test
 import kotlin.test.assertEquals
 
 private const val JSON_STRING: String = "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
@@ -21,21 +22,14 @@ class GiftHistoryTest {
         )
     }
 
-//     "A GiftHistory should add a new year" {
-//         addYear(giftHistory, "NewBee").shouldBe(
-//             listOf(
-//                 GiftPair("JohLen", "GeoHar"),
-//                 GiftPair("NewBee", "NewBee")
-//             )
-//         )
-//     }
-//
-//     "A GiftHistory should return a giftPair" {
-//         getGiftPair(giftHistory, 0).shouldBe(GiftPair("JohLen", "GeoHar"))
-//     }
-//
-//     "A GiftHistory should update a giftHistory" {
-//         setGiftPair(giftHistory, 0, GiftPair("me", "you")).shouldBe(listOf(GiftPair("me", "you")))
-//     }
-// }
+    @Test
+    fun testGiftHistoryUpdateGiftHistory() {
+        assertEquals(
+            listOf(
+                GiftPair("me", "you")
+            ), giftHistoryUpdateGiftHistory(giftHistory, 0, GiftPair("me", "you"))
+        )
+    }
+
+
 }
