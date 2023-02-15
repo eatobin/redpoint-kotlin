@@ -1,6 +1,6 @@
-typealias Givee = String
-typealias Giver = String
-typealias JsonString = String
+//typealias Givee = String
+//typealias Giver = String
+//typealias JsonString = String
 
 // typealias GiftHistory = List<GiftPair>
 // typealias PlayerKey = String

@@ -1,11 +1,10 @@
-import com.google.gson.Gson
-
-data class GiftPair(val givee: Givee, val giver: Giver) {
+data class GiftPair(val givee: String, val giver: String) {
     companion object {
-        private val gson = Gson()
-        fun giftPairUpdateGivee(givee: Givee, giftPair: GiftPair): GiftPair = giftPair.copy(givee = givee)
-        fun giftPairUpdateGiver(giver: Giver, giftPair: GiftPair): GiftPair = giftPair.copy(giver = giver)
-        fun giftPairJsonStringToGiftPair(jsonString: JsonString): GiftPair =
-            gson.fromJson(jsonString, GiftPair::class.java)
+//        private val gson = Gson()
+//        fun giftPairJsonStringToGiftPair(jsonString: String): GiftPair =
+//            gson.fromJson(jsonString, GiftPair::class.java)
+
+        fun giftPairUpdateGivee(givee: String, giftPair: GiftPair): GiftPair = giftPair.copy(givee = givee)
+        fun giftPairUpdateGiver(giver: String, giftPair: GiftPair): GiftPair = giftPair.copy(giver = giver)
     }
 }
