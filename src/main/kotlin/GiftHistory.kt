@@ -1,8 +1,6 @@
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
-typealias GiftHistoryTA = List<GiftPair>
-typealias GiftYearTA = Int
 
 object GiftHistory {
     fun giftHistoryJsonStringToGiftHistory(jsonString: JsonStringTA): GiftHistoryTA = Json.decodeFromString(jsonString)
@@ -13,9 +11,7 @@ object GiftHistory {
     fun giftHistoryUpdateGiftHistory(
         giftHistory: GiftHistoryTA, giftYear: GiftYearTA, giftPair: GiftPair
     ): GiftHistoryTA {
-        val mgh = giftHistory.toMutableList()
-        mgh[giftYear] = giftPair
-        return mgh.toList()
+        return giftHistory.updated(giftYear, giftPair)
     }
 }
 

@@ -1,14 +1,19 @@
-//typealias Givee = String
-//typealias Giver = String
-//typealias JsonString = String
+// used in GiftPair
+typealias PlayerKeyTA = String
+typealias GiveeTA = PlayerKeyTA
+typealias GiverTA = PlayerKeyTA
+typealias JsonStringTA = String
 
-// typealias GiftHistory = List<GiftPair>
-// typealias PlayerKey = String
-// typealias GiftYear = Int
+// used in GiftHistory
+typealias GiftHistoryTA = List<GiftPair>
+typealias GiftYearTA = Int
 
+fun GiftHistoryTA.updated(giftYear: GiftYearTA, giftPair: GiftPair) =
+    mapIndexed { i, existing -> if (i == giftYear) giftPair else existing }
 // fun <E> Iterable<E>.updated(index: Int, elem: E) = mapIndexed { i, existing -> if (i == index) elem else existing }
 
-// typealias PlayerNameT = String
+// used in Player
+typealias PlayerNameTA = String
 
 // typealias PlayersT = MutableMap<PlayerKeyT, Player>
 
