@@ -4,8 +4,8 @@ import kotlinx.serialization.json.Json
 object GiftHistory {
     fun giftHistoryJsonStringToGiftHistory(jsonString: String): List<GiftPair> = Json.decodeFromString(jsonString)
 
-//    fun giftHistoryAddYear(giftHistory: List<GiftPair>, playerKey: String): List<GiftPair> =
-//        giftHistory.plus(GiftPair(playerKey, playerKey))
+    fun giftHistoryAddYear(giftHistory: List<GiftPair>, playerKey: String): List<GiftPair> =
+        giftHistory.plus(GiftPair(playerKey, playerKey))
 //
 //    fun getGiftPair(giftHistory: List<GiftPair>, giftYear: Int): GiftPair = giftHistory[giftYear]
 //

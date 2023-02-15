@@ -1,4 +1,5 @@
 import GiftHistory.giftHistoryJsonStringToGiftHistory
+import GiftHistory.giftHistoryAddYear
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
@@ -10,14 +11,15 @@ class GiftHistoryTest {
     fun testGiftHistoryJsonStringToGiftHistory() {
         assertEquals(giftHistory, giftHistoryJsonStringToGiftHistory(JSON_STRING))
     }
-//    @Test
-//    fun testAddYear() {
-//        assertEquals(
-//            listOf(
-//                GiftPair("JohLen", "GeoHar"), GiftPair("NewBee", "NewBee")
-//            ), giftHistoryAddYear(giftHistory, "NewBee")
-//        )
-//    }
+
+    @Test
+    fun testGiftHistoryAddYear() {
+        assertEquals(
+            listOf(
+                GiftPair("GeoHar", "JohLen"), GiftPair("NewBee", "NewBee")
+            ), giftHistoryAddYear(giftHistory, "NewBee")
+        )
+    }
 
 //     "A GiftHistory should add a new year" {
 //         addYear(giftHistory, "NewBee").shouldBe(
