@@ -1,10 +1,6 @@
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
+typealias PlayerNameTA = String
 
-
-
-// data class Player(val playerName: PlayerNameT, val giftHistory: GiftHistoryT) {
-
+data class Player(val playerName: PlayerNameTA, val giftHistory: GiftHistoryTA) {
 // companion object {
 //     fun addYearPlayer(player: Player, playerKey: PlayerKeyT): Player {
 //         val gh = player.giftHistory
@@ -15,4 +11,4 @@ import kotlinx.serialization.json.Json
 //     fun setGiftHistory(player: Player, giftHistory: GiftHistoryT): Player =
 //         player.copy(giftHistory = giftHistory)
 // }
-//}
+}
