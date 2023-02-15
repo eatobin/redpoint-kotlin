@@ -1,10 +1,8 @@
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
+
 object GiftHistory {
-//    private val gson = Gson()
-//    fun giftHistoryJsonStringToGiftHistory(jsonString: String): List<GiftPair> =
-//        gson.fromJson(jsonString, List<GiftPair>)
-
-
-//    Gson().fromJson(string_var, Array<Item>::class.java).toList() as ArrayList<Type>
+    fun giftHistoryJsonStringToGiftHistory(jsonString: String): List<GiftPair> = Json.decodeFromString(jsonString)
 
 //    fun giftHistoryAddYear(giftHistory: List<GiftPair>, playerKey: String): List<GiftPair> =
 //        giftHistory.plus(GiftPair(playerKey, playerKey))
