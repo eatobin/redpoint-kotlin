@@ -10,7 +10,7 @@
 
 
 // used in Player
-typealias PlayerNameTA = String
+
 
 // typealias PlayersT = MutableMap<PlayerKeyT, Player>
 

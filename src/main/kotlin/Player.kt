@@ -1,3 +1,5 @@
+typealias PlayerNameTA = String
+
 data class Player(val playerName: PlayerNameTA, val giftHistory: GiftHistoryTA) {
 // companion object {
 //     fun addYearPlayer(player: Player, playerKey: PlayerKeyT): Player {
