@@ -2,7 +2,7 @@
 
 
 
-typealias JsonStringTA = String
+
 
 // used in GiftHistory
 
