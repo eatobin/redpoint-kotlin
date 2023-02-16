@@ -6,7 +6,7 @@ typealias JsonStringTA = String
 
 // used in GiftHistory
 
-typealias GiftYearTA = Int
+
 
 fun GiftHistoryTA.updated(giftYear: GiftYearTA, giftPair: GiftPair) =
     mapIndexed { i, existing -> if (i == giftYear) giftPair else existing }
