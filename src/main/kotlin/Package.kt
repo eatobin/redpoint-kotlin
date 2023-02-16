@@ -1,7 +1,7 @@
 // used in GiftPair
 
 
-typealias GiverTA = PlayerKeyTA
+
 typealias JsonStringTA = String
 
 // used in GiftHistory
