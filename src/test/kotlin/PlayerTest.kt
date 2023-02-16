@@ -13,13 +13,13 @@ class MyTests : StringSpec({
 })
 
 
-//val player: Player = Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar")))
+val player: Player = Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar")))
 
-//class PlayerTest : StringSpec({
-//    "A Player should return its playerName" {
-//        player.playerName.shouldBe("Ringo Starr")
-//    }
-
+class PlayerTest : StringSpec({
+    "A Player should return its playerName" {
+        player.playerName.shouldBe("Ringo Starr")
+    }
+})
 //     "A Player should return its giftHistory" {
 //         player.giftHistory.shouldBe(listOf(GiftPair("JohLen", "GeoHar")))
 //     }
