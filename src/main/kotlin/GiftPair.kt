@@ -3,6 +3,7 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
 typealias PlayerKeyTA = String
+typealias GiveeTA = PlayerKeyTA
 
 @Serializable
 data class GiftPair(val givee: GiveeTA, val giver: GiverTA) {

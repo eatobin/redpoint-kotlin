@@ -1,6 +1,6 @@
 // used in GiftPair
 
-typealias GiveeTA = PlayerKeyTA
+
 typealias GiverTA = PlayerKeyTA
 typealias JsonStringTA = String
 
