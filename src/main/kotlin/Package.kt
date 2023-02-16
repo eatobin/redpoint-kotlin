@@ -5,7 +5,7 @@ typealias GiverTA = PlayerKeyTA
 typealias JsonStringTA = String
 
 // used in GiftHistory
-typealias GiftHistoryTA = List<GiftPair>
+
 typealias GiftYearTA = Int
 
 fun GiftHistoryTA.updated(giftYear: GiftYearTA, giftPair: GiftPair) =

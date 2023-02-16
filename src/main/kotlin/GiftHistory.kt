@@ -1,6 +1,7 @@
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
+typealias GiftHistoryTA = List<GiftPair>
 
 object GiftHistory {
     fun giftHistoryJsonStringToGiftHistory(jsonString: JsonStringTA): GiftHistoryTA = Json.decodeFromString(jsonString)
