@@ -8,9 +8,6 @@
 
 
 
-fun GiftHistoryTA.updated(giftYear: GiftYearTA, giftPair: GiftPair) =
-    mapIndexed { i, existing -> if (i == giftYear) giftPair else existing }
-// fun <E> Iterable<E>.updated(index: Int, elem: E) = mapIndexed { i, existing -> if (i == index) elem else existing }
 
 // used in Player
 typealias PlayerNameTA = String
