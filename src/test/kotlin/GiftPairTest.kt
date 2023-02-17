@@ -1,5 +1,6 @@
 import GiftPair.Companion.giftPairJsonStringToGiftPair
 import GiftPair.Companion.giftPairUpdateGivee
+import GiftPair.Companion.giftPairUpdateGiver
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
@@ -20,16 +21,7 @@ class GiftPairTest : StringSpec({
     "giftPair should update a givee" {
         giftPairUpdateGivee("NewBee", giftPair).shouldBe(GiftPair("NewBee", "JohLen"))
     }
+    "giftPair should update a giver" {
+        giftPairUpdateGiver("NewBee", giftPair).shouldBe(GiftPair("GeoHar", "NewBee"))
+    }
 })
-
-
-//     @Test
-//     fun testGiftPairUpdateGivee() {
-//         assertEquals(GiftPair("NewBee", "JohLen"), giftPairUpdateGivee("NewBee", giftPair))
-//     }
-
-//     @Test
-//     fun testGiftPairUpdateGiver() {
-//         assertEquals(GiftPair("GeoHar", "NewBee"), giftPairUpdateGiver("NewBee", giftPair))
-//     }
-// }
