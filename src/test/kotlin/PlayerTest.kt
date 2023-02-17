@@ -1,4 +1,5 @@
 import Player.Companion.playerJsonStringToPlayer
+import Player.Companion.playerUpdateGiftHistory
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
@@ -18,29 +19,11 @@ class PlayerTest : StringSpec({
             playerJsonStringToPlayer(BAD_JSON_STRING)
         }
     }
+    "player should return an updated giftHistory" {
+        playerUpdateGiftHistory(listOf(GiftPair("nope", "yup")), player).shouldBe(
+            Player(
+                "Paul McCartney", listOf(GiftPair("nope", "yup"))
+            )
+        )
+    }
 })
-//     "A Player should return its giftHistory" {
-//         player.giftHistory.shouldBe(listOf(GiftPair("JohLen", "GeoHar")))
-//     }
-
-//     "A Player should return an updated giftHistory" {
-//         setGiftHistory(player, listOf(GiftPair("nope", "yup"))).shouldBe(
-//             Player(
-//                 "Ringo Starr",
-//                 listOf(GiftPair("nope", "yup"))
-//             )
-//         )
-//     }
-
-//     "A Player should return an extended giftHistory" {
-//         addYearPlayer(player, "mee").shouldBe(
-//             Player(
-//                 "Ringo Starr",
-//                 listOf(
-//                     GiftPair("JohLen", "GeoHar"),
-//                     GiftPair("mee", "mee")
-//                 )
-//             )
-//         )
-//     }
-//})

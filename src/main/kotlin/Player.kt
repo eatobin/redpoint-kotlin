@@ -8,13 +8,7 @@ typealias PlayerNameTA = String
 data class Player(val playerName: PlayerNameTA, val giftHistory: GiftHistoryTA) {
     companion object {
         fun playerJsonStringToPlayer(jsonString: JsonStringTA): Player = Json.decodeFromString(jsonString)
-//     fun addYearPlayer(player: Player, playerKey: PlayerKeyT): Player {
-//         val gh = player.giftHistory
-//         val ngh = GiftHistory.addYear(gh, playerKey)
-//         return setGiftHistory(player, ngh)
-//     }
-
-//     fun setGiftHistory(player: Player, giftHistory: GiftHistoryT): Player =
-//         player.copy(giftHistory = giftHistory)
+        fun playerUpdateGiftHistory(giftHistory: GiftHistoryTA, player: Player): Player =
+            player.copy(giftHistory = giftHistory)
     }
 }
