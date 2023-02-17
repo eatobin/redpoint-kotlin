@@ -15,7 +15,7 @@ object GiftHistory {
         giftHistory.plus(GiftPair(playerKey, playerKey))
 
     fun giftHistoryUpdateGiftHistory(
-        giftHistory: GiftHistoryTA, giftYear: GiftYearTA, giftPair: GiftPair
+        giftYear: GiftYearTA, giftPair: GiftPair, giftHistory: GiftHistoryTA
     ): GiftHistoryTA {
         return giftHistory.updated(giftYear, giftPair)
     }
