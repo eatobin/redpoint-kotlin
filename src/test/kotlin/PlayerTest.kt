@@ -1,11 +1,22 @@
+import Player.Companion.playerJsonStringToPlayer
+import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-val player: Player = Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar")))
+private const val JSON_STRING: JsonStringTA =
+    "{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
+private const val BAD_JSON_STRING: JsonStringTA =
+    "{\"playerName\"\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
+val player: Player = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen")))
 
 class PlayerTest : StringSpec({
-    "player should return its playerName" {
-        player.playerName.shouldBe("Ringo Starr")
+    "player should build from JSON" {
+        playerJsonStringToPlayer(JSON_STRING).shouldBe(player)
+    }
+    "player should NOT build from BAD JSON" {
+        shouldThrowAny {
+            playerJsonStringToPlayer(BAD_JSON_STRING)
+        }
     }
 })
 //     "A Player should return its giftHistory" {
