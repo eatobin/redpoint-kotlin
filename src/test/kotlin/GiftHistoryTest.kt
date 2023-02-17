@@ -1,5 +1,6 @@
 import GiftHistory.giftHistoryAddYear
 import GiftHistory.giftHistoryJsonStringToGiftHistory
+import GiftHistory.giftHistoryUpdateGiftHistory
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
@@ -21,25 +22,8 @@ class GiftHistoryTest : StringSpec({
         giftHistoryAddYear(giftHistory, "NewBee")
             .shouldBe(listOf(GiftPair("GeoHar", "JohLen"), GiftPair("NewBee", "NewBee")))
     }
+    "giftHistory should update a year's giftPair" {
+        giftHistoryUpdateGiftHistory(giftHistory, 0, GiftPair("me", "you"))
+            .shouldBe(listOf(GiftPair("me", "you")))
+    }
 })
-
-
-//     @Test
-//     fun testGiftHistoryAddYear() {
-//         assertEquals(
-//             listOf(GiftPair("GeoHar", "JohLen"), GiftPair("NewBee", "NewBee")
-//             ), giftHistoryAddYear(giftHistory, "NewBee")
-//         )
-//     }
-
-//     @Test
-//     fun testGiftHistoryUpdateGiftHistory() {
-//         assertEquals(
-//             listOf(
-//                 GiftPair("me", "you")
-//             ), giftHistoryUpdateGiftHistory(giftHistory, 0, GiftPair("me", "you"))
-//         )
-//     }
-
-
-// }
