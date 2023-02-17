@@ -19,7 +19,7 @@ class GiftHistoryTest : StringSpec({
         }
     }
     "giftHistory should add a year" {
-        giftHistoryAddYear(giftHistory, "NewBee")
+        giftHistoryAddYear("NewBee", giftHistory)
             .shouldBe(listOf(GiftPair("GeoHar", "JohLen"), GiftPair("NewBee", "NewBee")))
     }
     "giftHistory should update a year's giftPair" {

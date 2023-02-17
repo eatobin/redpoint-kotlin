@@ -11,7 +11,7 @@ object GiftHistory {
 
     fun giftHistoryJsonStringToGiftHistory(jsonString: JsonStringTA): GiftHistoryTA = Json.decodeFromString(jsonString)
 
-    fun giftHistoryAddYear(giftHistory: GiftHistoryTA, playerKey: PlayerKeyTA): GiftHistoryTA =
+    fun giftHistoryAddYear(playerKey: PlayerKeyTA, giftHistory: GiftHistoryTA): GiftHistoryTA =
         giftHistory.plus(GiftPair(playerKey, playerKey))
 
     fun giftHistoryUpdateGiftHistory(

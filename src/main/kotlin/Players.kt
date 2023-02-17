@@ -51,7 +51,7 @@ object Players {
         val mutPlayers = players.toMutableMap()
         mutPlayers.forEach {
             val gh = it.value.giftHistory
-            val ngh = giftHistoryAddYear(gh, it.key)
+            val ngh = giftHistoryAddYear(it.key, gh)
             val nplr = playerUpdateGiftHistory(ngh, it.value)
             (it.key to nplr)
         }
