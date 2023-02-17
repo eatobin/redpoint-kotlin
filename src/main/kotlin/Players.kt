@@ -19,9 +19,6 @@ import kotlinx.serialization.json.Json
 //    type PlayersTA = SortedMap[PlayerKeyTA, Player]
 
 
-//    def playersGetMyGiver(selfKey: PlayerKeyTA)(players: PlayersTA)(giftYear: GiftYearTA): GiverTA =
-//    players(selfKey).giftHistory(giftYear).giver
-//
 //    private def playersSetGiftPair(playerKey: PlayerKeyTA)(giftYear: GiftYearTA)(giftPair: GiftPair)(players: PlayersTA): PlayersTA = {
 //        val ngh = giftHistoryUpdateGiftHistory(giftYear)(giftPair)(players(playerKey).giftHistory)
 //        val nplr = playerUpdateGiftHistory(ngh)(players(playerKey))
@@ -55,11 +52,6 @@ object Players {
         return players.getValue(playerKey).playerName
     }
 
-    fun playersGetMyGivee(selfKey: PlayerKeyTA, players: PlayersTA, giftYear: GiftYearTA): GiveeTA {
-        return players.getValue(selfKey).giftHistory[giftYear].givee
-    }
-
-
     fun playersAddYear(players: PlayersTA): PlayersTA {
         val mutPlayers = players.toMutableMap()
         mutPlayers.forEach {
@@ -70,4 +62,13 @@ object Players {
         }
         return mutPlayers.toMap()
     }
+
+    fun playersGetMyGivee(selfKey: PlayerKeyTA, players: PlayersTA, giftYear: GiftYearTA): GiveeTA {
+        return players.getValue(selfKey).giftHistory[giftYear].givee
+    }
+
+    fun playersGetMyGiver(selfKey: PlayerKeyTA, players: PlayersTA, giftYear: GiftYearTA): GiverTA {
+        return players.getValue(selfKey).giftHistory[giftYear].giver
+    }
+
 }
