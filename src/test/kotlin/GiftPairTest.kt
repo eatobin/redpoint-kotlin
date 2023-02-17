@@ -1,4 +1,5 @@
 import GiftPair.Companion.giftPairJsonStringToGiftPair
+import GiftPair.Companion.giftPairUpdateGivee
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
@@ -15,6 +16,9 @@ class GiftPairTest : StringSpec({
         shouldThrowAny {
             giftPairJsonStringToGiftPair(BAD_JSON_STRING)
         }
+    }
+    "giftPair should update a givee" {
+        giftPairUpdateGivee("NewBee", giftPair).shouldBe(GiftPair("NewBee", "JohLen"))
     }
 })
 
