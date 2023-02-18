@@ -1,29 +1,32 @@
-// import io.kotlintest.shouldBe
-// import io.kotlintest.specs.StringSpec
-// import redpointKotlin.Players.addYearPlayers
-// import redpointKotlin.Players.getGivEeErPlayers
-// import redpointKotlin.Players.getPlayer
-// import redpointKotlin.Players.getPlayerNamePlayers
-// import redpointKotlin.Players.setGivEeErPlayers
-// import redpointKotlin.Players.setPlayer
+import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.shouldBe
 
-// val rinSta: Player = Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar")))
-// val johLen: Player = Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta")))
-// val geoHar: Player = Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc")))
-// val pauMcc: Player = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen")))
-// val players: PlayersT =
-//     mutableMapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
+
+private val JSON_STRING: JsonStringTA =
+    "{\"PauMcc\":{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]},\"GeoHar\":{\"playerName\":\"George Harrison\",\"giftHistory\":[{\"givee\":\"RinSta\",\"giver\":\"PauMcc\"}]},\"JohLen\":{\"playerName\":\"John Lennon\",\"giftHistory\":[{\"givee\":\"PauMcc\",\"giver\":\"RinSta\"}]},\"RinSta\":{\"playerName\":\"Ringo Starr\",\"giftHistory\":[{\"givee\":\"JohLen\",\"giver\":\"GeoHar\"}]}}"
+
+
+val rinSta: Player = Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar")))
+val johLen: Player = Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta")))
+val geoHar: Player = Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc")))
+val pauMcc: Player = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen")))
+val players: PlayersTA =
+    mapOf("PauMcc" to pauMcc, "GeoHar" to geoHar, "JohLen" to johLen, "RinSta" to rinSta)
 
 // val newBee: Player = Player("New Bee", listOf(GiftPair("NewBee", "NewBee")))
 // val newBeePlayers: PlayersT =
 //     mutableMapOf("RinSta" to newBee, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
 
-// class PlayersTest : StringSpec({
-//     "Players should return a player" {
-//         getPlayer(players, "GeoHar").shouldBe(Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc"))))
-//         getPlayer(players, "GeoHarX").shouldBe(Player("null", listOf(GiftPair("null", "null"))))
+class PlayersTest : StringSpec({
+    "players should build from JSON" {
+        playersJsonStringToPlayers(JSON_STRING).shouldBe(players)
+    }
+//     "player should NOT build from BAD JSON" {
+//         shouldThrowAny {
+//             playerJsonStringToPlayer(BAD_JSON_STRING)
+//         }
 //     }
-
+})
 //     "Players should return an updated players" {
 //         setPlayer(players, "RinSta", Player("New Bee", listOf(GiftPair("NewBee", "NewBee")))).shouldBe(newBeePlayers)
 //     }
@@ -77,4 +80,4 @@
 //         setGivEeErPlayers(players, "GeoHar", 0, "you", "ee").shouldBe(playersGivee)
 //         setGivEeErPlayers(players, "GeoHar", 0, "you", "er").shouldBe(playersGiver)
 //     }
-// })
+

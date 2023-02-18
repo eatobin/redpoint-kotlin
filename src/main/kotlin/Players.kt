@@ -1,5 +1,3 @@
-import GiftHistory.giftHistoryAddYear
-import GiftHistory.giftHistoryUpdateGiftHistory
 import GiftPair.Companion.giftPairUpdateGivee
 import Player.Companion.playerUpdateGiftHistory
 import kotlinx.serialization.decodeFromString
