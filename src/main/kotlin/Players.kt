@@ -73,16 +73,26 @@ object Players {
         return playersUpdatePlayer(playerKey, nplr, mutPlayers).toMap()
     }
 
-    fun playersUpdateMyGivee(
-        selfKey: PlayerKeyTA, givee: GiveeTA, giftYear: GiftYearTA, players: PlayersTA
+    private fun playersUpdateMyGiveeGiver(
+        selfKey: PlayerKeyTA, giveeGiver: PlayerKeyTA, giftYear: GiftYearTA, players: PlayersTA
     ): PlayersTA {
         val plr = players.getValue(selfKey)
         val gh = plr.giftHistory
         val gp = gh[giftYear]
-        val ngp = giftPairUpdateGivee(givee, gp)
+        val ngp = giftPairUpdateGivee(giveeGiver, gp)
         val mutPlayers = players.toMutableMap()
         return playersSetGiftPair(selfKey, giftYear, ngp, mutPlayers).toMap()
     }
 
+    fun playersUpdateMyGivee(
+        selfKey: PlayerKeyTA, givee: GiveeTA, giftYear: GiftYearTA, players: PlayersTA
+    ): PlayersTA {
+        return playersUpdateMyGiveeGiver(selfKey, givee, giftYear, players)
+    }
 
+    fun playersUpdateMyGiver(
+        selfKey: PlayerKeyTA, giver: GiverTA, giftYear: GiftYearTA, players: PlayersTA
+    ): PlayersTA {
+        return playersUpdateMyGiveeGiver(selfKey, giver, giftYear, players)
+    }
 }
