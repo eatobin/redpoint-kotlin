@@ -8,7 +8,7 @@ private const val JSON_STRING: JsonStringTA =
     "{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
 private const val BAD_JSON_STRING: JsonStringTA =
     "{\"playerName\"\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
-val player: Player = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohL   en")))
+val player: Player = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen")))
 
 class PlayerTest : StringSpec({
     "player should build from JSON" {
