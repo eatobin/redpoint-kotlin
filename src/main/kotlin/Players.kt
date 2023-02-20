@@ -6,11 +6,11 @@ typealias PlayersTA = Map<PlayerKeyTA, Player>
 fun playersJsonStringToPlayers(jsonString: JsonStringTA): PlayersTA =
     Json.decodeFromString<PlayersTA>(jsonString).toSortedMap()
 
-//fun playersUpdatePlayer(playerKey: PlayerKeyTA, player: Player, players: PlayersTA): PlayersTA {
-//    val mutPlayers = players.toMutableMap()
-//    mutPlayers[playerKey] = player
-//    return mutPlayers.toMap()
-//}
+fun playersUpdatePlayer(playerKey: PlayerKeyTA, player: Player, players: PlayersTA): PlayersTA {
+    val mutPlayers = players.toMutableMap()
+    mutPlayers[playerKey] = player
+    return mutPlayers.toSortedMap()
+}
 
 //fun playersGetPlayerName(playerKey: PlayerKeyTA, players: PlayersTA): PlayerNameTA {
 //    return players.getValue(playerKey).playerName
