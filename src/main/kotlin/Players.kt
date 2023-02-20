@@ -2,7 +2,7 @@ import GiftPair.Companion.giftPairUpdateGivee
 import Player.Companion.playerUpdateGiftHistory
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import java.util.SortedMap
+import java.util.*
 
 typealias PlayersTA = SortedMap<PlayerKeyTA, Player>
 
@@ -19,14 +19,13 @@ fun playersGetPlayerName(playerKey: PlayerKeyTA, players: PlayersTA): PlayerName
 }
 
 fun playersAddYear(players: PlayersTA): PlayersTA {
-    val mutPlayers = players.toMutableMap()
-    mutPlayers.forEach {
+    players.forEach {
         val gh = it.value.giftHistory
         val ngh = giftHistoryAddYear(it.key, gh)
         val nplr = playerUpdateGiftHistory(ngh, it.value)
         (it.key to nplr)
     }
-    return mutPlayers.toSortedMap()
+    return players
 }
 
 fun playersGetMyGivee(selfKey: PlayerKeyTA, players: PlayersTA, giftYear: GiftYearTA): GiveeTA {
@@ -44,28 +43,27 @@ fun playersSetGiftPair(
     val gh = plr.giftHistory
     val ngh = giftHistoryUpdateGiftHistory(giftYear, giftPair, gh)
     val nplr = playerUpdateGiftHistory(ngh, plr)
-    return playersUpdatePlayer(playerKey, nplr, players).toSortedMap()
+    return playersUpdatePlayer(playerKey, nplr, players)
 }
 
-//private fun playersUpdateMyGiveeGiver(
-//    selfKey: PlayerKeyTA, giveeGiver: PlayerKeyTA, giftYear: GiftYearTA, players: PlayersTA
-//): PlayersTA {
-//    val plr = players.getValue(selfKey)
-//    val gh = plr.giftHistory
-//    val gp = gh[giftYear]
-//    val ngp = giftPairUpdateGivee(giveeGiver, gp)
-//    val mutPlayers = players.toMutableMap()
-//    return playersSetGiftPair(selfKey, giftYear, ngp, mutPlayers).toSortedMap()
-//}
-//
-//fun playersUpdateMyGivee(
-//    selfKey: PlayerKeyTA, givee: GiveeTA, giftYear: GiftYearTA, players: PlayersTA
-//): PlayersTA {
-//    return playersUpdateMyGiveeGiver(selfKey, givee, giftYear, players)
-//}
-//
-//fun playersUpdateMyGiver(
-//    selfKey: PlayerKeyTA, giver: GiverTA, giftYear: GiftYearTA, players: PlayersTA
-//): PlayersTA {
-//    return playersUpdateMyGiveeGiver(selfKey, giver, giftYear, players)
-//}
+private fun playersUpdateMyGiveeGiver(
+    selfKey: PlayerKeyTA, giveeGiver: PlayerKeyTA, giftYear: GiftYearTA, players: PlayersTA
+): PlayersTA {
+    val plr = players.getValue(selfKey)
+    val gh = plr.giftHistory
+    val gp = gh[giftYear]
+    val ngp = giftPairUpdateGivee(giveeGiver, gp)
+    return playersSetGiftPair(selfKey, giftYear, ngp, players)
+}
+
+fun playersUpdateMyGivee(
+    selfKey: PlayerKeyTA, givee: GiveeTA, giftYear: GiftYearTA, players: PlayersTA
+): PlayersTA {
+    return playersUpdateMyGiveeGiver(selfKey, givee, giftYear, players)
+}
+
+fun playersUpdateMyGiver(
+    selfKey: PlayerKeyTA, giver: GiverTA, giftYear: GiftYearTA, players: PlayersTA
+): PlayersTA {
+    return playersUpdateMyGiveeGiver(selfKey, giver, giftYear, players)
+}
