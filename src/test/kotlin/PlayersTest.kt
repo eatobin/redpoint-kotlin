@@ -14,9 +14,8 @@ val geoHar: Player = Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc
 val pauMcc: Player = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen")))
 val players: PlayersTA = mapOf("PauMcc" to pauMcc, "GeoHar" to geoHar, "JohLen" to johLen, "RinSta" to rinSta)
 
-// val newBee: Player = Player("New Bee", listOf(GiftPair("NewBee", "NewBee")))
-// val newBeePlayers: PlayersT =
-//     mutableMapOf("RinSta" to newBee, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
+val newBee: Player = Player("New Bee", listOf(GiftPair("NewBee", "NewBee")))
+val newBeePlayers: PlayersTA = mapOf("RinSta" to newBee, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
 
 class PlayersTest : StringSpec({
     "players should build from JSON" {
@@ -27,10 +26,16 @@ class PlayersTest : StringSpec({
             playersJsonStringToPlayers(BAD_JSON_STRING)
         }
     }
+    "players should return an updated player" {
+        playersUpdatePlayer("RinSta", Player("New Bee", listOf(GiftPair("NewBee", "NewBee"))), players).shouldBe(
+            newBeePlayers
+        )
+    }
 })
-//     "Players should return an updated players" {
-//         setPlayer(players, "RinSta", Player("New Bee", listOf(GiftPair("NewBee", "NewBee")))).shouldBe(newBeePlayers)
-//     }
+
+//"Players" should "return an updated player" in {
+//    assert(playersUpdatePlayer("RinSta")(Player("New Bee", Vector(GiftPair("NewBee", "NewBee"))))(players) == newBeePlayers)
+//}
 
 //     "Players should return an extended year players" {
 //         val rinSta = Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar")))
