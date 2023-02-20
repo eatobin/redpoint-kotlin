@@ -19,13 +19,14 @@ fun playersGetPlayerName(playerKey: PlayerKeyTA, players: PlayersTA): PlayerName
 }
 
 fun playersAddYear(players: PlayersTA): PlayersTA {
-    players.forEach {
+    val mutPlayers = players.toMutableMap()
+    mutPlayers.forEach {
         val gh = it.value.giftHistory
         val ngh = giftHistoryAddYear(it.key, gh)
         val nplr = playerUpdateGiftHistory(ngh, it.value)
         (it.key to nplr)
     }
-    return players
+    return mutPlayers.toSortedMap()
 }
 
 fun playersGetMyGivee(selfKey: PlayerKeyTA, players: PlayersTA, giftYear: GiftYearTA): GiveeTA {
