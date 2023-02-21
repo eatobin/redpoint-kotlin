@@ -1,16 +1,24 @@
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import java.util.*
 
-typealias PlayersTA = Map<PlayerKeyTA, Player>
+typealias PlayersTA = SortedMap<PlayerKeyTA, Player>
 
-fun playersJsonStringToPlayers(jsonString: JsonStringTA): PlayersTA =
-    Json.decodeFromString<PlayersTA>(jsonString).toSortedMap()
-
-fun playersUpdatePlayer(playerKey: PlayerKeyTA, player: Player, players: PlayersTA): PlayersTA {
-    val mutPlayers = players.toMutableMap()
-    mutPlayers[playerKey] = player
-    return mutPlayers.toSortedMap()
+@Serializable
+data class Players(val players: PlayersTA) {
+    companion object {
+        fun playersJsonStringToPlayers(jsonString: JsonStringTA): PlayersTA =
+            Json.decodeFromString<PlayersTA>(jsonString).toSortedMap()
+    }
 }
+
+
+//fun playersUpdatePlayer(playerKey: PlayerKeyTA, player: Player, players: PlayersTA): PlayersTA {
+//    val mutPlayers = players.toMutableMap()
+//    mutPlayers[playerKey] = player
+//    return mutPlayers.toSortedMap()
+//}
 
 //fun playersGetPlayerName(playerKey: PlayerKeyTA, players: PlayersTA): PlayerNameTA {
 //    return players.getValue(playerKey).playerName
