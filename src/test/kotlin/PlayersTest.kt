@@ -9,7 +9,7 @@ private const val JSON_STRING: JsonStringTA =
 private const val BAD_JSON_STRING: JsonStringTA =
     "{\"PauMcc\":{\"playerName\"\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]},\"GeoHar\":{\"playerName\":\"George Harrison\",\"giftHistory\":[{\"givee\":\"RinSta\",\"giver\":\"PauMcc\"}]},\"JohLen\":{\"playerName\":\"John Lennon\",\"giftHistory\":[{\"givee\":\"PauMcc\",\"giver\":\"RinSta\"}]},\"RinSta\":{\"playerName\":\"Ringo Starr\",\"giftHistory\":[{\"givee\":\"JohLen\",\"giver\":\"GeoHar\"}]}}"
 
-val rinSta: Player = Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar")))
+val rinSta: Player = Player("Ringo Starr", giftHistory = (GiftPair("JohLen", "GeoHar")))
 val johLen: Player = Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta")))
 val geoHar: Player = Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc")))
 val pauMcc: Player = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen")))

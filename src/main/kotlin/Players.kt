@@ -8,8 +8,7 @@ typealias PlayersTA = SortedMap<PlayerKeyTA, Player>
 @Serializable
 data class Players(val players: PlayersTA) {
     companion object {
-        fun playersJsonStringToPlayers(jsonString: JsonStringTA): PlayersTA =
-            Json.decodeFromString<PlayersTA>(jsonString).toSortedMap()
+        fun playersJsonStringToPlayers(jsonString: JsonStringTA): PlayersTA = Json.decodeFromString(jsonString)
     }
 }
 
