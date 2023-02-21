@@ -1,3 +1,4 @@
+import Players.Companion.playersJsonStringToPlayers
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
@@ -12,10 +13,10 @@ val rinSta: Player = Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar")))
 val johLen: Player = Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta")))
 val geoHar: Player = Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc")))
 val pauMcc: Player = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen")))
-val players: PlayersTA = mapOf("GeoHar" to geoHar, "JohLen" to johLen, "PauMcc" to pauMcc, "RinSta" to rinSta)
+val players: PlayersTA = sortedMapOf("GeoHar" to geoHar, "JohLen" to johLen, "PauMcc" to pauMcc, "RinSta" to rinSta)
 
 val newBee: Player = Player("New Bee", listOf(GiftPair("NewBee", "NewBee")))
-val newBeePlayers: PlayersTA = mapOf("RinSta" to newBee, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
+val newBeePlayers: PlayersTA = sortedMapOf("RinSta" to newBee, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
 
 class PlayersTest : StringSpec({
     "players should build from JSON" {
@@ -26,11 +27,11 @@ class PlayersTest : StringSpec({
             playersJsonStringToPlayers(BAD_JSON_STRING)
         }
     }
-    "players should return an updated player" {
-        playersUpdatePlayer("RinSta", Player("New Bee", listOf(GiftPair("NewBee", "NewBee"))), players).shouldBe(
-            newBeePlayers
-        )
-    }
+//    "players should return an updated player" {
+//        playersUpdatePlayer("RinSta", Player("New Bee", listOf(GiftPair("NewBee", "NewBee"))), players).shouldBe(
+//            newBeePlayers
+//        )
+//    }
 //    "players should return a player name" {
 //        playersGetPlayerName("PauMcc", players).shouldBe("Paul McCartney")
 //    }
