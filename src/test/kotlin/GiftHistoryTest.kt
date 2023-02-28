@@ -4,6 +4,7 @@ import io.kotest.matchers.shouldBe
 
 private const val JSON_STRING: String = "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
 private const val BAD_JSON_STRING: String = "[{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}]"
+private const val BAD_JSON_STRING_2: String = "[{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}]"
 private val giftHistory: List<GiftPair> = listOf(GiftPair("GeoHar", "JohLen"))
 
 class GiftHistoryTest : StringSpec({
@@ -13,6 +14,11 @@ class GiftHistoryTest : StringSpec({
     "giftHistory should NOT build from BAD JSON" {
         shouldThrowAny {
             giftHistoryJsonStringToGiftHistory(BAD_JSON_STRING)
+        }
+    }
+    "giftHistory should NOT build from BAD JSON 2" {
+        shouldThrowAny {
+            giftHistoryJsonStringToGiftHistory(BAD_JSON_STRING_2)
         }
     }
     "giftHistory should add a year" {
