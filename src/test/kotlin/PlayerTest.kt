@@ -8,6 +8,8 @@ private const val JSON_STRING: JsonStringTA =
     "{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
 private const val BAD_JSON_STRING: JsonStringTA =
     "{\"playerName\"\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
+private const val BAD_JSON_STRING_2: JsonStringTA =
+    "{\"playerNameX\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
 val player: Player = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen")))
 
 class PlayerTest : StringSpec({
@@ -17,6 +19,11 @@ class PlayerTest : StringSpec({
     "player should NOT build from BAD JSON" {
         shouldThrowAny {
             playerJsonStringToPlayer(BAD_JSON_STRING)
+        }
+    }
+    "player should NOT build from BAD JSON 2" {
+        shouldThrowAny {
+            playerJsonStringToPlayer(BAD_JSON_STRING_2)
         }
     }
     "player should return an updated giftHistory" {
