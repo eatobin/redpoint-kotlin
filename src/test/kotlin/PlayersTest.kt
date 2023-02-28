@@ -37,12 +37,12 @@ class PlayersTest : StringSpec({
     "players should build a sortedMap from JSON" {
         playersJsonStringToPlayers(JSON_STRING).shouldBe(players)
     }
-    "players should NOT build from BAD JSON" {
+    "players should NOT build a sortedMap from BAD JSON" {
         shouldThrowAny {
             playersJsonStringToPlayers(BAD_JSON_STRING)
         }
     }
-    "players should NOT build from BAD JSON 2" {
+    "players should NOT build a sortedMap from BAD JSON 2" {
         shouldThrowAny {
             playersJsonStringToPlayers(BAD_JSON_STRING_2)
         }
