@@ -7,6 +7,7 @@ import io.kotest.matchers.shouldBe
 
 private const val JSON_STRING: String = "{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}"
 private const val BAD_JSON_STRING: String = "{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}"
+private const val BAD_JSON_STRING_2: String = "{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}"
 private val giftPair: GiftPair = GiftPair("GeoHar", "JohLen")
 
 class GiftPairTest : StringSpec({
@@ -16,6 +17,11 @@ class GiftPairTest : StringSpec({
     "giftPair should NOT build from BAD JSON" {
         shouldThrowAny {
             giftPairJsonStringToGiftPair(BAD_JSON_STRING)
+        }
+    }
+    "giftPair should NOT build from BAD JSON 2" {
+        shouldThrowAny {
+            giftPairJsonStringToGiftPair(BAD_JSON_STRING_2)
         }
     }
     "giftPair should update a givee" {

@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0-RC")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.5.0")
     testImplementation("io.kotest:kotest-runner-junit5-jvm:5.5.5")
     testImplementation("io.kotest:kotest-assertions-core-jvm:5.5.5")
 }
