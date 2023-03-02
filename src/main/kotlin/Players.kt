@@ -31,14 +31,14 @@ fun playersAddYear(players: PlayersTA): PlayersTA {
     return mutPlayers.toSortedMap()
 }
 
-//fun playersGetMyGivee(selfKey: PlayerKeyTA, players: PlayersTA, giftYear: GiftYearTA): GiveeTA {
-//    return players.getValue(selfKey).giftHistory[giftYear].givee
-//}
-//
-//fun playersGetMyGiver(selfKey: PlayerKeyTA, players: PlayersTA, giftYear: GiftYearTA): GiverTA {
-//    return players.getValue(selfKey).giftHistory[giftYear].giver
-//}
-//
+fun playersGetMyGivee(selfKey: PlayerKeyTA, players: PlayersTA, giftYear: GiftYearTA): GiveeTA {
+    return players.getValue(selfKey).giftHistory[giftYear].givee
+}
+
+fun playersGetMyGiver(selfKey: PlayerKeyTA, players: PlayersTA, giftYear: GiftYearTA): GiverTA {
+    return players.getValue(selfKey).giftHistory[giftYear].giver
+}
+
 //fun playersSetGiftPair(
 //    playerKey: PlayerKeyTA, giftYear: GiftYearTA, giftPair: GiftPair, players: PlayersTA
 //): PlayersTA {

@@ -57,4 +57,8 @@ class PlayersTest : StringSpec({
     "players should add a new year" {
         playersAddYear(players).shouldBe(playersExt)
     }
+    "players should return a givee and a giver" {
+        playersGetMyGivee("GeoHar", players, 0).shouldBe("RinSta")
+        playersGetMyGiver("GeoHar", players, 0).shouldBe("PauMcc")
+    }
 })
