@@ -17,10 +17,10 @@ private val pauMcc: Player = Player("Paul McCartney", listOf(GiftPair("GeoHar", 
 private val players: PlayersTA =
     sortedMapOf("PauMcc" to pauMcc, "GeoHar" to geoHar, "JohLen" to johLen, "RinSta" to rinSta)
 
-//private val newBee: Player = Player("New Bee", listOf(GiftPair("NewBee", "NewBee")))
-//private val newBeePlayers: PlayersTA =
-//    sortedMapOf("RinSta" to newBee, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
-//
+private val newBee: Player = Player("New Bee", listOf(GiftPair("NewBee", "NewBee")))
+private val newBeePlayers: PlayersTA =
+    sortedMapOf("RinSta" to newBee, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
+
 //private val rinStaExt: Player =
 //    Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar"), GiftPair("RinSta", "RinSta")))
 //private val johLenExt: Player =
@@ -47,11 +47,11 @@ class PlayersTest : StringSpec({
             playersJsonStringToPlayers(BAD_JSON_STRING_2)
         }
     }
-//    "players should return an updated player" {
-//        playersUpdatePlayer("RinSta", Player("New Bee", listOf(GiftPair("NewBee", "NewBee"))), players).shouldBe(
-//            newBeePlayers
-//        )
-//    }
+    "players should return an updated player" {
+        playersUpdatePlayer("RinSta", Player("New Bee", listOf(GiftPair("NewBee", "NewBee"))), players).shouldBe(
+            newBeePlayers
+        )
+    }
 //    "players should return a player name" {
 //        playersGetPlayerName("PauMcc", players).shouldBe("Paul McCartney")
 //    }

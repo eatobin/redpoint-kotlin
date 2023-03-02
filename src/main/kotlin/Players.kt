@@ -9,12 +9,12 @@ fun playersJsonStringToPlayers(jsonString: JsonStringTA): PlayersTA {
     return myUnsortedMap.toSortedMap()
 }
 
-//fun playersUpdatePlayer(playerKey: PlayerKeyTA, player: Player, players: PlayersTA): PlayersTA {
-//    val mutPlayers = players.toMutableMap()
-//    mutPlayers[playerKey] = player
-//    return mutPlayers.toSortedMap()
-//}
-//
+fun playersUpdatePlayer(playerKey: PlayerKeyTA, player: Player, players: PlayersTA): PlayersTA {
+    val mutPlayers = players.toMutableMap()
+    mutPlayers[playerKey] = player
+    return mutPlayers.toSortedMap()
+}
+
 //fun playersGetPlayerName(playerKey: PlayerKeyTA, players: PlayersTA): PlayerNameTA {
 //    return players.getValue(playerKey).playerName
 //}
