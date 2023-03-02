@@ -21,16 +21,16 @@ private val newBee: Player = Player("New Bee", listOf(GiftPair("NewBee", "NewBee
 private val newBeePlayers: PlayersTA =
     sortedMapOf("RinSta" to newBee, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
 
-//private val rinStaExt: Player =
-//    Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar"), GiftPair("RinSta", "RinSta")))
-//private val johLenExt: Player =
-//    Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta"), GiftPair("JohLen", "JohLen")))
-//private val geoHarExt: Player =
-//    Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc"), GiftPair("GeoHar", "GeoHar")))
-//private val pauMccExt: Player =
-//    Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen"), GiftPair("PauMcc", "PauMcc")))
-//private val playersExt: PlayersTA =
-//    sortedMapOf("RinSta" to rinStaExt, "JohLen" to johLenExt, "GeoHar" to geoHarExt, "PauMcc" to pauMccExt)
+private val rinStaExt: Player =
+    Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar"), GiftPair("RinSta", "RinSta")))
+private val johLenExt: Player =
+    Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta"), GiftPair("JohLen", "JohLen")))
+private val geoHarExt: Player =
+    Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc"), GiftPair("GeoHar", "GeoHar")))
+private val pauMccExt: Player =
+    Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen"), GiftPair("PauMcc", "PauMcc")))
+private val playersExt: PlayersTA =
+    sortedMapOf("RinSta" to rinStaExt, "JohLen" to johLenExt, "GeoHar" to geoHarExt, "PauMcc" to pauMccExt)
 
 
 class PlayersTest : StringSpec({
@@ -55,7 +55,7 @@ class PlayersTest : StringSpec({
     "players should return a player name" {
         playersGetPlayerName("PauMcc", players).shouldBe("Paul McCartney")
     }
-//    "players should add a new year" {
-//        playersAddYear(players).shouldBe(playersExt)
-//    }
+    "players should add a new year" {
+        playersAddYear(players).shouldBe(playersExt)
+    }
 })

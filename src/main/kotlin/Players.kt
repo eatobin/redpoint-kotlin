@@ -1,3 +1,4 @@
+import Player.Companion.playerUpdateGiftHistory
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import java.util.*
@@ -19,17 +20,17 @@ fun playersGetPlayerName(playerKey: PlayerKeyTA, players: PlayersTA): PlayerName
     return players.getValue(playerKey).playerName
 }
 
-//fun playersAddYear(players: PlayersTA): PlayersTA {
-//    val mutPlayers = players.toMutableMap()
-//    mutPlayers.forEach {
-//        val gh = it.value.giftHistory
-//        val ngh = giftHistoryAddYear(it.key, gh)
-//        val nplr = playerUpdateGiftHistory(ngh, it.value)
-//        (it.key to nplr)
-//    }
-//    return mutPlayers.toSortedMap()
-//}
-//
+fun playersAddYear(players: PlayersTA): PlayersTA {
+    val mutPlayers = players.toMutableMap()
+    mutPlayers.forEach {
+        val gh = it.value.giftHistory
+        val ngh = giftHistoryAddYear(it.key, gh)
+        val nplr = playerUpdateGiftHistory(ngh, it.value)
+        mutPlayers[it.key] = nplr
+    }
+    return mutPlayers.toSortedMap()
+}
+
 //fun playersGetMyGivee(selfKey: PlayerKeyTA, players: PlayersTA, giftYear: GiftYearTA): GiveeTA {
 //    return players.getValue(selfKey).giftHistory[giftYear].givee
 //}
