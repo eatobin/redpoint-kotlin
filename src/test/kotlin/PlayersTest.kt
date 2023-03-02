@@ -31,6 +31,12 @@ private val pauMccExt: Player =
 private val playersExt: PlayersTA =
     sortedMapOf("RinSta" to rinStaExt, "JohLen" to johLenExt, "GeoHar" to geoHarExt, "PauMcc" to pauMccExt)
 
+private val geoHarGivee: Player = Player("George Harrison", listOf(GiftPair("you", "PauMcc")))
+private val geoHarGiver: Player = Player("George Harrison", listOf(GiftPair("RinSta", "you")))
+private val playersGivee: PlayersTA =
+    sortedMapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHarGivee, "PauMcc" to pauMcc)
+private val playersGiver: PlayersTA =
+    sortedMapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHarGiver, "PauMcc" to pauMcc)
 
 class PlayersTest : StringSpec({
     "players should build a sortedMap from JSON" {
@@ -60,5 +66,9 @@ class PlayersTest : StringSpec({
     "players should return a givee and a giver" {
         playersGetMyGivee("GeoHar", players, 0).shouldBe("RinSta")
         playersGetMyGiver("GeoHar", players, 0).shouldBe("PauMcc")
+    }
+    "players should update a givee and a giver" {
+        playersUpdateMyGivee("GeoHar", "you", 0, players).shouldBe(playersGivee)
+        playersUpdateMyGiver("GeoHar", "you", 0, players).shouldBe(playersGiver)
     }
 })
