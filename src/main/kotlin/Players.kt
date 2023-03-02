@@ -15,10 +15,10 @@ fun playersUpdatePlayer(playerKey: PlayerKeyTA, player: Player, players: Players
     return mutPlayers.toSortedMap()
 }
 
-//fun playersGetPlayerName(playerKey: PlayerKeyTA, players: PlayersTA): PlayerNameTA {
-//    return players.getValue(playerKey).playerName
-//}
-//
+fun playersGetPlayerName(playerKey: PlayerKeyTA, players: PlayersTA): PlayerNameTA {
+    return players.getValue(playerKey).playerName
+}
+
 //fun playersAddYear(players: PlayersTA): PlayersTA {
 //    val mutPlayers = players.toMutableMap()
 //    mutPlayers.forEach {

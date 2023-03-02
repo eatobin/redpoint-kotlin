@@ -52,9 +52,9 @@ class PlayersTest : StringSpec({
             newBeePlayers
         )
     }
-//    "players should return a player name" {
-//        playersGetPlayerName("PauMcc", players).shouldBe("Paul McCartney")
-//    }
+    "players should return a player name" {
+        playersGetPlayerName("PauMcc", players).shouldBe("Paul McCartney")
+    }
 //    "players should add a new year" {
 //        playersAddYear(players).shouldBe(playersExt)
 //    }
