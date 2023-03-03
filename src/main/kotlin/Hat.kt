@@ -4,3 +4,8 @@ import java.util.*
 
 typealias HatTA = SortedSet<PlayerKeyTA>
 typealias DiscardsTA = HatTA
+
+fun hatJsonStringToHat(jsonString: JsonStringTA): HatTA {
+    val myUnsortedSet: Set<PlayerKeyTA> = Json.decodeFromString(jsonString)
+    return myUnsortedSet.toSortedSet()
+}
