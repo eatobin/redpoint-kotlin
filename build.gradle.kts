@@ -31,10 +31,6 @@ tasks.create("uberJar", Jar::class) {
     with(tasks.jar.get())
 }
 
-kotlin {
-    jvmToolchain(17)
-}
-
 application {
     mainClass.set("MainKt")
 }
