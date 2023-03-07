@@ -40,4 +40,7 @@ class HatTest : StringSpec({
             )
         )
     }
+    "hat should make itself given players" {
+        hatMakeHat(players).shouldBe(testHat)
+    }
 })
