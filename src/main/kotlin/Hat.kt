@@ -16,4 +16,4 @@ fun hatRemovePuck(playerKey: PlayerKeyTA, hat: HatTA): HatTA = hat.minus(playerK
 
 fun hatDiscardGivee(givee: GiveeTA, discards: DiscardsTA): HatTA = discards.plus(givee).toSortedSet()
 
-fun hatReturnDiscards(discards: DiscardsTA, geHat: HatTA): HatTA = geHat.plus(geHat).toSortedSet()
+fun hatReturnDiscards(discards: DiscardsTA, geHat: HatTA): HatTA = geHat.plus(discards).toSortedSet()

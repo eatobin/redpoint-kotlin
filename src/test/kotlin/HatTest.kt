@@ -33,4 +33,11 @@ class HatTest : StringSpec({
     "hat should discard a puck" {
         hatDiscardGivee("JohLen", sortedSetOf("PauMcc")).shouldBe(sortedSetOf("PauMcc", "JohLen"))
     }
+    "hat should return discarded givees" {
+        hatReturnDiscards(sortedSetOf("GeoHar"), sortedSetOf("PauMcc", "JohLen")).shouldBe(
+            sortedSetOf(
+                "JohLen", "PauMcc", "GeoHar"
+            )
+        )
+    }
 })
