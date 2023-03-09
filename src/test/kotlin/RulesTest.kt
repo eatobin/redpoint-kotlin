@@ -47,9 +47,14 @@ private val eriTob: Player = Player("Eric Tobin", listOf(GiftPair(giver = "MicMo
 private val susSmi: Player = Player("Susan Smith", listOf(GiftPair(giver = "DonDuc", givee = "JohLen")))
 private val donDuc: Player = Player("Donald Duck", listOf(GiftPair(giver = "SusSmi", givee = "GeoHar")))
 private val micMou: Player = Player("Mickey Mouse", listOf(GiftPair(giver = "EriTob", givee = "PauMcc")))
-
 private val beatlesPlusPM: PlayersTA =
     sortedMapOf("PauMcc" to pauMcc, "GeoHar" to geoHar, "RinSta" to rinSta, "JohLen" to johLen,"EriTob" to eriTob, "SusSmi" to susSmi, "DonDuc" to donDuc, "MicMou" to micMou)
+
+private var beatlesPlus6 = Players.playersAddYear(beatlesPlusPM)
+
+
+
+
 
 private val newBee: Player = Player("New Bee", listOf(GiftPair("NewBee", "NewBee")))
 private val newBeePlayers: PlayersTA =
