@@ -40,11 +40,10 @@ class RulesTest : StringSpec({
         rulesGiveeNotSelf("RinSta", "GeoHar").shouldBeTrue()
         rulesGiveeNotSelf("RinSta", "RinSta").shouldBeFalse()
     }
-//    "players should NOT build a sortedMap from BAD JSON" {
-//        shouldThrowAny {
-//            playersJsonStringToPlayers(BAD_JSON_STRING)
-//        }
-//    }
+    "A Player should not give to it's recip" {
+        rulesGiveeNotRecip("RinSta", "JohLen", 0, beatlesPlusPM).shouldBeTrue()
+        rulesGiveeNotRecip("RinSta", "EriTob", 0, beatlesPlusPM).shouldBeFalse()
+    }
 //    "players should NOT build a sortedMap from BAD JSON 2" {
 //        shouldThrowAny {
 //            playersJsonStringToPlayers(BAD_JSON_STRING_2)
