@@ -35,7 +35,6 @@ class RulesTest : StringSpec({
     beatlesPlus6 = playersAddYear(beatlesPlus6)
     beatlesPlus6 = playersUpdateMyGivee("RinSta", "MicMou", 6, beatlesPlus6)
 
-
     "A Player should not give to itself" {
         rulesGiveeNotSelf("RinSta", "GeoHar").shouldBeTrue()
         rulesGiveeNotSelf("RinSta", "RinSta").shouldBeFalse()
@@ -44,27 +43,14 @@ class RulesTest : StringSpec({
         rulesGiveeNotRecip("RinSta", "JohLen", 0, beatlesPlusPM).shouldBeTrue()
         rulesGiveeNotRecip("RinSta", "EriTob", 0, beatlesPlusPM).shouldBeFalse()
     }
-//    "players should NOT build a sortedMap from BAD JSON 2" {
-//        shouldThrowAny {
-//            playersJsonStringToPlayers(BAD_JSON_STRING_2)
-//        }
-//    }
-//    "players should return an updated player" {
-//        playersUpdatePlayer("RinSta", Player("New Bee", listOf(GiftPair("NewBee", "NewBee"))), players).shouldBe(
-//            newBeePlayers
-//        )
-//    }
-//    "players should return a player name" {
-//        playersGetPlayerName("PauMcc", players).shouldBe("Paul McCartney")
-//    }
-//    "players should add a new year" {
-//        playersAddYear(players).shouldBe(playersExt)
-//    }
-//    "players should return a givee and a giver" {
-//        playersGetMyGivee("GeoHar", players, 0).shouldBe("RinSta")
-//        playersGetMyGiver("GeoHar", players, 0).shouldBe("PauMcc")
-//    }
-//    "players should update a givee and a giver" {
-//        playersUpdateMyGivee("GeoHar", "you", 0, players).shouldBe(playersGivee)
-//        playersUpdateMyGiver("GeoHar", "you", 0, players).shouldBe(playersGiver)
+    "A Player should not repeat for past four years" {
+        rulesGiveeNotRepeat("RinSta", "DonDuc", 2, beatlesPlus6).shouldBeTrue()
+        rulesGiveeNotRepeat("RinSta", "PauMcc", 2, beatlesPlus6).shouldBeTrue()
+        rulesGiveeNotRepeat("RinSta", "EriTob", 2, beatlesPlus6).shouldBeFalse()
+        rulesGiveeNotRepeat("RinSta", "GeoHar", 2, beatlesPlus6).shouldBeFalse()
+        rulesGiveeNotRepeat("RinSta", "MicMou", 7, beatlesPlus6).shouldBeFalse()
+        rulesGiveeNotRepeat("RinSta", "MicMou", 6, beatlesPlus6).shouldBeTrue()
+        rulesGiveeNotRepeat("RinSta", "PauMcc", 6, beatlesPlus6).shouldBeFalse()
+        rulesGiveeNotRepeat("RinSta", "GeoHar", 6, beatlesPlus6).shouldBeTrue()
+    }
 })
