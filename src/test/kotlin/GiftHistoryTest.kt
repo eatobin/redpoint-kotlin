@@ -2,23 +2,23 @@ import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-private const val JSON_STRING: String = "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
-private const val BAD_JSON_STRING: String = "[{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}]"
-private const val BAD_JSON_STRING_2: String = "[{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}]"
-private val giftHistory: List<GiftPair> = listOf(GiftPair("GeoHar", "JohLen"))
-
 class GiftHistoryTest : StringSpec({
+    val jsonString = "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
+    val badJsonString = "[{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}]"
+    val badJsonString2 = "[{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}]"
+    val giftHistory: List<GiftPair> = listOf(GiftPair("GeoHar", "JohLen"))
+
     "giftHistory should build from JSON" {
-        giftHistoryJsonStringToGiftHistory(JSON_STRING).shouldBe(giftHistory)
+        giftHistoryJsonStringToGiftHistory(jsonString).shouldBe(giftHistory)
     }
     "giftHistory should NOT build from BAD JSON" {
         shouldThrowAny {
-            giftHistoryJsonStringToGiftHistory(BAD_JSON_STRING)
+            giftHistoryJsonStringToGiftHistory(badJsonString)
         }
     }
     "giftHistory should NOT build from BAD JSON 2" {
         shouldThrowAny {
-            giftHistoryJsonStringToGiftHistory(BAD_JSON_STRING_2)
+            giftHistoryJsonStringToGiftHistory(badJsonString2)
         }
     }
     "giftHistory should add a year" {
