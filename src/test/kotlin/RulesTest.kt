@@ -9,12 +9,47 @@ private const val BAD_JSON_STRING: JsonStringTA =
 private const val BAD_JSON_STRING_2: JsonStringTA =
     "{\"PauMcc\":{\"playerNameX\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]},\"GeoHar\":{\"playerName\":\"George Harrison\",\"giftHistory\":[{\"givee\":\"RinSta\",\"giver\":\"PauMcc\"}]},\"JohLen\":{\"playerName\":\"John Lennon\",\"giftHistory\":[{\"givee\":\"PauMcc\",\"giver\":\"RinSta\"}]},\"RinSta\":{\"playerName\":\"Ringo Starr\",\"giftHistory\":[{\"givee\":\"JohLen\",\"giver\":\"GeoHar\"}]}}"
 
-private val rinSta: Player = Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar")))
-private val johLen: Player = Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta")))
-private val geoHar: Player = Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc")))
-private val pauMcc: Player = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen")))
-private val players: PlayersTA =
-    sortedMapOf("PauMcc" to pauMcc, "GeoHar" to geoHar, "RinSta" to rinSta, "JohLen" to johLen)
+
+
+
+
+
+
+
+
+
+//private var beatlesPlus6 = Players.playersAddYear(beatlesPlusPM)
+//beatlesPlus6 = Players.playersUpdateMyGivee("RinSta")("GeoHar")(1)(beatlesPlus6)
+//beatlesPlus6 = Players.playersAddYear(beatlesPlus6)
+//beatlesPlus6 = Players.playersUpdateMyGivee("RinSta")("PauMcc")(2)(beatlesPlus6)
+//beatlesPlus6 = Players.playersAddYear(beatlesPlus6)
+//beatlesPlus6 = Players.playersUpdateMyGivee("RinSta")("EriTob")(3)(beatlesPlus6)
+//beatlesPlus6 = Players.playersAddYear(beatlesPlus6)
+//beatlesPlus6 = Players.playersUpdateMyGivee("RinSta")("SusSmi")(4)(beatlesPlus6)
+//beatlesPlus6 = Players.playersAddYear(beatlesPlus6)
+//beatlesPlus6 = Players.playersUpdateMyGivee("RinSta")("DonDuc")(5)(beatlesPlus6)
+//beatlesPlus6 = Players.playersAddYear(beatlesPlus6)
+//beatlesPlus6 = Players.playersUpdateMyGivee("RinSta")("MicMou")(6)(beatlesPlus6)
+//
+
+
+
+
+
+
+
+
+private val rinSta: Player = Player("Ringo Starr", listOf(GiftPair(giver = "PauMcc", givee = "EriTob")))
+private val johLen: Player = Player("John Lennon", listOf(GiftPair(giver = "GeoHar", givee = "SusSmi")))
+private val geoHar: Player = Player("George Harrison", listOf(GiftPair(giver = "JohLen", givee = "DonDuc")))
+private val pauMcc: Player = Player("Paul McCartney", listOf(GiftPair(giver = "RinSta", givee = "MicMou")))
+private val eriTob: Player = Player("Eric Tobin", listOf(GiftPair(giver = "MicMou", givee = "RinSta")))
+private val susSmi: Player = Player("Susan Smith", listOf(GiftPair(giver = "DonDuc", givee = "JohLen")))
+private val donDuc: Player = Player("Donald Duck", listOf(GiftPair(giver = "SusSmi", givee = "GeoHar")))
+private val micMou: Player = Player("Mickey Mouse", listOf(GiftPair(giver = "EriTob", givee = "PauMcc")))
+
+private val beatlesPlusPM: PlayersTA =
+    sortedMapOf("PauMcc" to pauMcc, "GeoHar" to geoHar, "RinSta" to rinSta, "JohLen" to johLen,"EriTob" to eriTob, "SusSmi" to susSmi, "DonDuc" to donDuc, "MicMou" to micMou)
 
 private val newBee: Player = Player("New Bee", listOf(GiftPair("NewBee", "NewBee")))
 private val newBeePlayers: PlayersTA =
