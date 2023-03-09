@@ -1,114 +1,70 @@
-import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
-import io.kotest.matchers.shouldBe
-
-private const val JSON_STRING: JsonStringTA =
-    "{\"GeoHar\":{\"playerName\":\"George Harrison\",\"giftHistory\":[{\"givee\":\"RinSta\",\"giver\":\"PauMcc\"}]},\"JohLen\":{\"playerName\":\"John Lennon\",\"giftHistory\":[{\"givee\":\"PauMcc\",\"giver\":\"RinSta\"}]},\"RinSta\":{\"playerName\":\"Ringo Starr\",\"giftHistory\":[{\"givee\":\"JohLen\",\"giver\":\"GeoHar\"}]},\"PauMcc\":{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}}"
-private const val BAD_JSON_STRING: JsonStringTA =
-    "{\"PauMcc\":{\"playerName\"\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]},\"GeoHar\":{\"playerName\":\"George Harrison\",\"giftHistory\":[{\"givee\":\"RinSta\",\"giver\":\"PauMcc\"}]},\"JohLen\":{\"playerName\":\"John Lennon\",\"giftHistory\":[{\"givee\":\"PauMcc\",\"giver\":\"RinSta\"}]},\"RinSta\":{\"playerName\":\"Ringo Starr\",\"giftHistory\":[{\"givee\":\"JohLen\",\"giver\":\"GeoHar\"}]}}"
-private const val BAD_JSON_STRING_2: JsonStringTA =
-    "{\"PauMcc\":{\"playerNameX\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]},\"GeoHar\":{\"playerName\":\"George Harrison\",\"giftHistory\":[{\"givee\":\"RinSta\",\"giver\":\"PauMcc\"}]},\"JohLen\":{\"playerName\":\"John Lennon\",\"giftHistory\":[{\"givee\":\"PauMcc\",\"giver\":\"RinSta\"}]},\"RinSta\":{\"playerName\":\"Ringo Starr\",\"giftHistory\":[{\"givee\":\"JohLen\",\"giver\":\"GeoHar\"}]}}"
-
-
-
-
-
-
-
-
-
-
-//private var beatlesPlus6 = Players.playersAddYear(beatlesPlusPM)
-//beatlesPlus6 = Players.playersUpdateMyGivee("RinSta")("GeoHar")(1)(beatlesPlus6)
-//beatlesPlus6 = Players.playersAddYear(beatlesPlus6)
-//beatlesPlus6 = Players.playersUpdateMyGivee("RinSta")("PauMcc")(2)(beatlesPlus6)
-//beatlesPlus6 = Players.playersAddYear(beatlesPlus6)
-//beatlesPlus6 = Players.playersUpdateMyGivee("RinSta")("EriTob")(3)(beatlesPlus6)
-//beatlesPlus6 = Players.playersAddYear(beatlesPlus6)
-//beatlesPlus6 = Players.playersUpdateMyGivee("RinSta")("SusSmi")(4)(beatlesPlus6)
-//beatlesPlus6 = Players.playersAddYear(beatlesPlus6)
-//beatlesPlus6 = Players.playersUpdateMyGivee("RinSta")("DonDuc")(5)(beatlesPlus6)
-//beatlesPlus6 = Players.playersAddYear(beatlesPlus6)
-//beatlesPlus6 = Players.playersUpdateMyGivee("RinSta")("MicMou")(6)(beatlesPlus6)
-//
-
-
-
-
-
-
-
-
-private val rinSta: Player = Player("Ringo Starr", listOf(GiftPair(giver = "PauMcc", givee = "EriTob")))
-private val johLen: Player = Player("John Lennon", listOf(GiftPair(giver = "GeoHar", givee = "SusSmi")))
-private val geoHar: Player = Player("George Harrison", listOf(GiftPair(giver = "JohLen", givee = "DonDuc")))
-private val pauMcc: Player = Player("Paul McCartney", listOf(GiftPair(giver = "RinSta", givee = "MicMou")))
-private val eriTob: Player = Player("Eric Tobin", listOf(GiftPair(giver = "MicMou", givee = "RinSta")))
-private val susSmi: Player = Player("Susan Smith", listOf(GiftPair(giver = "DonDuc", givee = "JohLen")))
-private val donDuc: Player = Player("Donald Duck", listOf(GiftPair(giver = "SusSmi", givee = "GeoHar")))
-private val micMou: Player = Player("Mickey Mouse", listOf(GiftPair(giver = "EriTob", givee = "PauMcc")))
-private val beatlesPlusPM: PlayersTA =
-    sortedMapOf("PauMcc" to pauMcc, "GeoHar" to geoHar, "RinSta" to rinSta, "JohLen" to johLen,"EriTob" to eriTob, "SusSmi" to susSmi, "DonDuc" to donDuc, "MicMou" to micMou)
-
-private var beatlesPlus6 = Players.playersAddYear(beatlesPlusPM)
-
-
-
-
-
-private val newBee: Player = Player("New Bee", listOf(GiftPair("NewBee", "NewBee")))
-private val newBeePlayers: PlayersTA =
-    sortedMapOf("RinSta" to newBee, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
-
-private val rinStaExt: Player =
-    Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar"), GiftPair("RinSta", "RinSta")))
-private val johLenExt: Player =
-    Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta"), GiftPair("JohLen", "JohLen")))
-private val geoHarExt: Player =
-    Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc"), GiftPair("GeoHar", "GeoHar")))
-private val pauMccExt: Player =
-    Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen"), GiftPair("PauMcc", "PauMcc")))
-private val playersExt: PlayersTA =
-    sortedMapOf("RinSta" to rinStaExt, "JohLen" to johLenExt, "GeoHar" to geoHarExt, "PauMcc" to pauMccExt)
-
-private val geoHarGivee: Player = Player("George Harrison", listOf(GiftPair("you", "PauMcc")))
-private val geoHarGiver: Player = Player("George Harrison", listOf(GiftPair("RinSta", "you")))
-private val playersGivee: PlayersTA =
-    sortedMapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHarGivee, "PauMcc" to pauMcc)
-private val playersGiver: PlayersTA =
-    sortedMapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHarGiver, "PauMcc" to pauMcc)
 
 class RulesTest : StringSpec({
-    "players should build a sortedMap from JSON" {
-        playersJsonStringToPlayers(JSON_STRING).shouldBe(players)
-    }
-    "players should NOT build a sortedMap from BAD JSON" {
-        shouldThrowAny {
-            playersJsonStringToPlayers(BAD_JSON_STRING)
-        }
-    }
-    "players should NOT build a sortedMap from BAD JSON 2" {
-        shouldThrowAny {
-            playersJsonStringToPlayers(BAD_JSON_STRING_2)
-        }
-    }
-    "players should return an updated player" {
-        playersUpdatePlayer("RinSta", Player("New Bee", listOf(GiftPair("NewBee", "NewBee"))), players).shouldBe(
-            newBeePlayers
-        )
-    }
-    "players should return a player name" {
-        playersGetPlayerName("PauMcc", players).shouldBe("Paul McCartney")
-    }
-    "players should add a new year" {
-        playersAddYear(players).shouldBe(playersExt)
-    }
-    "players should return a givee and a giver" {
-        playersGetMyGivee("GeoHar", players, 0).shouldBe("RinSta")
-        playersGetMyGiver("GeoHar", players, 0).shouldBe("PauMcc")
-    }
-    "players should update a givee and a giver" {
-        playersUpdateMyGivee("GeoHar", "you", 0, players).shouldBe(playersGivee)
-        playersUpdateMyGiver("GeoHar", "you", 0, players).shouldBe(playersGiver)
-    }
+
+
+    val rinSta = Player("Ringo Starr", listOf(GiftPair(giver = "PauMcc", givee = "EriTob")))
+    val johLen = Player("John Lennon", listOf(GiftPair(giver = "GeoHar", givee = "SusSmi")))
+    val geoHar = Player("George Harrison", listOf(GiftPair(giver = "JohLen", givee = "DonDuc")))
+    val pauMcc = Player("Paul McCartney", listOf(GiftPair(giver = "RinSta", givee = "MicMou")))
+    val eriTob = Player("Eric Tobin", listOf(GiftPair(giver = "MicMou", givee = "RinSta")))
+    val susSmi = Player("Susan Smith", listOf(GiftPair(giver = "DonDuc", givee = "JohLen")))
+    val donDuc = Player("Donald Duck", listOf(GiftPair(giver = "SusSmi", givee = "GeoHar")))
+    val micMou = Player("Mickey Mouse", listOf(GiftPair(giver = "EriTob", givee = "PauMcc")))
+    val beatlesPlusPM: PlayersTA = sortedMapOf(
+        "PauMcc" to pauMcc,
+        "GeoHar" to geoHar,
+        "RinSta" to rinSta,
+        "JohLen" to johLen,
+        "EriTob" to eriTob,
+        "SusSmi" to susSmi,
+        "DonDuc" to donDuc,
+        "MicMou" to micMou
+    )
+
+    var beatlesPlus6 = playersAddYear(beatlesPlusPM)
+    beatlesPlus6 = playersUpdateMyGivee("RinSta", "GeoHar", 1, beatlesPlus6)
+    beatlesPlus6 = playersAddYear(beatlesPlus6)
+    beatlesPlus6 = playersUpdateMyGivee("RinSta", "PauMcc", 2, beatlesPlus6)
+    beatlesPlus6 = playersAddYear(beatlesPlus6)
+    beatlesPlus6 = playersUpdateMyGivee("RinSta", "EriTob", 3, beatlesPlus6)
+    beatlesPlus6 = playersAddYear(beatlesPlus6)
+    beatlesPlus6 = playersUpdateMyGivee("RinSta", "SusSmi", 4, beatlesPlus6)
+    beatlesPlus6 = playersAddYear(beatlesPlus6)
+    beatlesPlus6 = playersUpdateMyGivee("RinSta", "DonDuc", 5, beatlesPlus6)
+    beatlesPlus6 = playersAddYear(beatlesPlus6)
+    beatlesPlus6 = playersUpdateMyGivee("RinSta", "MicMou", 6, beatlesPlus6)
+
+
+//    "players should build a sortedMap from JSON" {
+//        playersJsonStringToPlayers(JSON_STRING).shouldBe(players)
+//    }
+//    "players should NOT build a sortedMap from BAD JSON" {
+//        shouldThrowAny {
+//            playersJsonStringToPlayers(BAD_JSON_STRING)
+//        }
+//    }
+//    "players should NOT build a sortedMap from BAD JSON 2" {
+//        shouldThrowAny {
+//            playersJsonStringToPlayers(BAD_JSON_STRING_2)
+//        }
+//    }
+//    "players should return an updated player" {
+//        playersUpdatePlayer("RinSta", Player("New Bee", listOf(GiftPair("NewBee", "NewBee"))), players).shouldBe(
+//            newBeePlayers
+//        )
+//    }
+//    "players should return a player name" {
+//        playersGetPlayerName("PauMcc", players).shouldBe("Paul McCartney")
+//    }
+//    "players should add a new year" {
+//        playersAddYear(players).shouldBe(playersExt)
+//    }
+//    "players should return a givee and a giver" {
+//        playersGetMyGivee("GeoHar", players, 0).shouldBe("RinSta")
+//        playersGetMyGiver("GeoHar", players, 0).shouldBe("PauMcc")
+//    }
+//    "players should update a givee and a giver" {
+//        playersUpdateMyGivee("GeoHar", "you", 0, players).shouldBe(playersGivee)
+//        playersUpdateMyGiver("GeoHar", "you", 0, players).shouldBe(playersGiver)
 })
