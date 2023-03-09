@@ -1,8 +1,8 @@
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.booleans.shouldBeFalse
+import io.kotest.matchers.booleans.shouldBeTrue
 
 class RulesTest : StringSpec({
-
-
     val rinSta = Player("Ringo Starr", listOf(GiftPair(giver = "PauMcc", givee = "EriTob")))
     val johLen = Player("John Lennon", listOf(GiftPair(giver = "GeoHar", givee = "SusSmi")))
     val geoHar = Player("George Harrison", listOf(GiftPair(giver = "JohLen", givee = "DonDuc")))
@@ -36,9 +36,10 @@ class RulesTest : StringSpec({
     beatlesPlus6 = playersUpdateMyGivee("RinSta", "MicMou", 6, beatlesPlus6)
 
 
-//    "players should build a sortedMap from JSON" {
-//        playersJsonStringToPlayers(JSON_STRING).shouldBe(players)
-//    }
+    "A Player should not give to itself" {
+        rulesGiveeNotSelf("RinSta", "GeoHar").shouldBeTrue()
+        rulesGiveeNotSelf("RinSta", "RinSta").shouldBeFalse()
+    }
 //    "players should NOT build a sortedMap from BAD JSON" {
 //        shouldThrowAny {
 //            playersJsonStringToPlayers(BAD_JSON_STRING)
