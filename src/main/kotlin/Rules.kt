@@ -5,12 +5,11 @@ fun rulesGiveeNotRecip(selfKey: PlayerKeyTA, givee: GiveeTA, giftYear: GiftYearT
     return selfKey != giveeIsGivingTo
 }
 
-
-//TODO
-//fun rulesGiveeNotRepeat(selfKey: PlayerKeyTA, givee: GiveeTA, giftYear: GiftYearTA, players: PlayersTA): Boolean {
-//    val past: List<GiftYearTA> = ((giftYear - 1) downTo (giftYear - 4)).filterNot { it < 0 }
-//    val giveeInYear = playersGetMyGivee(selfKey,players,giftYear)
-////    val giveeInYear: GiftYearTA => GiveeTA = (giftYear: GiftYearTA) => playersGetMyGivee(selfKey)(players)(giftYear)
-////    val giveesInYears: Vector[GiveeTA] = past.map(gy => giveeInYear(gy))
-////    return !giveesInYears.contains(givee)
-//}
+fun rulesGiveeNotRepeat(selfKey: PlayerKeyTA, givee: GiveeTA, giftYear: GiftYearTA, players: PlayersTA): Boolean {
+    val giveesInYears: MutableList<GiveeTA> = mutableListOf()
+    val past: List<GiftYearTA> = ((giftYear - 1) downTo (giftYear - 4)).filterNot { it < 0 }
+    for (i in past.indices) {
+        giveesInYears.add(playersGetMyGivee(selfKey, players, past[i]))
+    }
+    return !(giveesInYears.contains(givee))
+}
