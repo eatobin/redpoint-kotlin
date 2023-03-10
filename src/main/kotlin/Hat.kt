@@ -1,14 +1,10 @@
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import java.util.*
 
-typealias HatTA = SortedSet<PlayerKeyTA>
+typealias HatTA = Set<PlayerKeyTA>
 typealias DiscardsTA = HatTA
 
-fun hatJsonStringToHat(jsonString: JsonStringTA): HatTA {
-    val myUnsortedSet: Set<PlayerKeyTA> = Json.decodeFromString(jsonString)
-    return myUnsortedSet.toSortedSet()
-}
+fun hatJsonStringToHat(jsonString: JsonStringTA): HatTA = Json.decodeFromString<HatTA>(jsonString).toSortedSet()
 
 fun hatMakeHat(players: PlayersTA): HatTA = players.keys.toSortedSet()
 
