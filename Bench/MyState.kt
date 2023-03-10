@@ -1,5 +1,6 @@
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 typealias RosterNameTA = String
@@ -21,6 +22,7 @@ data class MyState(
 ) {
     companion object {
         fun myStateJsonStringToMyState(jsonString: JsonStringTA): MyState = Json.decodeFromString(jsonString)
+        fun myToJSON(myState: MyState): JsonStringTA = Json.encodeToString(myState)
     }
 }
 
