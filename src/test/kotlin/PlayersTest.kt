@@ -14,24 +14,25 @@ class PlayersTest : StringSpec({
     val johLen = Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta")))
     val geoHar = Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc")))
     val pauMcc = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen")))
-    val players: PlayersTA = mapOf("PauMcc" to pauMcc, "GeoHar" to geoHar, "RinSta" to rinSta, "JohLen" to johLen)
+    val players: PlayersTA = sortedMapOf("PauMcc" to pauMcc, "GeoHar" to geoHar, "RinSta" to rinSta, "JohLen" to johLen)
 
     val newBee = Player("New Bee", listOf(GiftPair("NewBee", "NewBee")))
-    val newBeePlayers: PlayersTA = mapOf("RinSta" to newBee, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
+    val newBeePlayers: PlayersTA =
+        sortedMapOf("RinSta" to newBee, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
 
     val rinStaExt = Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar"), GiftPair("RinSta", "RinSta")))
     val johLenExt = Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta"), GiftPair("JohLen", "JohLen")))
     val geoHarExt = Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc"), GiftPair("GeoHar", "GeoHar")))
     val pauMccExt = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen"), GiftPair("PauMcc", "PauMcc")))
     val playersExt: PlayersTA =
-        mapOf("RinSta" to rinStaExt, "JohLen" to johLenExt, "GeoHar" to geoHarExt, "PauMcc" to pauMccExt)
+        sortedMapOf("RinSta" to rinStaExt, "JohLen" to johLenExt, "GeoHar" to geoHarExt, "PauMcc" to pauMccExt)
 
     val geoHarGivee = Player("George Harrison", listOf(GiftPair("you", "PauMcc")))
     val geoHarGiver = Player("George Harrison", listOf(GiftPair("RinSta", "you")))
     val playersGivee: PlayersTA =
-        mapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHarGivee, "PauMcc" to pauMcc)
+        sortedMapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHarGivee, "PauMcc" to pauMcc)
     val playersGiver: PlayersTA =
-        mapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHarGiver, "PauMcc" to pauMcc)
+        sortedMapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHarGiver, "PauMcc" to pauMcc)
 
     "players should build a sortedMap from JSON" {
         playersJsonStringToPlayers(jsonString).shouldBe(players)
