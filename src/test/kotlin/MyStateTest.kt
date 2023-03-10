@@ -1,7 +1,6 @@
-import MyState.Companion.myToJSON
+import MyState.Companion.myStateJsonStringToMyState
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import java.util.*
 
 class MyStateTest : StringSpec({
     val beatlesJson: JsonStringTA =
@@ -18,17 +17,17 @@ class MyStateTest : StringSpec({
         rosterYear = 2014,
         players = players,
         giftYear = 0,
-        giveeHat = TreeSet(),
-        giverHat = TreeSet(),
+        giveeHat = setOf(),
+        giverHat = setOf(),
         maybeGivee = null,
         maybeGiver = null,
-        discards = TreeSet(),
+        discards = setOf(),
         quit = "n"
     )
 
     "MyState should build from JSON" {
-//        myStateJsonStringToMyState(beatlesJson).shouldBe(beatlesState0)
-        myToJSON(beatlesState0).shouldBe("XXX")
+        myStateJsonStringToMyState(beatlesJson).shouldBe(beatlesState0)
+//        myToJSON(beatlesState0).shouldBe("XXX")
     }
 //    "player should NOT build from BAD JSON" {
 //        shouldThrowAny {
