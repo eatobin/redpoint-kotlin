@@ -35,6 +35,14 @@ data class MyState(
                 quit = unsortedState.quit
             )
         }
+
+        fun myStateDrawPuck(hat: HatTA): PlayerKeyTA? {
+            return if (hat.isEmpty()) {
+                null
+            } else {
+                hat.asSequence().shuffled().find { true }
+            }
+        }
     }
 }
 

@@ -1,6 +1,8 @@
+import MyState.Companion.myStateDrawPuck
 import MyState.Companion.myStateJsonStringToMyState
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.shouldBe
 
 class MyStateTest : StringSpec({
@@ -29,6 +31,7 @@ class MyStateTest : StringSpec({
         discards = setOf(),
         quit = "n"
     )
+    val testHat: HatTA = sortedSetOf("RinSta")
 
     "MyState should build from JSON" {
         myStateJsonStringToMyState(beatlesJson).shouldBe(beatlesState0)
@@ -43,11 +46,8 @@ class MyStateTest : StringSpec({
             myStateJsonStringToMyState(beatlesJsonBad2)
         }
     }
-//    "player should return an updated giftHistory" {
-//        playerUpdateGiftHistory(listOf(GiftPair("nope", "yup")), player).shouldBe(
-//            Player(
-//                "Paul McCartney", listOf(GiftPair("nope", "yup"))
-//            )
-//        )
-//    }
+    "MyState should draw a puck" {
+        myStateDrawPuck(testHat).shouldBe("RinSta")
+        myStateDrawPuck(sortedSetOf()).shouldBeNull()
+    }
 })
