@@ -1,8 +1,11 @@
 import MyState.Companion.myStateDrawPuck
 import MyState.Companion.myStateJsonStringToMyState
+import MyState.Companion.myStateStartNewYear
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.nulls.shouldBeNull
+import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 
 class MyStateTest : StringSpec({
@@ -33,6 +36,12 @@ class MyStateTest : StringSpec({
     )
     val testHat: HatTA = sortedSetOf("RinSta")
 
+    val freshHat: HatTA = sortedSetOf("RinSta", "JohLen", "GeoHar", "PauMcc")
+
+    val rinStaPlus = Player(
+        "Ringo Starr", listOf(GiftPair("JohLen", "GeoHar"), GiftPair("RinSta", "RinSta"))
+    )
+
     "MyState should build from JSON" {
         myStateJsonStringToMyState(beatlesJson).shouldBe(beatlesState0)
     }
@@ -49,5 +58,15 @@ class MyStateTest : StringSpec({
     "MyState should draw a puck" {
         myStateDrawPuck(testHat).shouldBe("RinSta")
         myStateDrawPuck(sortedSetOf()).shouldBeNull()
+    }
+    "MyState should start a new year" {
+        val beatlesState1 = myStateStartNewYear(beatlesState0)
+        beatlesState1.giftYear.shouldBe(1)
+        beatlesState1.giveeHat.shouldBe(freshHat)
+        beatlesState1.giverHat.shouldBe(freshHat)
+        beatlesState1.maybeGiver.shouldNotBeNull()
+        beatlesState1.maybeGivee.shouldNotBeNull()
+        beatlesState1.players["RinSta"].shouldBe(rinStaPlus)
+        beatlesState1.discards.shouldBeEmpty()
     }
 })

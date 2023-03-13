@@ -43,6 +43,22 @@ data class MyState(
                 hat.asSequence().shuffled().find { true }
             }
         }
+
+        fun myStateStartNewYear(state: MyState): MyState {
+            val freshHat: HatTA = hatMakeHat(state.players)
+            return MyState(
+                rosterName = state.rosterName,
+                rosterYear = state.rosterYear,
+                players = playersAddYear(state.players),
+                giftYear = state.giftYear + 1,
+                giveeHat = freshHat,
+                giverHat = freshHat,
+                maybeGivee = myStateDrawPuck(freshHat),
+                maybeGiver = myStateDrawPuck(freshHat),
+                discards = sortedSetOf(),
+                quit = state.quit
+            )
+        }
     }
 }
 
