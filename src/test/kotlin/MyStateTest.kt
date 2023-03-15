@@ -1,5 +1,6 @@
 import MyState.Companion.myStateDrawPuck
 import MyState.Companion.myStateGiveeIsFailure
+import MyState.Companion.myStateGiveeIsSuccess
 import MyState.Companion.myStateJsonStringToMyState
 import MyState.Companion.myStateStartNewYear
 import io.kotest.assertions.throwables.shouldThrowAny
@@ -80,5 +81,15 @@ class MyStateTest : StringSpec({
         beatlesState2.giveeHat.shouldNotContain(badGivee)
         beatlesState2.maybeGivee.shouldNotBe(badGivee)
         beatlesState2.discards.shouldContain(badGivee)
+    }
+    "MyState should have a successful givee" {
+        val beatlesState1 = myStateStartNewYear(beatlesState0)
+        val goodGivee = beatlesState1.maybeGivee ?: "none"
+        val goodGiver = beatlesState1.maybeGiver ?: "none"
+        val beatlesState2 = myStateGiveeIsSuccess(beatlesState1)
+        playersGetMyGivee(goodGiver, beatlesState2.players, beatlesState2.giftYear).shouldBe(goodGivee)
+        playersGetMyGiver(goodGivee, beatlesState2.players, beatlesState2.giftYear).shouldBe(goodGiver)
+        beatlesState2.giveeHat.shouldNotContain(goodGivee)
+        beatlesState2.maybeGivee.shouldBeNull()
     }
 })
