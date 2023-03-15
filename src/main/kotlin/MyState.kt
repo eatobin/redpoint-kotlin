@@ -59,6 +59,23 @@ data class MyState(
                 quit = state.quit
             )
         }
+
+        fun myStateGiveeIsFailure(state: MyState): MyState {
+            val giveeToRemove: GiveeTA = state.maybeGivee ?: "none"
+            val diminishedGiveeHat: HatTA = hatRemovePuck(giveeToRemove, state.giveeHat)
+            return MyState(
+                rosterName = state.rosterName,
+                rosterYear = state.rosterYear,
+                players = state.players,
+                giftYear = state.giftYear,
+                giveeHat = diminishedGiveeHat,
+                giverHat = state.giverHat,
+                maybeGivee = myStateDrawPuck(diminishedGiveeHat),
+                maybeGiver = state.maybeGiver,
+                discards = hatDiscardGivee(giveeToRemove, state.discards),
+                quit = state.quit
+            )
+        }
     }
 }
 

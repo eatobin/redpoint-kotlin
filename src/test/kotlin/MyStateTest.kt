@@ -1,12 +1,16 @@
 import MyState.Companion.myStateDrawPuck
+import MyState.Companion.myStateGiveeIsFailure
 import MyState.Companion.myStateJsonStringToMyState
 import MyState.Companion.myStateStartNewYear
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldBeEmpty
+import io.kotest.matchers.collections.shouldContain
+import io.kotest.matchers.collections.shouldNotContain
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 
 class MyStateTest : StringSpec({
     val beatlesJson: JsonStringTA =
@@ -68,5 +72,13 @@ class MyStateTest : StringSpec({
         beatlesState1.maybeGivee.shouldNotBeNull()
         beatlesState1.players["RinSta"].shouldBe(rinStaPlus)
         beatlesState1.discards.shouldBeEmpty()
+    }
+    "MyState should have a failing givee" {
+        val beatlesState1 = myStateStartNewYear(beatlesState0)
+        val badGivee = beatlesState1.maybeGivee
+        val beatlesState2 = myStateGiveeIsFailure(beatlesState1)
+        beatlesState2.giveeHat.shouldNotContain(badGivee)
+        beatlesState2.maybeGivee.shouldNotBe(badGivee)
+        beatlesState2.discards.shouldContain(badGivee)
     }
 })
