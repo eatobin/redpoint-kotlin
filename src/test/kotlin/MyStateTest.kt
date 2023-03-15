@@ -76,7 +76,7 @@ class MyStateTest : StringSpec({
     }
     "MyState should have a failing givee" {
         val beatlesState1 = myStateStartNewYear(beatlesState0)
-        val badGivee = beatlesState1.maybeGivee
+        val badGivee = beatlesState1.maybeGivee!!
         val beatlesState2 = myStateGiveeIsFailure(beatlesState1)
         beatlesState2.giveeHat.shouldNotContain(badGivee)
         beatlesState2.maybeGivee.shouldNotBe(badGivee)

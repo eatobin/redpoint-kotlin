@@ -61,7 +61,7 @@ data class MyState(
         }
 
         fun myStateGiveeIsFailure(state: MyState): MyState {
-            val giveeToRemove: GiveeTA = state.maybeGivee ?: "none"
+            val giveeToRemove: GiveeTA = state.maybeGivee!!
             val diminishedGiveeHat: HatTA = hatRemovePuck(giveeToRemove, state.giveeHat)
             return MyState(
                 rosterName = state.rosterName,
