@@ -78,8 +78,8 @@ data class MyState(
         }
 
         fun myStateGiveeIsSuccess(state: MyState): MyState {
-            val currentGiver: GiverTA = state.maybeGiver ?: "none"
-            val currentGivee: GiveeTA = state.maybeGivee ?: "none"
+            val currentGiver: GiverTA = state.maybeGiver!!
+            val currentGivee: GiveeTA = state.maybeGivee!!
             val updatedGiveePlayers: PlayersTA =
                 playersUpdateMyGivee(currentGiver, currentGivee, state.giftYear, state.players)
             return MyState(

@@ -84,8 +84,8 @@ class MyStateTest : StringSpec({
     }
     "MyState should have a successful givee" {
         val beatlesState1 = myStateStartNewYear(beatlesState0)
-        val goodGivee = beatlesState1.maybeGivee ?: "none"
-        val goodGiver = beatlesState1.maybeGiver ?: "none"
+        val goodGivee = beatlesState1.maybeGivee!!
+        val goodGiver = beatlesState1.maybeGiver!!
         val beatlesState2 = myStateGiveeIsSuccess(beatlesState1)
         playersGetMyGivee(goodGiver, beatlesState2.players, beatlesState2.giftYear).shouldBe(goodGivee)
         playersGetMyGiver(goodGivee, beatlesState2.players, beatlesState2.giftYear).shouldBe(goodGiver)
