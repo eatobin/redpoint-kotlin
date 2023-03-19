@@ -114,15 +114,15 @@ data class MyState(
             )
         }
 
-        fun myStateErrors(state: MyState): Sequence<PlayerKeyTA> {
-            val playerKeys: Sequence<PlayerKeyTA> = state.players.keys.asSequence()
-            val playerErrors: Sequence<PlayerKeyTA> = sequenceOf()
+        fun myStateErrors(state: MyState): List<PlayerKeyTA> {
+            val playerKeys: List<PlayerKeyTA> = state.players.keys.toList()
+            val playerErrors: MutableList<PlayerKeyTA> = mutableListOf()
             for (playerKeyMe: PlayerKeyTA in playerKeys) {
                 val myGiverKey: PlayerKeyTA = playersGetMyGiver(playerKeyMe, state.players, state.giftYear)
                 val myGiveeKey: PlayerKeyTA = playersGetMyGivee(playerKeyMe, state.players, state.giftYear)
-                if (playerKeyMe == myGiverKey || playerKeyMe == myGiveeKey) playerErrors + playerKeyMe
+                if (playerKeyMe == myGiverKey || playerKeyMe == myGiveeKey) playerErrors.add(playerKeyMe)
             }
-            return playerErrors
+            return playerErrors.toList()
         }
     }
 }

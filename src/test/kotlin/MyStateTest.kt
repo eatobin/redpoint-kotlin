@@ -1,4 +1,5 @@
 import MyState.Companion.myStateDrawPuck
+import MyState.Companion.myStateErrors
 import MyState.Companion.myStateGiveeIsFailure
 import MyState.Companion.myStateGiveeIsSuccess
 import MyState.Companion.myStateJsonStringToMyState
@@ -46,6 +47,23 @@ class MyStateTest : StringSpec({
 
     val rinStaPlus = Player(
         "Ringo Starr", listOf(GiftPair("JohLen", "GeoHar"), GiftPair("RinSta", "RinSta"))
+    )
+
+    val geoWhoops = Player("geoWhoops", listOf(GiftPair("GeoHar", "PauMcc")))
+    val pauYikes = Player("pauYikes", listOf(GiftPair("GeoHar", "PauMcc")))
+    val playersWeird = sortedMapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoWhoops, "PauMcc" to pauYikes)
+
+    val weirdState = MyState(
+        rosterName = "The Beatles",
+        rosterYear = 2014,
+        players = playersWeird,
+        giftYear = 0,
+        giveeHat = sortedSetOf(),
+        giverHat = sortedSetOf(),
+        maybeGivee = null,
+        maybeGiver = null,
+        discards = sortedSetOf(),
+        quit = "n"
     )
 
     "MyState should build from JSON" {
@@ -107,5 +125,8 @@ class MyStateTest : StringSpec({
         beatlesState4.maybeGivee.shouldNotBe(goodGivee)
         beatlesState4.maybeGiver.shouldNotBe(goodGiver)
         beatlesState4.discards.shouldBeEmpty()
+    }
+    "MyState should report player errors" {
+        myStateErrors(weirdState).shouldBe(listOf("GeoHar", "PauMcc"))
     }
 })
