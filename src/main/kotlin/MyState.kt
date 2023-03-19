@@ -95,6 +95,24 @@ data class MyState(
                 quit = state.quit
             )
         }
+
+        fun myStateSelectNewGiver(state: MyState): MyState {
+            val giverToRemove: GiverTA = state.maybeGiver!!
+            val replenishedGiveeHat: HatTA = hatReturnDiscards(state.discards, state.giveeHat)
+            val diminishedGiverHat: HatTA = hatRemovePuck(giverToRemove, state.giverHat)
+            return MyState(
+                rosterName = state.rosterName,
+                rosterYear = state.rosterYear,
+                players = state.players,
+                giftYear = state.giftYear,
+                giveeHat = replenishedGiveeHat,
+                giverHat = diminishedGiverHat,
+                maybeGivee = myStateDrawPuck(replenishedGiveeHat),
+                maybeGiver = myStateDrawPuck(diminishedGiverHat),
+                discards = sortedSetOf(),
+                quit = state.quit
+            )
+        }
     }
 }
 

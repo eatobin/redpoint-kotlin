@@ -2,6 +2,7 @@ import MyState.Companion.myStateDrawPuck
 import MyState.Companion.myStateGiveeIsFailure
 import MyState.Companion.myStateGiveeIsSuccess
 import MyState.Companion.myStateJsonStringToMyState
+import MyState.Companion.myStateSelectNewGiver
 import MyState.Companion.myStateStartNewYear
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
@@ -91,5 +92,20 @@ class MyStateTest : StringSpec({
         playersGetMyGiver(goodGivee, beatlesState2.players, beatlesState2.giftYear).shouldBe(goodGiver)
         beatlesState2.giveeHat.shouldNotContain(goodGivee)
         beatlesState2.maybeGivee.shouldBeNull()
+    }
+    "MyState should select a new giver" {
+        val beatlesState1 = myStateStartNewYear(beatlesState0)
+        val badGivee = beatlesState1.maybeGivee!!
+        val beatlesState2 = myStateGiveeIsFailure(beatlesState1)
+        val goodGivee = beatlesState2.maybeGivee!!
+        val goodGiver = beatlesState2.maybeGiver!!
+        val beatlesState3 = myStateGiveeIsSuccess(beatlesState2)
+        val beatlesState4 = myStateSelectNewGiver(beatlesState3)
+        beatlesState4.giveeHat.shouldContain(badGivee)
+//        assert(!beatlesState4.giveeHat.contains(goodGivee))
+//        assert(!beatlesState4.giverHat.contains(goodGiver))
+//        assert(beatlesState4.maybeGivee.get != goodGivee)
+//        assert(beatlesState4.maybeGiver.get != goodGiver)
+//        assert(beatlesState4.discards.isEmpty)
     }
 })
