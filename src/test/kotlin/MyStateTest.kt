@@ -24,6 +24,30 @@ class MyStateTest : StringSpec({
     val beatlesJsonBad2: JsonStringTA =
         """{"rosterNameX":"The Beatles","rosterYear":2014,"players":{"RinSta":{"playerName":"Ringo Starr","giftHistory":[{"givee":"JohLen","giver":"GeoHar"}]},"JohLen":{"playerName":"John Lennon","giftHistory":[{"givee":"PauMcc","giver":"RinSta"}]},"GeoHar":{"playerName":"George Harrison","giftHistory":[{"givee":"RinSta","giver":"PauMcc"}]},"PauMcc":{"playerName":"Paul McCartney","giftHistory":[{"givee":"GeoHar","giver":"JohLen"}]}},"giftYear":0,"giveeHat":[],"giverHat":[],"maybeGivee":null,"maybeGiver":null,"discards":[],"quit":"n"}"""
 
+    val hawksState: MyState = MyState(
+        "Blackhawks", 2010, sortedMapOf(
+            "TroBro" to Player("Troy Brouwer", listOf(GiftPair("DavBol", "JoeQue"))),
+            "PatKan" to Player("Patrick Kane", listOf(GiftPair("BryBic", "CriHue"))),
+            "JoeQue" to Player("Joel Quenneville", listOf(GiftPair("TroBro", "AndLad"))),
+            "NikHja" to Player("Niklas Hjalmarsson", listOf(GiftPair("BreSea", "BriCam"))),
+            "TomKop" to Player("Tomas Kopecky", listOf(GiftPair("CriHue", "DunKei"))),
+            "BryBic" to Player("Bryan Bickell", listOf(GiftPair("MarHos", "PatKan"))),
+            "AntNie" to Player("Antti Niemi", listOf(GiftPair("JonToe", "MarHos"))),
+            "PatSha" to Player("Patrick Sharp", listOf(GiftPair("BriCam", "DavBol"))),
+            "DunKei" to Player("Duncan Keith", listOf(GiftPair("TomKop", "AdaBur"))),
+            "BriCam" to Player("Brian Campbell", listOf(GiftPair("NikHja", "PatSha"))),
+            "BreSea" to Player("Brent Seabrook", listOf(GiftPair("KriVer", "NikHja"))),
+            "KriVer" to Player("Kris Versteeg", listOf(GiftPair("AndLad", "BreSea"))),
+            "MarHos" to Player("Marian Hossa", listOf(GiftPair("AntNie", "BryBic"))),
+            "AndLad" to Player("Andrew Ladd", listOf(GiftPair("JoeQue", "KriVer"))),
+            "DavBol" to Player("Dave Bolland", listOf(GiftPair("PatSha", "TroBro"))),
+            "CriHue" to Player("Cristobal Huet", listOf(GiftPair("PatKan", "TomKop"))),
+            "JonToe" to Player("Jonathan Toews", listOf(GiftPair("AdaBur", "AntNie"))),
+            "AdaBur" to Player("Adam Burish", listOf(GiftPair("DunKei", "JonToe")))
+        ), 0, setOf(), setOf(), null, null, setOf(), "n"
+    )
+
+
     val rinSta = Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar")))
     val johLen = Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta")))
     val geoHar = Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc")))
