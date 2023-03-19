@@ -154,5 +154,44 @@ data class MyState(
             }
             return state
         }
+
+        fun myStateAskContinue(state: MyState): MyState {
+            println()
+            print("Continue? ('q' to quit): ")
+            val reply = readln()
+            return state.copy(quit = reply)
+        }
+
+        fun myStateUpdateAndRunNewYear(state: MyState): MyState {
+            val newYearState: MyState = myStateStartNewYear(state)
+            return myStateLoop(newYearState)
+        }
+
+        private tailrec fun myStateLoop(alteredState: MyState): MyState {
+            if (alteredState.maybeGiver != null) {
+                if (alteredState.maybeGivee != null) {
+                    if (rulesGiveeNotSelf(alteredState.maybeGiver, alteredState.maybeGivee) && rulesGiveeNotRecip(
+                            alteredState.maybeGiver,
+                            alteredState.maybeGivee,
+                            alteredState.giftYear,
+                            alteredState.players
+                        ) && rulesGiveeNotRepeat(
+                            alteredState.maybeGiver,
+                            alteredState.maybeGivee,
+                            alteredState.giftYear,
+                            alteredState.players
+                        )
+                    ) {
+                        return myStateLoop(myStateGiveeIsSuccess(alteredState))
+                    } else {
+                        return myStateLoop(myStateGiveeIsFailure(alteredState))
+                    }
+                } else {
+                    return myStateLoop(myStateSelectNewGiver(alteredState))
+                }
+            } else {
+                return alteredState
+            }
+        }
     }
 }
