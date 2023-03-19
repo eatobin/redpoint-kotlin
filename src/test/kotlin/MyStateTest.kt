@@ -3,6 +3,7 @@ import MyState.Companion.myStateErrors
 import MyState.Companion.myStateGiveeIsFailure
 import MyState.Companion.myStateGiveeIsSuccess
 import MyState.Companion.myStateJsonStringToMyState
+import MyState.Companion.myStatePrintResults
 import MyState.Companion.myStateSelectNewGiver
 import MyState.Companion.myStateStartNewYear
 import io.kotest.assertions.throwables.shouldThrowAny
@@ -128,5 +129,9 @@ class MyStateTest : StringSpec({
     }
     "MyState should report player errors" {
         myStateErrors(weirdState).shouldBe(listOf("GeoHar", "PauMcc"))
+    }
+    "MyState should print itself" {
+        myStatePrintResults(beatlesState0).shouldBe(beatlesState0)
+        myStatePrintResults(weirdState).shouldBe(weirdState)
     }
 })

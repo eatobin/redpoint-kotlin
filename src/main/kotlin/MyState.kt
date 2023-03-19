@@ -148,7 +148,7 @@ data class MyState(
                 }
             }
 
-            if (myStateErrors(state).isEmpty()) {
+            if (myStateErrors(state).isNotEmpty()) {
                 println()
                 println("There is a logic error in this year's pairings.")
                 println("Do you see how it occurs?")
