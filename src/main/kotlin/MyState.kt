@@ -129,8 +129,7 @@ data class MyState(
             println()
             println("%s - Year %d Gifts:".format(state.rosterName, state.rosterYear + state.giftYear))
             println()
-
-            val playerKeys: MutableList<PlayerKeyTA> = state.players.keys.toMutableList()
+            val playerKeys: List<PlayerKeyTA> = state.players.keys.toList()
             for (playerKey: PlayerKeyTA in playerKeys) {
                 val playerName = playersGetPlayerName(playerKey, state.players)
                 val giveeKey = playersGetMyGivee(playerKey, state.players, state.giftYear)
@@ -147,7 +146,6 @@ data class MyState(
                     println("%s is buying for %s".format(playerName, giveeName))
                 }
             }
-
             if (myStateErrors(state).isNotEmpty()) {
                 println()
                 println("There is a logic error in this year's pairings.")
