@@ -115,14 +115,46 @@ data class MyState(
         }
 
         fun myStateErrors(state: MyState): List<PlayerKeyTA> {
-            val playerKeys: List<PlayerKeyTA> = state.players.keys.toList()
+            val playerKeys: MutableList<PlayerKeyTA> = state.players.keys.toMutableList()
             val playerErrors: MutableList<PlayerKeyTA> = mutableListOf()
             for (playerKeyMe: PlayerKeyTA in playerKeys) {
                 val myGiverKey: PlayerKeyTA = playersGetMyGiver(playerKeyMe, state.players, state.giftYear)
                 val myGiveeKey: PlayerKeyTA = playersGetMyGivee(playerKeyMe, state.players, state.giftYear)
                 if (playerKeyMe == myGiverKey || playerKeyMe == myGiveeKey) playerErrors.add(playerKeyMe)
             }
-            return playerErrors.toList()
+            return playerErrors.sorted().toList()
+        }
+
+        fun myStatePrintResults(state: MyState): MyState {
+            println()
+            println("%s - Year %d Gifts:".format(state.rosterName, state.rosterYear + state.giftYear))
+            println()
+
+            val playerKeys: MutableList<PlayerKeyTA> = state.players.keys.toMutableList()
+            for (playerKey: PlayerKeyTA in playerKeys) {
+                val playerName = playersGetPlayerName(playerKey, state.players)
+                val giveeKey = playersGetMyGivee(playerKey, state.players, state.giftYear)
+                val giveeName = playersGetPlayerName(giveeKey, state.players)
+                val giverKey = playersGetMyGiver(playerKey, state.players, state.giftYear)
+
+                if (playerKey == giveeKey && playerKey == giverKey) {
+                    println("%s is neither **buying** for nor **receiving** from anyone - **ERROR**".format(playerName))
+                } else if (playerKey == giverKey) {
+                    println("%s is **receiving** from no one - **ERROR**".format(playerName))
+                } else if (playerKey == giveeKey) {
+                    println("%s is **buying** for no one - **ERROR**".format(playerName))
+                } else {
+                    println("%s is buying for %s".format(playerName, giveeName))
+                }
+            }
+
+            if (myStateErrors(state).isEmpty()) {
+                println()
+                println("There is a logic error in this year's pairings.")
+                println("Do you see how it occurs?")
+                println("If not... call me and I'll explain!")
+            }
+            return state
         }
     }
 }
