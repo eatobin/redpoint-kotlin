@@ -113,6 +113,16 @@ data class MyState(
                 quit = state.quit
             )
         }
+
+        fun myStateErrors(state: MyState): Sequence<PlayerKeyTA> {
+            val playerKeys: Sequence<PlayerKeyTA> = state.players.keys.asSequence()
+            val playerErrors: Sequence<PlayerKeyTA> = sequenceOf()
+            for (playerKeyMe: PlayerKeyTA in playerKeys) {
+                val myGiverKey: PlayerKeyTA = playersGetMyGiver(playerKeyMe, state.players, state.giftYear)
+                val myGiveeKey: PlayerKeyTA = playersGetMyGivee(playerKeyMe, state.players, state.giftYear)
+                if (playerKeyMe == myGiverKey || playerKeyMe == myGiveeKey) playerErrors + playerKeyMe
+            }
+            return playerErrors
+        }
     }
 }
-
