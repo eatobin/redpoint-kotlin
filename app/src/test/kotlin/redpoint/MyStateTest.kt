@@ -1,11 +1,5 @@
-import MyState.Companion.myStateDrawPuck
-import MyState.Companion.myStateErrors
-import MyState.Companion.myStateGiveeIsFailure
-import MyState.Companion.myStateGiveeIsSuccess
-import MyState.Companion.myStateJsonStringToMyState
-import MyState.Companion.myStatePrintResults
-import MyState.Companion.myStateSelectNewGiver
-import MyState.Companion.myStateStartNewYear
+package redpoint
+
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldBeEmpty
@@ -15,6 +9,14 @@ import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
+import redpoint.MyState.Companion.myStateDrawPuck
+import redpoint.MyState.Companion.myStateErrors
+import redpoint.MyState.Companion.myStateGiveeIsFailure
+import redpoint.MyState.Companion.myStateGiveeIsSuccess
+import redpoint.MyState.Companion.myStateJsonStringToMyState
+import redpoint.MyState.Companion.myStatePrintResults
+import redpoint.MyState.Companion.myStateSelectNewGiver
+import redpoint.MyState.Companion.myStateStartNewYear
 
 class MyStateTest : StringSpec({
     val beatlesJson: JsonStringTA =

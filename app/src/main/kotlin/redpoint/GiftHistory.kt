@@ -1,5 +1,8 @@
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import redpoint.GiftPair
+import redpoint.JsonStringTA
+import redpoint.PlayerKeyTA
 
 typealias GiftHistoryTA = List<GiftPair>
 typealias GiftYearTA = Int

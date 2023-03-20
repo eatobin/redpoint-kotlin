@@ -1,8 +1,10 @@
-import Player.Companion.playerJsonStringToPlayer
-import Player.Companion.playerUpdateGiftHistory
+package redpoint
+
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import redpoint.Player.Companion.playerJsonStringToPlayer
+import redpoint.Player.Companion.playerUpdateGiftHistory
 
 class PlayerTest : StringSpec({
     val jsonString: JsonStringTA =

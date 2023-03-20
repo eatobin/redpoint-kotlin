@@ -1,3 +1,5 @@
+package redpoint
+
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 

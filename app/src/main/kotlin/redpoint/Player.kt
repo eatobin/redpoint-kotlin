@@ -1,3 +1,6 @@
+package redpoint
+
+import GiftHistoryTA
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json

@@ -1,9 +1,11 @@
-import GiftPair.Companion.giftPairJsonStringToGiftPair
-import GiftPair.Companion.giftPairUpdateGivee
-import GiftPair.Companion.giftPairUpdateGiver
+package redpoint
+
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import redpoint.GiftPair.Companion.giftPairJsonStringToGiftPair
+import redpoint.GiftPair.Companion.giftPairUpdateGivee
+import redpoint.GiftPair.Companion.giftPairUpdateGiver
 
 class GiftPairTest : StringSpec({
     val jsonString = "{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}"

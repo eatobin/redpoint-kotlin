@@ -1,10 +1,5 @@
-build
+# Ignore Gradle project-specific cache directory
 .gradle
-.idea
-out
-*.iml
-*.ipr
-*.iws
-.env
-.DS_Store
-.kotlintest
+
+# Ignore Gradle build output directory
+build

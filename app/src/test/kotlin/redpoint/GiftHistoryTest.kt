@@ -1,3 +1,8 @@
+package redpoint
+
+import giftHistoryAddYear
+import giftHistoryJsonStringToGiftHistory
+import giftHistoryUpdateGiftHistory
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
@@ -22,11 +27,14 @@ class GiftHistoryTest : StringSpec({
         }
     }
     "giftHistory should add a year" {
-        giftHistoryAddYear("NewBee", giftHistory)
-            .shouldBe(listOf(GiftPair("GeoHar", "JohLen"), GiftPair("NewBee", "NewBee")))
+        giftHistoryAddYear("NewBee", giftHistory).shouldBe(
+            listOf(
+                GiftPair("GeoHar", "JohLen"),
+                GiftPair("NewBee", "NewBee")
+            )
+        )
     }
     "giftHistory should update a year's giftPair" {
-        giftHistoryUpdateGiftHistory(0, GiftPair("me", "you"), giftHistory)
-            .shouldBe(listOf(GiftPair("me", "you")))
+        giftHistoryUpdateGiftHistory(0, GiftPair("me", "you"), giftHistory).shouldBe(listOf(GiftPair("me", "you")))
     }
 })

@@ -1,7 +1,9 @@
-import MyState.Companion.myStateAskContinue
-import MyState.Companion.myStateJsonStringToMyState
-import MyState.Companion.myStatePrintResults
-import MyState.Companion.myStateUpdateAndRunNewYear
+package redpoint
+
+import redpoint.MyState.Companion.myStateAskContinue
+import redpoint.MyState.Companion.myStateJsonStringToMyState
+import redpoint.MyState.Companion.myStatePrintResults
+import redpoint.MyState.Companion.myStateUpdateAndRunNewYear
 import java.util.*
 
 fun main() {
