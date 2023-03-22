@@ -3,9 +3,9 @@ package redpoint
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import rules.rulesGiveeNotRecip
-import rules.rulesGiveeNotRepeat
-import rules.rulesGiveeNotSelf
+import rules.giveeNotRecip
+import rules.giveeNotRepeat
+import rules.giveeNotSelf
 
 typealias RosterNameTA = String
 typealias RosterYearTA = Int
@@ -175,12 +175,12 @@ data class MyState(
         private tailrec fun myStateLoop(alteredState: MyState): MyState {
             if (alteredState.maybeGiver != null) {
                 if (alteredState.maybeGivee != null) {
-                    if (rulesGiveeNotSelf(alteredState.maybeGiver, alteredState.maybeGivee) && rulesGiveeNotRecip(
+                    if (giveeNotSelf(alteredState.maybeGiver, alteredState.maybeGivee) && giveeNotRecip(
                             alteredState.maybeGiver,
                             alteredState.maybeGivee,
                             alteredState.giftYear,
                             alteredState.players
-                        ) && rulesGiveeNotRepeat(
+                        ) && giveeNotRepeat(
                             alteredState.maybeGiver,
                             alteredState.maybeGivee,
                             alteredState.giftYear,

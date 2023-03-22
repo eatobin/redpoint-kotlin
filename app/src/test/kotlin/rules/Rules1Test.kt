@@ -28,11 +28,11 @@ class Rules1Test : StringSpec({
     )
 
     "A Player should not give to itself" {
-        rulesGiveeNotSelf("RinSta", "GeoHar").shouldBeTrue()
-        rulesGiveeNotSelf("RinSta", "RinSta").shouldBeFalse()
+        giveeNotSelf("RinSta", "GeoHar").shouldBeTrue()
+        giveeNotSelf("RinSta", "RinSta").shouldBeFalse()
     }
     "A Player should not give to it's recip" {
-        rulesGiveeNotRecip("RinSta", "JohLen", 0, beatlesPlusPM).shouldBeTrue()
-        rulesGiveeNotRecip("RinSta", "EriTob", 0, beatlesPlusPM).shouldBeFalse()
+        giveeNotRecip("RinSta", "JohLen", 0, beatlesPlusPM).shouldBeTrue()
+        giveeNotRecip("RinSta", "EriTob", 0, beatlesPlusPM).shouldBeFalse()
     }
 })

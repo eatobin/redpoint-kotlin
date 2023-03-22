@@ -39,13 +39,13 @@ class Rules2Test : StringSpec({
     beatlesPlus6 = playersUpdateMyGivee("RinSta", "MicMou", 6, beatlesPlus6)
 
     "A Player should not repeat for past four years" {
-        rulesGiveeNotRepeat("RinSta", "DonDuc", 2, beatlesPlus6).shouldBeTrue()
-        rulesGiveeNotRepeat("RinSta", "PauMcc", 2, beatlesPlus6).shouldBeTrue()
-        rulesGiveeNotRepeat("RinSta", "EriTob", 2, beatlesPlus6).shouldBeFalse()
-        rulesGiveeNotRepeat("RinSta", "GeoHar", 2, beatlesPlus6).shouldBeFalse()
-        rulesGiveeNotRepeat("RinSta", "MicMou", 7, beatlesPlus6).shouldBeFalse()
-        rulesGiveeNotRepeat("RinSta", "MicMou", 6, beatlesPlus6).shouldBeTrue()
-        rulesGiveeNotRepeat("RinSta", "PauMcc", 6, beatlesPlus6).shouldBeFalse()
-        rulesGiveeNotRepeat("RinSta", "GeoHar", 6, beatlesPlus6).shouldBeTrue()
+        giveeNotRepeat("RinSta", "DonDuc", 2, beatlesPlus6).shouldBeTrue()
+        giveeNotRepeat("RinSta", "PauMcc", 2, beatlesPlus6).shouldBeTrue()
+        giveeNotRepeat("RinSta", "EriTob", 2, beatlesPlus6).shouldBeFalse()
+        giveeNotRepeat("RinSta", "GeoHar", 2, beatlesPlus6).shouldBeFalse()
+        giveeNotRepeat("RinSta", "MicMou", 7, beatlesPlus6).shouldBeFalse()
+        giveeNotRepeat("RinSta", "MicMou", 6, beatlesPlus6).shouldBeTrue()
+        giveeNotRepeat("RinSta", "PauMcc", 6, beatlesPlus6).shouldBeFalse()
+        giveeNotRepeat("RinSta", "GeoHar", 6, beatlesPlus6).shouldBeTrue()
     }
 })
