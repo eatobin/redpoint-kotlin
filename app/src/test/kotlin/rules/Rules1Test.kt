@@ -1,9 +1,9 @@
 package rules
 
+import giftPair.GiftPair
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
-import giftPair.GiftPair
 import redpoint.Player
 import redpoint.PlayersTA
 
@@ -28,11 +28,11 @@ class Rules1Test : StringSpec({
     )
 
     "A Player should not give to itself" {
-        giveeNotSelf("RinSta", "GeoHar").shouldBeTrue()
-        giveeNotSelf("RinSta", "RinSta").shouldBeFalse()
+        rules1GiveeNotSelf("RinSta", "GeoHar").shouldBeTrue()
+        rules1GiveeNotSelf("RinSta", "RinSta").shouldBeFalse()
     }
     "A Player should not give to it's recip" {
-        giveeNotRecip("RinSta", "JohLen", 0, beatlesPlusPM).shouldBeTrue()
-        giveeNotRecip("RinSta", "EriTob", 0, beatlesPlusPM).shouldBeFalse()
+        rules1GiveeNotRecip("RinSta", "JohLen", 0, beatlesPlusPM).shouldBeTrue()
+        rules1GiveeNotRecip("RinSta", "EriTob", 0, beatlesPlusPM).shouldBeFalse()
     }
 })

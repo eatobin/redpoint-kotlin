@@ -4,7 +4,10 @@ import giftPair.GiftPair
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
-import redpoint.*
+import redpoint.Player
+import redpoint.PlayersTA
+import redpoint.playersAddYear
+import redpoint.playersUpdateMyGivee
 
 class Rules2Test : StringSpec({
     val rinSta = Player("Ringo Starr", listOf(GiftPair(giver = "PauMcc", givee = "EriTob")))
@@ -40,13 +43,13 @@ class Rules2Test : StringSpec({
     beatlesPlus6 = playersUpdateMyGivee("RinSta", "MicMou", 6, beatlesPlus6)
 
     "A Player should not repeat for past four years" {
-        giveeNotRepeat("RinSta", "DonDuc", 2, beatlesPlus6).shouldBeTrue()
-        giveeNotRepeat("RinSta", "PauMcc", 2, beatlesPlus6).shouldBeTrue()
-        giveeNotRepeat("RinSta", "EriTob", 2, beatlesPlus6).shouldBeFalse()
-        giveeNotRepeat("RinSta", "GeoHar", 2, beatlesPlus6).shouldBeFalse()
-        giveeNotRepeat("RinSta", "MicMou", 7, beatlesPlus6).shouldBeFalse()
-        giveeNotRepeat("RinSta", "MicMou", 6, beatlesPlus6).shouldBeTrue()
-        giveeNotRepeat("RinSta", "PauMcc", 6, beatlesPlus6).shouldBeFalse()
-        giveeNotRepeat("RinSta", "GeoHar", 6, beatlesPlus6).shouldBeTrue()
+        rules2GiveeNotRepeat("RinSta", "DonDuc", 2, beatlesPlus6).shouldBeTrue()
+        rules2GiveeNotRepeat("RinSta", "PauMcc", 2, beatlesPlus6).shouldBeTrue()
+        rules2GiveeNotRepeat("RinSta", "EriTob", 2, beatlesPlus6).shouldBeFalse()
+        rules2GiveeNotRepeat("RinSta", "GeoHar", 2, beatlesPlus6).shouldBeFalse()
+        rules2GiveeNotRepeat("RinSta", "MicMou", 7, beatlesPlus6).shouldBeFalse()
+        rules2GiveeNotRepeat("RinSta", "MicMou", 6, beatlesPlus6).shouldBeTrue()
+        rules2GiveeNotRepeat("RinSta", "PauMcc", 6, beatlesPlus6).shouldBeFalse()
+        rules2GiveeNotRepeat("RinSta", "GeoHar", 6, beatlesPlus6).shouldBeTrue()
     }
 })
