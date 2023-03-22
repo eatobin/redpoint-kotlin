@@ -1,8 +1,5 @@
 package redpoint
 
-import GiftYearTA
-import giftHistoryAddYear
-import giftHistoryUpdateGiftHistory
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import redpoint.GiftPair.Companion.giftPairUpdateGivee
