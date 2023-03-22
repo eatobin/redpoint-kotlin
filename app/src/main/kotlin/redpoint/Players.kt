@@ -1,6 +1,6 @@
 package redpoint
 
-import giftPair.GiftPair
+import giftPair.*
 import giftPair.GiftPair.Companion.giftPairUpdateGivee
 import giftPair.GiftPair.Companion.giftPairUpdateGiver
 import kotlinx.serialization.decodeFromString
