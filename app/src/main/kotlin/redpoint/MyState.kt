@@ -3,6 +3,9 @@ package redpoint
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import rules1.rulesGiveeNotRecip
+import rules1.rulesGiveeNotRepeat
+import rules1.rulesGiveeNotSelf
 
 typealias RosterNameTA = String
 typealias RosterYearTA = Int

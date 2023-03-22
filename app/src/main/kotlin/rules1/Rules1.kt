@@ -1,4 +1,6 @@
-package redpoint
+package rules1
+
+import redpoint.*
 
 fun rulesGiveeNotSelf(selfKey: PlayerKeyTA, givee: GiveeTA): Boolean = selfKey != givee
 
