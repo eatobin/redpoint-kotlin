@@ -3,7 +3,7 @@ package rules
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
-import redpoint.GiftPair
+import giftPair.GiftPair
 import redpoint.Player
 import redpoint.PlayersTA
 

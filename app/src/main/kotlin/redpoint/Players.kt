@@ -1,9 +1,10 @@
 package redpoint
 
+import giftPair.GiftPair
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import redpoint.GiftPair.Companion.giftPairUpdateGivee
-import redpoint.GiftPair.Companion.giftPairUpdateGiver
+import giftPair.GiftPair.Companion.giftPairUpdateGivee
+import giftPair.GiftPair.Companion.giftPairUpdateGiver
 import redpoint.Player.Companion.playerUpdateGiftHistory
 
 typealias PlayersTA = Map<PlayerKeyTA, Player>

@@ -1,5 +1,6 @@
 package rules
 
+import giftPair.GiftPair
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
