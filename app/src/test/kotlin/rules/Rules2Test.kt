@@ -1,11 +1,11 @@
-package rules1
+package rules
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 import redpoint.*
 
-class Rules1Test : StringSpec({
+class Rules2Test : StringSpec({
     val rinSta = Player("Ringo Starr", listOf(GiftPair(giver = "PauMcc", givee = "EriTob")))
     val johLen = Player("John Lennon", listOf(GiftPair(giver = "GeoHar", givee = "SusSmi")))
     val geoHar = Player("George Harrison", listOf(GiftPair(giver = "JohLen", givee = "DonDuc")))
@@ -38,14 +38,6 @@ class Rules1Test : StringSpec({
     beatlesPlus6 = playersAddYear(beatlesPlus6)
     beatlesPlus6 = playersUpdateMyGivee("RinSta", "MicMou", 6, beatlesPlus6)
 
-    "A Player should not give to itself" {
-        rulesGiveeNotSelf("RinSta", "GeoHar").shouldBeTrue()
-        rulesGiveeNotSelf("RinSta", "RinSta").shouldBeFalse()
-    }
-    "A Player should not give to it's recip" {
-        rulesGiveeNotRecip("RinSta", "JohLen", 0, beatlesPlusPM).shouldBeTrue()
-        rulesGiveeNotRecip("RinSta", "EriTob", 0, beatlesPlusPM).shouldBeFalse()
-    }
     "A Player should not repeat for past four years" {
         rulesGiveeNotRepeat("RinSta", "DonDuc", 2, beatlesPlus6).shouldBeTrue()
         rulesGiveeNotRepeat("RinSta", "PauMcc", 2, beatlesPlus6).shouldBeTrue()
