@@ -1,10 +1,9 @@
-package redpoint
-
-import giftPair.JsonStringTA
-import redpoint.MyState.Companion.myStateAskContinue
-import redpoint.MyState.Companion.myStateJsonStringToMyState
-import redpoint.MyState.Companion.myStatePrintResults
-import redpoint.MyState.Companion.myStateUpdateAndRunNewYear
+import giftPairPkg.JsonStringTA
+import myStatePkg.MyState
+import myStatePkg.MyState.Companion.myStateAskContinue
+import myStatePkg.MyState.Companion.myStateJsonStringToMyState
+import myStatePkg.MyState.Companion.myStatePrintResults
+import myStatePkg.MyState.Companion.myStateUpdateAndRunNewYear
 import java.util.*
 
 fun main() {

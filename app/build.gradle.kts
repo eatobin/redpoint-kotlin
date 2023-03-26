@@ -33,7 +33,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass.set("redpoint.AppKt")
+    mainClass.set("AppKt")
 }
 
 tasks.named<Test>("test") {
@@ -44,7 +44,7 @@ tasks.named<Test>("test") {
 tasks.create("uberJar", Jar::class) {
     group = "build"
     description = "Creates a self-contained fat JAR of the application that can be run."
-    manifest.attributes["Main-Class"] = "redpoint.AppKt"
+    manifest.attributes["Main-Class"] = "AppKt"
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     val dependencies = configurations.runtimeClasspath.get().map(::zipTree)
     from(dependencies)
