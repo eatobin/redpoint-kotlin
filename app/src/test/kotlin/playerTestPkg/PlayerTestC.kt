@@ -1,21 +1,22 @@
-package redpoint
+package playerTestPkg
 
-import giftPair.GiftPair
-import giftPair.JsonStringTA
+import giftPairPkg.GiftPairDC
+import giftPairPkg.JsonStringTA
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import redpoint.Player.Companion.playerJsonStringToPlayer
-import redpoint.Player.Companion.playerUpdateGiftHistory
+import playerPkg.PlayerDC
+import playerPkg.PlayerDC.Companion.playerJsonStringToPlayer
+import playerPkg.PlayerDC.Companion.playerUpdateGiftHistory
 
-class PlayerTest : StringSpec({
+class PlayerTestC : StringSpec({
     val jsonString: JsonStringTA =
         "{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
     val badJsonString: JsonStringTA =
         "{\"playerName\"\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
     val badJsonString2: JsonStringTA =
         "{\"playerNameX\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
-    val player = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen")))
+    val player = PlayerDC("Paul McCartney", listOf(GiftPairDC("GeoHar", "JohLen")))
 
     "player should build from JSON" {
         playerJsonStringToPlayer(jsonString).shouldBe(player)
@@ -31,9 +32,9 @@ class PlayerTest : StringSpec({
         }
     }
     "player should return an updated giftHistory" {
-        playerUpdateGiftHistory(listOf(GiftPair("nope", "yup")), player).shouldBe(
-            Player(
-                "Paul McCartney", listOf(GiftPair("nope", "yup"))
+        playerUpdateGiftHistory(listOf(GiftPairDC("nope", "yup")), player).shouldBe(
+            PlayerDC(
+                "Paul McCartney", listOf(GiftPairDC("nope", "yup"))
             )
         )
     }
