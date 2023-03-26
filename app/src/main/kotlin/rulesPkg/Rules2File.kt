@@ -1,10 +1,10 @@
-package rules
+package rulesPkg
 
-import giftPair.GiveeTA
-import giftPair.PlayerKeyTA
-import redpoint.GiftYearTA
-import redpoint.PlayersTA
-import redpoint.playersGetMyGivee
+import giftHistoryPkg.GiftYearTA
+import giftPairPkg.GiveeTA
+import giftPairPkg.PlayerKeyTA
+import playersPkg.PlayersTA
+import playersPkg.playersGetMyGivee
 
 fun rules2GiveeNotRepeat(selfKey: PlayerKeyTA, givee: GiveeTA, giftYear: GiftYearTA, players: PlayersTA): Boolean {
     val giveesInYears: MutableList<GiveeTA> = mutableListOf()

@@ -1,10 +1,10 @@
-package rules
+package rulesPkg
 
-import giftPair.GiveeTA
-import giftPair.PlayerKeyTA
-import redpoint.GiftYearTA
-import redpoint.PlayersTA
-import redpoint.playersGetMyGivee
+import giftHistoryPkg.GiftYearTA
+import giftPairPkg.GiveeTA
+import giftPairPkg.PlayerKeyTA
+import playersPkg.PlayersTA
+import playersPkg.playersGetMyGivee
 
 fun rules1GiveeNotSelf(selfKey: PlayerKeyTA, givee: GiveeTA): Boolean = selfKey != givee
 

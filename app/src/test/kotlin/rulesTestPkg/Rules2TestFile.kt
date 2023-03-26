@@ -1,23 +1,24 @@
-package rules
+package rulesTestPkg
 
-import giftPair.GiftPair
+import giftPairPkg.GiftPairDC
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
-import redpoint.Player
-import redpoint.PlayersTA
-import redpoint.playersAddYear
-import redpoint.playersUpdateMyGivee
+import playerPkg.PlayerDC
+import playersPkg.PlayersTA
+import playersPkg.playersAddYear
+import playersPkg.playersUpdateMyGivee
+import rulesPkg.rules2GiveeNotRepeat
 
-class Rules2Test : StringSpec({
-    val rinSta = Player("Ringo Starr", listOf(GiftPair(giver = "PauMcc", givee = "EriTob")))
-    val johLen = Player("John Lennon", listOf(GiftPair(giver = "GeoHar", givee = "SusSmi")))
-    val geoHar = Player("George Harrison", listOf(GiftPair(giver = "JohLen", givee = "DonDuc")))
-    val pauMcc = Player("Paul McCartney", listOf(GiftPair(giver = "RinSta", givee = "MicMou")))
-    val eriTob = Player("Eric Tobin", listOf(GiftPair(giver = "MicMou", givee = "RinSta")))
-    val susSmi = Player("Susan Smith", listOf(GiftPair(giver = "DonDuc", givee = "JohLen")))
-    val donDuc = Player("Donald Duck", listOf(GiftPair(giver = "SusSmi", givee = "GeoHar")))
-    val micMou = Player("Mickey Mouse", listOf(GiftPair(giver = "EriTob", givee = "PauMcc")))
+class Rules2TestC : StringSpec({
+    val rinSta = PlayerDC("Ringo Starr", listOf(GiftPairDC(giver = "PauMcc", givee = "EriTob")))
+    val johLen = PlayerDC("John Lennon", listOf(GiftPairDC(giver = "GeoHar", givee = "SusSmi")))
+    val geoHar = PlayerDC("George Harrison", listOf(GiftPairDC(giver = "JohLen", givee = "DonDuc")))
+    val pauMcc = PlayerDC("Paul McCartney", listOf(GiftPairDC(giver = "RinSta", givee = "MicMou")))
+    val eriTob = PlayerDC("Eric Tobin", listOf(GiftPairDC(giver = "MicMou", givee = "RinSta")))
+    val susSmi = PlayerDC("Susan Smith", listOf(GiftPairDC(giver = "DonDuc", givee = "JohLen")))
+    val donDuc = PlayerDC("Donald Duck", listOf(GiftPairDC(giver = "SusSmi", givee = "GeoHar")))
+    val micMou = PlayerDC("Mickey Mouse", listOf(GiftPairDC(giver = "EriTob", givee = "PauMcc")))
     val beatlesPlusPM: PlayersTA = sortedMapOf(
         "PauMcc" to pauMcc,
         "GeoHar" to geoHar,
