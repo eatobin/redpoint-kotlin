@@ -8,7 +8,7 @@ import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-class GiftHistoryTest : StringSpec({
+class GiftHistoryTestC : StringSpec({
     val jsonString = "[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]"
     val badJsonString = "[{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}]"
     val badJsonString2 = "[{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}]"
