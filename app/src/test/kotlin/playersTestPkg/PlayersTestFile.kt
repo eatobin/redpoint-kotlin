@@ -1,12 +1,14 @@
-package redpoint
+package playersTestPkg
 
-import giftPair.GiftPair
-import giftPair.JsonStringTA
+import giftPairPkg.GiftPairDC
+import giftPairPkg.JsonStringTA
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
+import playerPkg.PlayerDC
+import playersPkg.*
 
-class PlayersTest : StringSpec({
+class PlayersTestC : StringSpec({
     val jsonString: JsonStringTA =
         "{\"GeoHar\":{\"playerName\":\"George Harrison\",\"giftHistory\":[{\"givee\":\"RinSta\",\"giver\":\"PauMcc\"}]},\"JohLen\":{\"playerName\":\"John Lennon\",\"giftHistory\":[{\"givee\":\"PauMcc\",\"giver\":\"RinSta\"}]},\"RinSta\":{\"playerName\":\"Ringo Starr\",\"giftHistory\":[{\"givee\":\"JohLen\",\"giver\":\"GeoHar\"}]},\"PauMcc\":{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}}"
     val badJsonString: JsonStringTA =
@@ -14,25 +16,25 @@ class PlayersTest : StringSpec({
     val badJsonString2: JsonStringTA =
         "{\"PauMcc\":{\"playerNameX\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]},\"GeoHar\":{\"playerName\":\"George Harrison\",\"giftHistory\":[{\"givee\":\"RinSta\",\"giver\":\"PauMcc\"}]},\"JohLen\":{\"playerName\":\"John Lennon\",\"giftHistory\":[{\"givee\":\"PauMcc\",\"giver\":\"RinSta\"}]},\"RinSta\":{\"playerName\":\"Ringo Starr\",\"giftHistory\":[{\"givee\":\"JohLen\",\"giver\":\"GeoHar\"}]}}"
 
-    val rinSta = Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar")))
-    val johLen = Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta")))
-    val geoHar = Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc")))
-    val pauMcc = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen")))
+    val rinSta = PlayerDC("Ringo Starr", listOf(GiftPairDC("JohLen", "GeoHar")))
+    val johLen = PlayerDC("John Lennon", listOf(GiftPairDC("PauMcc", "RinSta")))
+    val geoHar = PlayerDC("George Harrison", listOf(GiftPairDC("RinSta", "PauMcc")))
+    val pauMcc = PlayerDC("Paul McCartney", listOf(GiftPairDC("GeoHar", "JohLen")))
     val players: PlayersTA = sortedMapOf("PauMcc" to pauMcc, "GeoHar" to geoHar, "RinSta" to rinSta, "JohLen" to johLen)
 
-    val newBee = Player("New Bee", listOf(GiftPair("NewBee", "NewBee")))
+    val newBee = PlayerDC("New Bee", listOf(GiftPairDC("NewBee", "NewBee")))
     val newBeePlayers: PlayersTA =
         sortedMapOf("RinSta" to newBee, "JohLen" to johLen, "GeoHar" to geoHar, "PauMcc" to pauMcc)
 
-    val rinStaExt = Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar"), GiftPair("RinSta", "RinSta")))
-    val johLenExt = Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta"), GiftPair("JohLen", "JohLen")))
-    val geoHarExt = Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc"), GiftPair("GeoHar", "GeoHar")))
-    val pauMccExt = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen"), GiftPair("PauMcc", "PauMcc")))
+    val rinStaExt = PlayerDC("Ringo Starr", listOf(GiftPairDC("JohLen", "GeoHar"), GiftPairDC("RinSta", "RinSta")))
+    val johLenExt = PlayerDC("John Lennon", listOf(GiftPairDC("PauMcc", "RinSta"), GiftPairDC("JohLen", "JohLen")))
+    val geoHarExt = PlayerDC("George Harrison", listOf(GiftPairDC("RinSta", "PauMcc"), GiftPairDC("GeoHar", "GeoHar")))
+    val pauMccExt = PlayerDC("Paul McCartney", listOf(GiftPairDC("GeoHar", "JohLen"), GiftPairDC("PauMcc", "PauMcc")))
     val playersExt: PlayersTA =
         sortedMapOf("RinSta" to rinStaExt, "JohLen" to johLenExt, "GeoHar" to geoHarExt, "PauMcc" to pauMccExt)
 
-    val geoHarGivee = Player("George Harrison", listOf(GiftPair("you", "PauMcc")))
-    val geoHarGiver = Player("George Harrison", listOf(GiftPair("RinSta", "you")))
+    val geoHarGivee = PlayerDC("George Harrison", listOf(GiftPairDC("you", "PauMcc")))
+    val geoHarGiver = PlayerDC("George Harrison", listOf(GiftPairDC("RinSta", "you")))
     val playersGivee: PlayersTA =
         sortedMapOf("RinSta" to rinSta, "JohLen" to johLen, "GeoHar" to geoHarGivee, "PauMcc" to pauMcc)
     val playersGiver: PlayersTA =
@@ -52,7 +54,7 @@ class PlayersTest : StringSpec({
         }
     }
     "players should return an updated player" {
-        playersUpdatePlayer("RinSta", Player("New Bee", listOf(GiftPair("NewBee", "NewBee"))), players).shouldBe(
+        playersUpdatePlayer("RinSta", PlayerDC("New Bee", listOf(GiftPairDC("NewBee", "NewBee"))), players).shouldBe(
             newBeePlayers
         )
     }
