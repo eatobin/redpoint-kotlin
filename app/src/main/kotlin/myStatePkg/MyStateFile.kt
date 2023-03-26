@@ -1,15 +1,18 @@
-package redpoint
+package myStatePkg
 
-import giftPair.GiveeTA
-import giftPair.GiverTA
-import giftPair.JsonStringTA
-import giftPair.PlayerKeyTA
+import giftHistoryPkg.GiftYearTA
+import giftPairPkg.GiveeTA
+import giftPairPkg.GiverTA
+import giftPairPkg.JsonStringTA
+import giftPairPkg.PlayerKeyTA
+import hatPkg.*
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import rules.rules1GiveeNotRecip
-import rules.rules1GiveeNotSelf
-import rules.rules2GiveeNotRepeat
+import playersPkg.*
+import rulesPkg.rules1GiveeNotRecip
+import rulesPkg.rules1GiveeNotSelf
+import rulesPkg.rules2GiveeNotRepeat
 
 typealias RosterNameTA = String
 typealias RosterYearTA = Int
