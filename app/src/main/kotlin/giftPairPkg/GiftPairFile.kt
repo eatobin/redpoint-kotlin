@@ -13,7 +13,7 @@ typealias JsonStringTA = String
 data class GiftPairDC(val givee: GiveeTA, val giver: GiverTA) {
     companion object {
         fun giftPairJsonStringToGiftPair(jsonString: JsonStringTA): GiftPairDC = Json.decodeFromString(jsonString)
-        fun giftPairUpdateGivee(givee: GiveeTA, giftPairDC: GiftPairDC): GiftPairDC = giftPairDC.copy(givee = givee)
-        fun giftPairUpdateGiver(giver: GiverTA, giftPairDC: GiftPairDC): GiftPairDC = giftPairDC.copy(giver = giver)
+        fun giftPairUpdateGivee(givee: GiveeTA, giftPair: GiftPairDC): GiftPairDC = giftPair.copy(givee = givee)
+        fun giftPairUpdateGiver(giver: GiverTA, giftPair: GiftPairDC): GiftPairDC = giftPair.copy(giver = giver)
     }
 }
