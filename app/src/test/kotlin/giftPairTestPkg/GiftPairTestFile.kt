@@ -9,10 +9,10 @@ class GiftPairTestC : StringSpec({
     val jsonString = "{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}"
     val badJsonString = "{\"givee\"\"GeoHar\",\"giver\":\"JohLen\"}"
     val badJsonString2 = "{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}"
-    val giftPairDC = GiftPairDC("GeoHar", "JohLen")
+    val giftPair = GiftPairDC("GeoHar", "JohLen")
 
     "giftPair should build from JSON" {
-        GiftPairDC.giftPairJsonStringToGiftPair(jsonString).shouldBe(giftPairDC)
+        GiftPairDC.giftPairJsonStringToGiftPair(jsonString).shouldBe(giftPair)
     }
     "giftPair should NOT build from BAD JSON" {
         shouldThrowAny {
@@ -25,9 +25,9 @@ class GiftPairTestC : StringSpec({
         }
     }
     "giftPair should update a givee" {
-        GiftPairDC.giftPairUpdateGivee("NewBee", giftPairDC).shouldBe(GiftPairDC("NewBee", "JohLen"))
+        GiftPairDC.giftPairUpdateGivee("NewBee", giftPair).shouldBe(GiftPairDC("NewBee", "JohLen"))
     }
     "giftPair should update a giver" {
-        GiftPairDC.giftPairUpdateGiver("NewBee", giftPairDC).shouldBe(GiftPairDC("GeoHar", "NewBee"))
+        GiftPairDC.giftPairUpdateGiver("NewBee", giftPair).shouldBe(GiftPairDC("GeoHar", "NewBee"))
     }
 })
