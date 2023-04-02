@@ -1,11 +1,11 @@
-package hatPkg
+package hat
 
-import giftPairPkg.GiveeTA
-import giftPairPkg.JsonStringTA
-import giftPairPkg.PlayerKeyTA
+import giftPair.GiveeTA
+import giftPair.JsonStringTA
+import giftPair.PlayerKeyTA
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import playersPkg.PlayersTA
+import players.PlayersTA
 
 typealias HatTA = Set<PlayerKeyTA>
 typealias DiscardsTA = HatTA

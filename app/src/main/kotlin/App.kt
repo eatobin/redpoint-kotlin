@@ -1,9 +1,9 @@
-import giftPairPkg.JsonStringTA
-import myStatePkg.MyState
-import myStatePkg.MyState.Companion.myStateAskContinue
-import myStatePkg.MyState.Companion.myStateJsonStringToMyState
-import myStatePkg.MyState.Companion.myStatePrintResults
-import myStatePkg.MyState.Companion.myStateUpdateAndRunNewYear
+import giftPair.JsonStringTA
+import myState.MyState
+import myState.MyState.Companion.myStateAskContinue
+import myState.MyState.Companion.myStateJsonStringToMyState
+import myState.MyState.Companion.myStatePrintResults
+import myState.MyState.Companion.myStateUpdateAndRunNewYear
 import java.util.*
 
 fun main() {

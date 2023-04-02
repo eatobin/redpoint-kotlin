@@ -1,18 +1,18 @@
-package myStatePkg
+package myState
 
-import giftHistoryPkg.GiftYearTA
-import giftPairPkg.GiveeTA
-import giftPairPkg.GiverTA
-import giftPairPkg.JsonStringTA
-import giftPairPkg.PlayerKeyTA
-import hatPkg.*
+import giftHistory.GiftYearTA
+import giftPair.GiveeTA
+import giftPair.GiverTA
+import giftPair.JsonStringTA
+import giftPair.PlayerKeyTA
+import hat.*
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import playersPkg.*
-import rulesPkg.rules1GiveeNotRecip
-import rulesPkg.rules1GiveeNotSelf
-import rulesPkg.rules2GiveeNotRepeat
+import players.*
+import rules.rules1GiveeNotRecip
+import rules.rules1GiveeNotSelf
+import rules.rules2GiveeNotRepeat
 
 typealias RosterNameTA = String
 typealias RosterYearTA = Int

@@ -1,10 +1,10 @@
-package rulesPkg
+package rules
 
-import giftHistoryPkg.GiftYearTA
-import giftPairPkg.GiveeTA
-import giftPairPkg.PlayerKeyTA
-import playersPkg.PlayersTA
-import playersPkg.playersGetMyGivee
+import giftHistory.GiftYearTA
+import giftPair.GiveeTA
+import giftPair.PlayerKeyTA
+import players.PlayersTA
+import players.playersGetMyGivee
 
 fun rules1GiveeNotSelf(selfKey: PlayerKeyTA, givee: GiveeTA): Boolean = selfKey != givee
 

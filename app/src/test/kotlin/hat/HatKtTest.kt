@@ -1,24 +1,23 @@
-package hatTestPkg
+package hat
 
-import giftPairPkg.GiftPairDC
-import giftPairPkg.JsonStringTA
-import hatPkg.*
+import giftPair.GiftPair
+import giftPair.JsonStringTA
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import playerPkg.PlayerDC
-import playersPkg.PlayersTA
+import player.Player
+import players.PlayersTA
 
-class HatTestC : StringSpec({
+class HatKtTest : StringSpec({
     val jsonString: JsonStringTA = "[\"RinSta\",\"JohLen\",\"GeoHar\",\"PauMcc\"]"
     val badJsonString: JsonStringTA = "[\"RinSta\"\"JohLen\"\"GeoHar\"\"PauMcc\"]"
     val duplicates: JsonStringTA = "[\"RinSta\",\"RinSta\",\"JohLen\",\"GeoHar\",\"PauMcc\"]"
     val testHat: HatTA = sortedSetOf("JohLen", "RinSta", "PauMcc", "GeoHar")
 
-    val rinSta = PlayerDC("Ringo Starr", listOf(GiftPairDC("JohLen", "GeoHar")))
-    val johLen = PlayerDC("John Lennon", listOf(GiftPairDC("PauMcc", "RinSta")))
-    val geoHar = PlayerDC("George Harrison", listOf(GiftPairDC("RinSta", "PauMcc")))
-    val pauMcc = PlayerDC("Paul McCartney", listOf(GiftPairDC("GeoHar", "JohLen")))
+    val rinSta = Player("Ringo Starr", listOf(GiftPair("JohLen", "GeoHar")))
+    val johLen = Player("John Lennon", listOf(GiftPair("PauMcc", "RinSta")))
+    val geoHar = Player("George Harrison", listOf(GiftPair("RinSta", "PauMcc")))
+    val pauMcc = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen")))
     val players: PlayersTA = sortedMapOf("PauMcc" to pauMcc, "GeoHar" to geoHar, "RinSta" to rinSta, "JohLen" to johLen)
 
     "hat should build from JSON" {
