@@ -17,6 +17,8 @@ class PlayerKtTest : StringSpec({
         "{\"playerNameX\":\"Paul McCartney\",\"giftHistory\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
     val badJsonString3: JsonStringTA =
         "{\"playerName\":\"Paul McCartney\",\"giftHistoryX\":[{\"givee\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
+    val badJsonString4: JsonStringTA =
+        "{\"playerName\":\"Paul McCartney\",\"giftHistory\":[{\"giveeX\":\"GeoHar\",\"giver\":\"JohLen\"}]}"
     val player = Player("Paul McCartney", listOf(GiftPair("GeoHar", "JohLen")))
 
     "player should build from JSON" {
@@ -35,6 +37,11 @@ class PlayerKtTest : StringSpec({
     "player should NOT build from BAD JSON 3" {
         shouldThrowAny {
             playerJsonStringToPlayer(badJsonString3)
+        }
+    }
+    "player should NOT build from BAD JSON 4" {
+        shouldThrowAny {
+            playerJsonStringToPlayer(badJsonString4)
         }
     }
     "player should return an updated giftHistory" {
