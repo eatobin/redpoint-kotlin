@@ -10,7 +10,7 @@ typealias GiftHistoryTA = List<GiftPair>
 typealias GiftYearTA = Int
 
 //fun <E> Iterable<E>.updated(index: Int, elem: E) = mapIndexed { i, existing -> if (i == index) elem else existing }
-private fun GiftHistoryTA.updated(giftYear: GiftYearTA, giftPair: GiftPair) =
+private fun GiftHistoryTA.updated(giftYear: GiftYearTA, giftPair: GiftPair): GiftHistoryTA =
     mapIndexed { i, existing -> if (i == giftYear) giftPair else existing }
 
 fun giftHistoryJsonStringToGiftHistory(jsonString: JsonStringTA): GiftHistoryTA = Json.decodeFromString(jsonString)
