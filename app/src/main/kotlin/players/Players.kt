@@ -21,7 +21,7 @@ fun playersUpdatePlayer(playerKey: PlayerKeyTA, player: Player, players: Players
     mutPlayers[playerKey] = player
     return mutPlayers.toSortedMap()
 }
-
+// TODO in Clojure:
 fun playersGetPlayerName(playerKey: PlayerKeyTA, players: PlayersTA): PlayerNameTA {
     return players.getValue(playerKey).playerName
 }
