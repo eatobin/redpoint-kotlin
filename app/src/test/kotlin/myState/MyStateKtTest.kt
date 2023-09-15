@@ -114,7 +114,6 @@ class MyStateKtTest : StringSpec({
     }
     "MyState should build from JSON-Hawks" {
         myStateJsonStringToMyState(hawksJson).shouldBe(hawksState)
-//        assert(myStateJsonStringToMyState(hawksJson) == Right(hawksState))
     }
     "MyState should draw a puck" {
         myStateDrawPuck(testHat).shouldBe("RinSta")
